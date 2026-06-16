@@ -9,14 +9,17 @@ export default function Agenda() {
     {
       title: "धर्म प्रदर्शन एवं जनसभाग्रम",
       date: "12 मई 2024",
+      image: "/assets/image_27_43.png",
     },
     {
       title: "नकद पुरस्कार वितरण कार्यक्रम",
       date: "10 मई 2024",
+      image: "/assets/image_27_45.png",
     },
     {
       title: "क्रिकेट प्रतियोगिता (T-20)",
       date: "08 मई 2024",
+      image: "/assets/image_27_46.png",
     },
   ];
 
@@ -58,10 +61,10 @@ export default function Agenda() {
               <div className="flex gap-4 overflow-hidden">
                 {activities.map((activity, idx) => (
                   <div key={idx} className="min-w-[200px] flex-1 group cursor-pointer">
-                    {/* Image Placeholder */}
+                    {/* Image */}
                     <div className="w-full h-40 bg-gray-200 rounded-xl mb-3 overflow-hidden relative">
+                      <Image src={activity.image} alt={activity.title} fill className="object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                      <span className="absolute inset-0 flex items-center justify-center text-xs text-gray-400 font-bold">IMAGE</span>
                     </div>
                     <h4 className="font-bold text-sm text-gray-800 mb-1.5 group-hover:text-[#0b4d21] transition-colors leading-tight">{activity.title}</h4>
                     <p className="text-xs text-gray-500 flex items-center gap-1.5">

@@ -4,14 +4,15 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function MeetLeaders() {
   const leaders = [
-    { name: "Chaudhary Charan Singh", title: "Founder & Inspiration" },
-    { name: "Chaudhary Sunil Singh", title: "National President" },
-    { name: "Chaudhary Rajinder Singh", title: "National General Secretary" },
-    { name: "Chaudhary Mahesh Singh", title: "National Vice President" },
-    { name: "Chaudhary Balraj Singh", title: "National Secretary" },
+    { name: "Chaudhary Charan Singh", title: "Founder & Inspiration", image: "/assets/image_2_14.png" },
+    { name: "Chaudhary Sunil Singh", title: "National President", image: "/assets/sunil singh img.png" },
+    { name: "Chaudhary Rajinder Singh", title: "National General Secretary", image: "/assets/image_5_17.png" },
+    { name: "Chaudhary Mahesh Singh", title: "National Vice President", image: "/assets/image_10_24.png" },
+    { name: "Chaudhary Balraj Singh", title: "National Secretary", image: "/assets/image_11_26.png" },
   ];
 
   return (
@@ -43,8 +44,8 @@ export default function MeetLeaders() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {leaders.map((leader, idx) => (
               <div key={idx} className="bg-green-50/60 rounded-xl p-2.5 pb-3 flex flex-col items-center text-center group cursor-pointer hover:shadow-md transition-shadow border border-green-100/50">
-                <div className="w-full h-28 sm:h-32 lg:h-40 bg-gradient-to-b from-green-100/80 to-green-50 rounded-lg mb-2 overflow-hidden flex items-center justify-center">
-                  <span className="text-[10px] text-gray-400 font-bold">PHOTO</span>
+                <div className="w-full h-28 sm:h-32 lg:h-40 bg-gradient-to-b from-green-100/80 to-green-50 rounded-lg mb-2 overflow-hidden relative">
+                  <Image src={leader.image} alt={leader.name} fill className="object-cover object-top" />
                 </div>
                 <h3 className="font-bold text-[10px] sm:text-xs text-gray-900 group-hover:text-[#0b4d21] transition-colors mb-0.5 leading-tight">{leader.name}</h3>
                 <p className="text-[10px] sm:text-xs text-[#0b4d21] font-medium italic mb-2">{leader.title}</p>

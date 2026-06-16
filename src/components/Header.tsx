@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown, UserPlus } from "lucide-react";
+import { ChevronDown, UserPlus, Menu, X } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { useState } from "react";
@@ -9,66 +9,83 @@ import { useLanguage } from "./LanguageProvider";
 import Image from "next/image";
 
 export default function Header() {
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const { language, setLanguage, options } = useLanguage();
-  const selectedLanguage = options.find((option) => option.code === language) ?? options[0];
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+
+  const { language, setLanguage } = useLanguage();
+
+  const closeMobile = () => {
+    setIsMobileOpen(false);
+    setIsMobileAboutOpen(false);
+  };
 
   return (
-    <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50 shadow-xs">
+    <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+
       {/* Top Bar */}
       <div className="w-full relative h-10 flex items-center">
-        {/* The green slanted background */}
         <div className="absolute left-0 top-0 bottom-0 w-[250px] sm:w-[350px] lg:w-[450px]">
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
             <path d="M0,0 L100,0 C98,50 85,100 80,100 L0,100 Z" fill="#0b4d21" />
           </svg>
         </div>
-        
-        {/* Social Icons */}
-        <div className="w-full mx-auto px-4 sm:px-8 lg:px-16 flex justify-between items-center text-sm relative z-10">
+        <div className="w-full px-4 sm:px-8 lg:px-16 flex justify-between items-center text-sm relative z-10">
           <div className="flex items-center gap-5 pl-8 md:pl-20 text-white">
-            <Link href="#" className="hover:text-green-300 transition-colors"><FaFacebookF size={14} /></Link>
-            <Link href="#" className="hover:text-green-300 transition-colors"><FaXTwitter size={14} /></Link>
-            <Link href="#" className="hover:text-green-300 transition-colors"><FaInstagram size={14} /></Link>
-            <Link href="#" className="hover:text-green-300 transition-colors"><FaYoutube size={14} /></Link>
-            <Link href="#" className="hover:text-green-300 transition-colors"><FaWhatsapp size={14} /></Link>
+            <Link href="#"><FaFacebookF size={14} /></Link>
+            <Link href="#"><FaXTwitter size={14} /></Link>
+            <Link href="#"><FaInstagram size={14} /></Link>
+            <Link href="#"><FaYoutube size={14} /></Link>
+            <Link href="#"><FaWhatsapp size={14} /></Link>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <div className="w-full mx-auto px-4 sm:px-8 lg:px-16 py-3 flex justify-between items-center">
-        
-        {/* Logo Area */}
-        <Link href="/" className="flex items-center gap-4">
-          <Image
-            src="/assets/logo.png"
-            alt="Lokdal Logo"
-            width={96}
-            height={64}
-            className="h-16 w-auto object-contain"
-            priority
-          />
+      {/* Main Nav */}
+      <div className="w-full px-4 sm:px-8 lg:px-16 py-3 flex justify-between items-center">
+
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 sm:gap-4">
+          <Image src="/assets/logo.png" alt="Lokdal Logo" width={96} height={64} className="h-12 sm:h-16 w-auto object-contain" priority />
           <div className="flex flex-col justify-center">
-            <span className="text-[32px] font-black text-[#0b4d21] tracking-tight leading-none mb-1">लोकदल</span>
-            <span className="text-[12px] font-bold text-gray-600 tracking-wide">पारिवर्तन है, विकल्प है</span>
+            <span className="text-2xl sm:text-[32px] font-black text-[#0b4d21] tracking-tight leading-none mb-0.5">लोकदल</span>
+            <span className="text-[11px] sm:text-[12px] font-bold text-gray-600 tracking-wide">पारिवर्तन है, विकल्प है</span>
           </div>
         </Link>
-        
-        {/* Desktop Nav Links */}
+
+        {/* Desktop Nav */}
         <nav className="hidden xl:flex items-center text-[15px] font-bold text-gray-600">
           <Link href="/" className="text-[#0b4d21] px-4 py-2 relative">
             होम
-            <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-[#0b4d21]"></span>
+            <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-[#0b4d21]" />
           </Link>
           <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="#about" className="hover:text-[#0b4d21] transition-colors px-4 py-2 flex items-center gap-1.5">
-            लोकदल के बारे में <ChevronDown size={14} strokeWidth={3} className="mt-0.5" />
-          </Link>
+
+          <div className="relative" onMouseEnter={() => setIsAboutOpen(true)} onMouseLeave={() => setIsAboutOpen(false)}>
+            <button className="hover:text-[#0b4d21] transition-colors px-4 py-2 flex items-center gap-1.5">
+              लोकदल के बारे में
+              <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isAboutOpen ? "rotate-180" : ""}`} />
+            </button>
+            {isAboutOpen && (
+              <div className="absolute left-0 top-full w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 z-50">
+                <Link href="/about/chaudhary-charan-singh" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Chaudhary Charan Singh
+                </Link>
+                <Link href="#" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> History of Lokdal
+                </Link>
+                <Link href="#" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Lokdal Manifesto
+                </Link>
+              </div>
+            )}
+          </div>
+
           <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="#events" className="hover:text-[#0b4d21] transition-colors px-4 py-2">कार्यक्रम</Link>
+          <Link href="/upcoming-events" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Upcoming Events</Link>
           <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="#organization" className="hover:text-[#0b4d21] transition-colors px-4 py-2">संगठन</Link>
+          <Link href="/lokdal-live" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Lokdal Live</Link>
           <span className="text-gray-300 font-light px-1">|</span>
           <Link href="#ideology" className="hover:text-[#0b4d21] transition-colors px-4 py-2">विचारधारा</Link>
           <span className="text-gray-300 font-light px-1">|</span>
@@ -77,58 +94,136 @@ export default function Header() {
           <Link href="#donate" className="hover:text-[#0b4d21] transition-colors px-4 py-2">दान करें</Link>
         </nav>
 
-        {/* Right Action Area */}
-        <div className="flex items-center gap-4">
-          <div className="relative hidden lg:block">
+        {/* Right: language toggle + join + hamburger */}
+        <div className="flex items-center gap-3">
+
+          {/* Language dropdown — desktop */}
+          <div className="hidden lg:block relative">
             <button
               type="button"
-              onClick={() => setIsLanguageOpen((isOpen) => !isOpen)}
-              className="flex items-center gap-2 border border-gray-300 text-gray-700 font-bold text-sm px-4 py-2 rounded-md hover:bg-gray-50 transition-colors"
-              aria-haspopup="menu"
-              aria-expanded={isLanguageOpen}
+              onClick={() => setIsLangOpen((v) => !v)}
+              className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2 text-xs font-black text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              {selectedLanguage.nativeLabel} ({selectedLanguage.label}){" "}
-              <ChevronDown
-                size={14}
-                strokeWidth={3}
-                className={`transition-transform ${isLanguageOpen ? "rotate-180" : ""}`}
-              />
+              {language === "en" ? "EN — English" : "हिंदी"}
+              <ChevronDown size={13} className={`transition-transform ${isLangOpen ? "rotate-180" : ""}`} />
             </button>
-
-            {isLanguageOpen ? (
-              <div
-                role="menu"
-                className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-lg border border-gray-200 bg-white py-1 shadow-lg"
-              >
-                {options.map((option) => (
-                  <button
-                    key={option.code}
-                    type="button"
-                    role="menuitem"
-                    onClick={() => {
-                      setLanguage(option.code);
-                      setIsLanguageOpen(false);
-                    }}
-                    className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-sm font-bold transition-colors ${
-                      option.code === language
-                        ? "bg-green-50 text-[#0b4d21]"
-                        : "text-gray-700 hover:bg-gray-50"
-                    }`}
-                  >
-                    <span>{option.nativeLabel}</span>
-                    <span className="text-xs text-gray-400">{option.shortLabel}</span>
-                  </button>
-                ))}
+            {isLangOpen && (
+              <div className="absolute right-0 top-full mt-2 w-40 bg-white border border-gray-100 rounded-xl shadow-lg py-1 z-50">
+                <button
+                  onClick={() => { setLanguage("en"); setIsLangOpen(false); }}
+                  className={`w-full text-left px-4 py-2.5 text-sm font-bold transition-colors flex items-center justify-between ${language === "en" ? "text-[#0b4d21] bg-green-50" : "text-gray-700 hover:bg-gray-50"}`}
+                >
+                  English <span className="text-xs text-gray-400">EN</span>
+                </button>
+                <button
+                  onClick={() => { setLanguage("hi"); setIsLangOpen(false); }}
+                  className={`w-full text-left px-4 py-2.5 text-sm font-bold transition-colors flex items-center justify-between ${language === "hi" ? "text-[#0b4d21] bg-green-50" : "text-gray-700 hover:bg-gray-50"}`}
+                >
+                  हिंदी <span className="text-xs text-gray-400">HI</span>
+                </button>
               </div>
-            ) : null}
+            )}
           </div>
 
-          <Link href="#join" className="bg-[#0b4d21] hover:bg-[#073616] text-white px-5 py-2.5 rounded-md font-bold text-sm flex items-center gap-2 shadow-sm transition-all">
-            <UserPlus size={16} strokeWidth={2.5} /> Join Lokdal
+          {/* Join Lokdal */}
+          <Link href="#join" className="hidden sm:flex bg-[#0b4d21] hover:bg-[#073616] text-white px-4 py-2 rounded-md font-bold text-sm items-center gap-2 shadow-sm transition-all">
+            <UserPlus size={15} strokeWidth={2.5} /> Join Lokdal
           </Link>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setIsMobileOpen((v) => !v)}
+            className="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
-        
       </div>
+
+      {/* Mobile Drawer */}
+      {isMobileOpen && (
+        <div className="xl:hidden border-t border-gray-100 bg-white shadow-lg">
+          <nav className="flex flex-col px-4 py-4 gap-1">
+
+            <Link href="/" onClick={closeMobile}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-[#0b4d21] font-black text-sm bg-green-50">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> होम
+            </Link>
+
+            {/* About accordion */}
+            <div>
+              <button
+                onClick={() => setIsMobileAboutOpen((v) => !v)}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> लोकदल के बारे में
+                </span>
+                <ChevronDown size={14} className={`transition-transform ${isMobileAboutOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isMobileAboutOpen && (
+                <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-green-100 pl-4">
+                  <Link href="/about/chaudhary-charan-singh" onClick={closeMobile}
+                    className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">
+                    Chaudhary Charan Singh
+                  </Link>
+                  <Link href="#" onClick={closeMobile}
+                    className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">
+                    History of Lokdal
+                  </Link>
+                  <Link href="#" onClick={closeMobile}
+                    className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">
+                    Lokdal Manifesto
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {[
+              { href: "/upcoming-events", label: "Upcoming Events" },
+              { href: "/lokdal-live", label: "Lokdal Live" },
+              { href: "#ideology", label: "विचारधारा" },
+              { href: "#issues", label: "समाज के मुद्दे" },
+              { href: "#donate", label: "दान करें" },
+            ].map(({ href, label }) => (
+              <Link key={label} href={href} onClick={closeMobile}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 hover:text-[#0b4d21] transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> {label}
+              </Link>
+            ))}
+
+            <div className="my-2 border-t border-gray-100" />
+
+            <Link href="#join" onClick={closeMobile}
+              className="flex items-center justify-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-4 py-3 rounded-lg hover:bg-[#073616] transition-colors">
+              <UserPlus size={16} /> Join Lokdal
+            </Link>
+
+            {/* EN / हिंदी toggle — mobile */}
+            <div className="mt-2">
+              <p className="text-xs font-black text-gray-400 uppercase tracking-wider px-1 mb-2">Language</p>
+              <div className="flex border border-gray-200 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => { setLanguage("en"); closeMobile(); }}
+                  className={`flex-1 py-2.5 text-sm font-black transition-colors ${language === "en" ? "bg-[#0b4d21] text-white" : "bg-white text-gray-600 hover:bg-gray-50"}`}
+                >
+                  EN — English
+                </button>
+                <div className="w-px bg-gray-200" />
+                <button
+                  onClick={() => { setLanguage("hi"); closeMobile(); }}
+                  className={`flex-1 py-2.5 text-sm font-black transition-colors ${language === "hi" ? "bg-[#0b4d21] text-white" : "bg-white text-gray-600 hover:bg-gray-50"}`}
+                >
+                  हिंदी
+                </button>
+              </div>
+            </div>
+
+          </nav>
+        </div>
+      )}
+
     </header>
   );
 }

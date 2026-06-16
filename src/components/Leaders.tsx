@@ -4,6 +4,7 @@ import { ArrowRight, CalendarDays, Star, Users, Mail } from "lucide-react";
 import { FaFacebookF, FaYoutube, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Leaders() {
   return (
@@ -32,8 +33,8 @@ export default function Leaders() {
                 {/* Large Featured Card */}
                 <div className="w-full md:w-[55%] group cursor-pointer">
                   <div className="w-full h-[280px] bg-gray-200 rounded-2xl overflow-hidden relative mb-4">
+                    <Image src="/assets/image_27_43.png" alt="Dharna Pradershan" fill className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-                    <span className="absolute inset-0 flex items-center justify-center text-sm text-gray-400 font-bold">ACTIVITY IMAGE</span>
                   </div>
                   <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#0b4d21] transition-colors">Dharna Pradershan</h3>
                   <p className="text-sm text-gray-500 mb-1">By Chaudhary Sunil Singh</p>
@@ -52,7 +53,7 @@ export default function Leaders() {
                   {/* Card 1 */}
                   <div className="flex gap-4 group cursor-pointer">
                     <div className="w-[140px] h-[100px] bg-gray-200 rounded-xl overflow-hidden flex-shrink-0 relative">
-                      <span className="absolute inset-0 flex items-center justify-center text-[10px] text-gray-400 font-bold">IMAGE</span>
+                      <Image src="/assets/image_27_45.png" alt="Dharna Pradershan" fill className="object-cover" />
                     </div>
                     <div className="flex flex-col justify-center">
                       <h4 className="font-bold text-sm text-gray-900 group-hover:text-[#0b4d21] transition-colors mb-1">Dharna Pradershan</h4>
@@ -66,7 +67,7 @@ export default function Leaders() {
                   {/* Card 2 */}
                   <div className="flex gap-4 group cursor-pointer">
                     <div className="w-[140px] h-[100px] bg-gray-200 rounded-xl overflow-hidden flex-shrink-0 relative">
-                      <span className="absolute inset-0 flex items-center justify-center text-[10px] text-gray-400 font-bold">IMAGE</span>
+                      <Image src="/assets/image_27_46.png" alt="Cash Prize Distribution" fill className="object-cover" />
                     </div>
                     <div className="flex flex-col justify-center">
                       <h4 className="font-bold text-sm text-gray-900 group-hover:text-[#0b4d21] transition-colors mb-1">Cash Prize Distribution</h4>
@@ -97,12 +98,12 @@ export default function Leaders() {
               {/* Historical Photos Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="w-full h-[280px] bg-gray-200 rounded-2xl overflow-hidden relative group cursor-pointer">
+                  <Image src="/assets/image_20_35.png" alt="Historical Photo 1" fill className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/40 transition-all"></div>
-                  <span className="absolute inset-0 flex items-center justify-center text-sm text-gray-400 font-bold">HISTORICAL PHOTO 1</span>
                 </div>
                 <div className="w-full h-[280px] bg-gray-200 rounded-2xl overflow-hidden relative group cursor-pointer">
+                  <Image src="/assets/image_30_53.png" alt="Historical Photo 2" fill className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/40 transition-all"></div>
-                  <span className="absolute inset-0 flex items-center justify-center text-sm text-gray-400 font-bold">HISTORICAL PHOTO 2</span>
                 </div>
               </div>
             </div>
@@ -146,8 +147,8 @@ export default function Leaders() {
                 {["Choudhary Charan Singh", "Choudhary Sunil Singh", "Choudhary Rajinder Singh"].map((name, idx) => (
                   <div key={idx} className="flex items-center justify-between py-3 group cursor-pointer">
                     <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden flex items-center justify-center">
-                        <span className="text-[8px] text-gray-400 font-bold">PHOTO</span>
+                      <div className="w-11 h-11 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden relative">
+                        <Image src={`/assets/image_${["2_14", "5_17", "10_24"][idx]}.png`} alt={name} fill className="object-cover" />
                       </div>
                       <span className="text-sm font-semibold text-gray-800 group-hover:text-[#0b4d21] transition-colors">{name}</span>
                     </div>
@@ -199,8 +200,8 @@ export default function Leaders() {
                 Today&apos;s Pick
               </h3>
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-gray-200 rounded-xl flex-shrink-0 flex items-center justify-center">
-                  <span className="text-[8px] text-gray-400 font-bold">IMG</span>
+                <div className="w-14 h-14 bg-gray-200 rounded-xl flex-shrink-0 overflow-hidden relative">
+                  <Image src="/assets/image_13_30.png" alt="Today's Pick" fill className="object-cover" />
                 </div>
                 <p className="text-sm text-gray-700 font-medium leading-snug">&ldquo;किसान और मजदूर का राज,&rdquo;</p>
               </div>

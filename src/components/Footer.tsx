@@ -1,91 +1,188 @@
 "use client";
 
 import Link from "next/link";
-import { Users, Hash, Camera, PlaySquare, MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
+import { ChevronRight, MapPin, Phone, Mail } from "lucide-react";
+import { FaFacebookF } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
+const aboutLinks = [
+  "History of Lokdal",
+  "Chaudhary Charan Singh",
+  "Chaudhary Sunil Singh",
+  "Rajinder Singh",
+  "Ideaology of Lokdal",
+  "Lokdal Manifesto",
+];
+
+const orgLinks = [
+  "National Executive",
+  "Uttar Pradesh Executive",
+  "Haryana Executive",
+  "Rajasthan Executive",
+  "Kerala Executive",
+  "Andhra Pradesh Executive",
+  "Bihar Executive",
+  "Manipur Executive",
+];
+
+const deptLinks = [
+  "Election Management",
+  "Election Commission",
+  "Legal Affairs",
+  "IT & Website Management",
+  "Foreign Affairs",
+];
+
+const otherLinks = ["Gallery", "Contact", "Donate", "Join Lokdal"];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#052b13] text-white pt-20 pb-10 border-t-8 border-yellow-400">
-      <div className="w-full px-4 sm:px-8 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
-          {/* Column 1: Logo & About */}
-          <div>
-            <div className="mb-6">
-              <span className="text-4xl font-black text-white tracking-tight block">लोकदल</span>
-              <span className="text-sm font-semibold text-yellow-400 tracking-wider">पारिवर्तन है, विकल्प है</span>
+    <footer className="bg-white border-t border-gray-100">
+      {/* Main Footer */}
+      <div className="w-full px-4 sm:px-8 lg:px-16 py-12">
+        <div className="flex flex-col lg:flex-row gap-10">
+
+          {/* Left: Logo + tagline + address */}
+          <div className="w-full lg:w-[260px] flex-shrink-0">
+            <div className="flex items-center gap-3 mb-4">
+              <Image src="/assets/logo.png" alt="Lokdal Logo" width={52} height={52} className="object-contain" />
+              <span className="text-3xl font-black text-[#0b4d21]">लोकदल</span>
             </div>
-            <p className="text-green-100/80 mb-6 leading-relaxed">
-              Dedicated to the welfare of farmers, laborers, and rural communities, striving to build a prosperous, self-reliant, and progressive India.
+            <p className="text-sm text-gray-600 leading-relaxed mb-5">
+              लोकदल का संकल्प – किसान, मजदूर, युवा और हर नागरिक के अधिकार, सम्मान और समृद्धि के लिए समर्पित।
             </p>
-            <div className="flex items-center gap-4">
-              <Link href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 hover:text-[#052b13] transition-colors">
-                <Users size={18} />
+            <div className="w-10 h-0.5 bg-[#0b4d21] mb-5" />
+            <div className="flex items-start gap-3 text-sm text-gray-600">
+              <MapPin size={16} className="text-[#0b4d21] flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-gray-800">Office Address</p>
+                <p>8, Mall Avenue,</p>
+                <p>Lucknow (U.P.)</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Link Columns */}
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-8">
+
+            {/* About Lokdal */}
+            <div>
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                <div className="w-5 h-5 rounded-full border-2 border-[#0b4d21] flex items-center justify-center flex-shrink-0">
+                  <span className="text-[9px] font-black text-[#0b4d21]">i</span>
+                </div>
+                <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">About Lokdal</h4>
+              </div>
+              <ul className="space-y-2.5">
+                {aboutLinks.map((item) => (
+                  <li key={item} className="flex items-center gap-1.5">
+                    <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
+                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Organization */}
+            <div>
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                <div className="w-5 h-5 rounded-full bg-[#0b4d21]/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[8px] font-black text-[#0b4d21]">👥</span>
+                </div>
+                <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">Organization</h4>
+              </div>
+              <ul className="space-y-2.5">
+                {orgLinks.map((item) => (
+                  <li key={item} className="flex items-center gap-1.5">
+                    <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
+                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Departments */}
+            <div>
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                <div className="w-5 h-5 rounded-full bg-[#0b4d21]/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[8px] font-black text-[#0b4d21]">🏢</span>
+                </div>
+                <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">Departments</h4>
+              </div>
+              <ul className="space-y-2.5">
+                {deptLinks.map((item) => (
+                  <li key={item} className="flex items-center gap-1.5">
+                    <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
+                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Other Links */}
+            <div>
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                <div className="w-5 h-5 rounded-full bg-[#0b4d21]/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[8px] font-black text-[#0b4d21]">🔗</span>
+                </div>
+                <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">Other Links</h4>
+              </div>
+              <ul className="space-y-2.5">
+                {otherLinks.map((item) => (
+                  <li key={item} className="flex items-center gap-1.5">
+                    <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
+                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-200 bg-white">
+        <div className="w-full px-4 sm:px-8 lg:px-16 py-5 flex flex-col sm:flex-row items-center justify-between gap-6">
+
+          {/* Stay Connected */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div>
+              <p className="text-xs font-black text-gray-800 uppercase tracking-wider mb-1">Stay Connected With Us</p>
+              <p className="text-xs text-gray-500">Follow us on social media and stay updated<br className="hidden sm:block" /> with our latest initiatives and news.</p>
+            </div>
+            <div className="flex gap-3">
+              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+                <FaFacebookF size={15} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 hover:text-[#052b13] transition-colors">
-                <Hash size={18} />
+              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+                <FaXTwitter size={15} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 hover:text-[#052b13] transition-colors">
-                <Camera size={18} />
+              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+                <Mail size={15} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow-400 hover:text-[#052b13] transition-colors">
-                <PlaySquare size={18} />
+              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+                <Phone size={15} />
               </Link>
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div>
-            <h4 className="text-xl font-bold mb-6 border-b border-white/20 pb-2 inline-block">Quick Links</h4>
-            <ul className="space-y-4 text-green-100/80 font-medium">
-              <li><Link href="/" className="hover:text-yellow-400 transition-colors">Home</Link></li>
-              <li><Link href="#about" className="hover:text-yellow-400 transition-colors">About Lokdal</Link></li>
-              <li><Link href="#events" className="hover:text-yellow-400 transition-colors">Our Activities</Link></li>
-              <li><Link href="#leaders" className="hover:text-yellow-400 transition-colors">Our Leaders</Link></li>
-              <li><Link href="#ideology" className="hover:text-yellow-400 transition-colors">Ideology</Link></li>
-            </ul>
-          </div>
+          {/* Join Lokdal CTA */}
+          <Link
+            href="#"
+            className="flex items-center gap-4 border-2 border-[#0b4d21] rounded-lg px-5 py-3 hover:bg-green-50 transition-colors group flex-shrink-0"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#0b4d21] flex items-center justify-center flex-shrink-0">
+              <span className="text-white text-sm">🚩</span>
+            </div>
+            <div>
+              <p className="text-sm font-black text-gray-900">Join Lokdal</p>
+              <p className="text-xs text-gray-500">Be a part of the change</p>
+            </div>
+            <ChevronRight size={18} className="text-[#0b4d21] group-hover:translate-x-1 transition-transform" />
+          </Link>
 
-          {/* Column 3: Important Links */}
-          <div>
-            <h4 className="text-xl font-bold mb-6 border-b border-white/20 pb-2 inline-block">Important Links</h4>
-            <ul className="space-y-4 text-green-100/80 font-medium">
-              <li><Link href="#join" className="hover:text-yellow-400 transition-colors">Join as Member</Link></li>
-              <li><Link href="#volunteer" className="hover:text-yellow-400 transition-colors">Become a Volunteer</Link></li>
-              <li><Link href="#donate" className="hover:text-yellow-400 transition-colors">Donate Now</Link></li>
-              <li><Link href="#gallery" className="hover:text-yellow-400 transition-colors">Media Gallery</Link></li>
-              <li><Link href="#press" className="hover:text-yellow-400 transition-colors">Press Releases</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 4: Contact Info */}
-          <div>
-            <h4 className="text-xl font-bold mb-6 border-b border-white/20 pb-2 inline-block">Contact Us</h4>
-            <ul className="space-y-4 text-green-100/80 font-medium">
-              <li className="flex items-start gap-3">
-                <MapPin size={20} className="text-yellow-400 flex-shrink-0 mt-1" />
-                <span>National Headquarters,<br />123 Lokdal Marg, New Delhi 110001</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone size={20} className="text-yellow-400 flex-shrink-0" />
-                <span>+91 98765 43210</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail size={20} className="text-yellow-400 flex-shrink-0" />
-                <span>contact@lokdal.org</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Bottom Copyright Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-green-100/60 font-medium">
-          <p>&copy; {new Date().getFullYear()} Rashtriya Lok Dal. All Rights Reserved.</p>
-          <div className="flex gap-6">
-            <Link href="#" className="hover:text-yellow-400 transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-yellow-400 transition-colors">Terms of Service</Link>
-          </div>
         </div>
       </div>
     </footer>
