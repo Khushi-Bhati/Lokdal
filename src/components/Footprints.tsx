@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const stats = [
   {
@@ -116,12 +117,12 @@ export default function Footprints() {
 
           <div className="rounded-l-none border-gray-200 lg:border-l lg:pl-8">
             <div className="mb-10 grid grid-cols-2 overflow-hidden rounded-lg border border-gray-200 shadow-sm">
-              <button className="bg-[#0b4d21] px-5 py-3 text-sm font-bold text-white">
+              <Link href="/organization/national-executive" className="bg-[#0b4d21] px-5 py-3 text-sm font-bold text-white text-center">
                 At National Level
-              </button>
-              <button className="bg-white px-5 py-3 text-sm font-bold text-gray-900">
+              </Link>
+              <Link href="/organization/uttar-pradesh" className="bg-white px-5 py-3 text-sm font-bold text-gray-900 text-center hover:bg-gray-50 transition-colors">
                 In States
-              </button>
+              </Link>
             </div>
 
             <div className="space-y-0">

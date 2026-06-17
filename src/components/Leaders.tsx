@@ -23,7 +23,7 @@ export default function Leaders() {
                   <span className="w-1 h-7 bg-[#0b4d21] rounded-full mr-3 inline-block"></span>
                   Recent Activities
                 </h2>
-                <Link href="#" className="border-2 border-[#0b4d21] text-[#0b4d21] font-bold text-sm px-5 py-2 rounded-lg flex items-center gap-2 hover:bg-[#0b4d21] hover:text-white transition-all">
+                <Link href="/upcoming-events" className="border-2 border-[#0b4d21] text-[#0b4d21] font-bold text-sm px-5 py-2 rounded-lg flex items-center gap-2 hover:bg-[#0b4d21] hover:text-white transition-all">
                   सभी देखें <ArrowRight size={16} />
                 </Link>
               </div>
@@ -129,7 +129,7 @@ export default function Leaders() {
                 Sunil Singh has also been a member of Uttar Pradesh
                 Legislative Council.
               </p>
-              <Link href="#" className="inline-flex items-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-5 py-2.5 rounded-lg hover:bg-[#073616] transition-colors">
+              <Link href="/about/chaudhary-sunil-singh" className="inline-flex items-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-5 py-2.5 rounded-lg hover:bg-[#073616] transition-colors">
                 और जानें <ArrowRight size={16} />
               </Link>
             </div>
@@ -143,22 +143,24 @@ export default function Leaders() {
                 Top Profiles
               </h3>
 
-              <div className="flex flex-col divide-y divide-gray-100">
-                {["Choudhary Charan Singh", "Choudhary Sunil Singh", "Choudhary Rajinder Singh"].map((name, idx) => (
-                  <div key={idx} className="flex items-center justify-between py-3 group cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden relative">
-                        <Image src={`/assets/image_${["2_14", "5_17", "10_24"][idx]}.png`} alt={name} fill className="object-cover" />
-                      </div>
-                      <span className="text-sm font-semibold text-gray-800 group-hover:text-[#0b4d21] transition-colors">{name}</span>
+              {[
+                { name: "Choudhary Charan Singh", href: "/about/chaudhary-charan-singh" },
+                { name: "Choudhary Sunil Singh", href: "/about/chaudhary-sunil-singh" },
+                { name: "Choudhary Rajinder Singh", href: "/about/chaudhary-charan-singh" },
+              ].map((p, idx) => (
+                <Link href={p.href} key={idx} className="flex items-center justify-between py-3 group cursor-pointer border-b border-gray-100 last:border-0">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden relative">
+                      <Image src={`/assets/image_${["2_14", "5_17", "10_24"][idx]}.png`} alt={p.name} fill className="object-cover" />
                     </div>
-                    <ArrowRight size={16} className="text-gray-400 group-hover:text-[#0b4d21] transition-colors" />
+                    <span className="text-sm font-semibold text-gray-800 group-hover:text-[#0b4d21] transition-colors">{p.name}</span>
                   </div>
-                ))}
-              </div>
+                  <ArrowRight size={16} className="text-gray-400 group-hover:text-[#0b4d21] transition-colors" />
+                </Link>
+              ))}
 
               <div className="text-right mt-3">
-                <Link href="#" className="text-[#0b4d21] font-bold text-sm inline-flex items-center gap-1 hover:underline">
+                <Link href="/about/chaudhary-charan-singh" className="text-[#0b4d21] font-bold text-sm inline-flex items-center gap-1 hover:underline">
                   सभी प्रोफाइल देखें <ArrowRight size={14} />
                 </Link>
               </div>
@@ -173,19 +175,19 @@ export default function Leaders() {
                 Stay connected
               </h3>
               <div className="flex gap-4">
-                <Link href="#" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
+                <Link href="https://www.facebook.com/Lokdalindia/" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <FaFacebookF size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
+                <Link href="https://x.com/lokdalindia" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <FaXTwitter size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
+                <Link href="https://www.youtube.com/@lokdalindia" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <FaYoutube size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
+                <Link href="https://www.instagram.com/lokdalindia" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <FaInstagram size={16} />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
+                <Link href="mailto:lokdalparty@gmail.com" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <Mail size={16} />
                 </Link>
               </div>

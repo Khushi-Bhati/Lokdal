@@ -87,3 +87,42 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Preloader Spinning Arcs Styles */
+.preloader-spinner-outer {
+  width: 72px;
+  height: 72px;
+  border: 3px solid transparent;
+  border-top-color: #ef4444; /* red-500 */
+  border-right-color: #ef4444;
+  border-radius: 50%;
+  animation: preloader-spin 1.2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+.preloader-spinner-inner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid transparent;
+  border-top-color: #ef4444; /* red-500 */
+  border-left-color: #ef4444;
+  border-radius: 50%;
+  animation: preloader-spin-reverse 0.9s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+@keyframes preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloader-spin-reverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

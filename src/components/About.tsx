@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { UserPlus, User, Users, Handshake, Target, Home, GraduationCap, ShieldCheck, ArrowRight, Leaf } from "lucide-react";
 import Image from "next/image";
 
@@ -46,9 +47,9 @@ export default function About() {
                 </div>
               </div>
 
-              <button className="bg-white text-[#0b4d21] font-bold px-8 py-2.5 rounded-md mt-8 flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-lg mx-auto">
+              <Link href="/join" className="bg-white text-[#0b4d21] font-bold px-8 py-2.5 rounded-md mt-8 flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-lg mx-auto">
                 Join Now <ArrowRight size={16} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -94,9 +95,9 @@ export default function About() {
                 </div>
               </div>
 
-              <button className="bg-[#0b4d21] text-white font-bold px-8 py-2.5 rounded-md mt-8 flex items-center gap-2 hover:bg-[#073616] transition-colors shadow-lg mx-auto">
+              <Link href="/donate" className="bg-[#0b4d21] text-white font-bold px-8 py-2.5 rounded-md mt-8 flex items-center gap-2 hover:bg-[#073616] transition-colors shadow-lg mx-auto">
                 Donate Now <ArrowRight size={16} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
