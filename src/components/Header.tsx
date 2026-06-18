@@ -49,10 +49,10 @@ export default function Header() {
       </div>
 
       {/* Main Nav */}
-      <div className="w-full px-4 sm:px-8 lg:px-16 py-3 flex justify-between items-center">
+      <div className="w-full px-4 sm:px-8 lg:px-16 py-3 flex items-center gap-4">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 sm:gap-4">
+        <Link href="/" className="flex flex-shrink-0 items-center gap-3 sm:gap-4">
           <Image src="/assets/logo.png" alt="Lokdal Logo" width={96} height={64} className="h-12 sm:h-16 w-auto object-contain" priority />
           <div className="flex flex-col justify-center">
             <span className="text-2xl sm:text-[32px] font-black text-[#0b4d21] tracking-tight leading-none mb-0.5">लोकदल</span>
@@ -61,15 +61,15 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden xl:flex items-center text-[15px] font-bold text-gray-600">
-          <Link href="/" className="text-[#0b4d21] px-4 py-2 relative">
+        <nav className="hidden xl:flex flex-1 items-center justify-center gap-1 text-[14px] font-bold text-gray-600">
+          <Link href="/" className="text-[#0b4d21] px-2.5 py-2 relative whitespace-nowrap">
             होम
-            <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-[#0b4d21]" />
+            <span className="absolute bottom-1 left-2.5 right-2.5 h-0.5 bg-[#0b4d21]" />
           </Link>
-          <span className="text-gray-300 font-light px-1">|</span>
+          <span className="text-gray-300 font-light px-0.5">|</span>
 
           <div className="relative" onMouseEnter={() => setIsAboutOpen(true)} onMouseLeave={() => setIsAboutOpen(false)}>
-            <button className="hover:text-[#0b4d21] transition-colors px-4 py-2 flex items-center gap-1.5">
+            <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
               लोकदल के बारे में
               <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isAboutOpen ? "rotate-180" : ""}`} />
             </button>
@@ -95,18 +95,18 @@ export default function Header() {
             )}
           </div>
 
-          <span className="text-gray-300 font-light px-1">|</span>
+          <span className="text-gray-300 font-light px-0.5">|</span>
 
           {/* Press & Media Link */}
-          <Link href="/press-media" className="hover:text-[#0b4d21] transition-colors px-4 py-2">
+          <Link href="/press-media" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">
             Press &amp; Media
           </Link>
 
-          <span className="text-gray-300 font-light px-1">|</span>
+          <span className="text-gray-300 font-light px-0.5">|</span>
 
           {/* Organisation Dropdown */}
           <div className="relative" onMouseEnter={() => setIsOrgOpen(true)} onMouseLeave={() => setIsOrgOpen(false)}>
-            <button className="hover:text-[#0b4d21] transition-colors px-4 py-2 flex items-center gap-1.5">
+            <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
               Organisation
               <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isOrgOpen ? "rotate-180" : ""}`} />
             </button>
@@ -134,18 +134,76 @@ export default function Header() {
             )}
           </div>
 
-          <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="/upcoming-events" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Upcoming Events</Link>
-          <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="/lokdal-live" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Lokdal Live</Link>
-          <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="/elections" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Elections</Link>
-          <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="/donate" className="hover:text-[#0b4d21] transition-colors px-4 py-2">दान करें</Link>
+          <span className="text-gray-300 font-light px-0.5">|</span>
+
+          {/* Press & Media Dropdown */}
+          <div className="relative" onMouseEnter={() => setIsPressOpen(true)} onMouseLeave={() => setIsPressOpen(false)}>
+            <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
+              Press &amp; Media
+              <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isPressOpen ? "rotate-180" : ""}`} />
+            </button>
+            {isPressOpen && (
+              <div className="absolute left-0 top-full w-52 bg-white border border-gray-100 rounded-xl shadow-lg py-2 z-50">
+                <Link href="/press-media/news" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> News
+                </Link>
+                <Link href="/press-media/press-releases" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Press Releases
+                </Link>
+                <Link href="/press-media/photo-gallery" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Photo Gallery
+                </Link>
+                <Link href="/press-media/video-gallery" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Video Gallery
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <span className="text-gray-300 font-light px-0.5">|</span>
+
+          {/* Organisation Dropdown */}
+          <div className="relative" onMouseEnter={() => setIsOrgOpen(true)} onMouseLeave={() => setIsOrgOpen(false)}>
+            <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
+              Organisation
+              <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isOrgOpen ? "rotate-180" : ""}`} />
+            </button>
+            {isOrgOpen && (
+              <div className="absolute left-0 top-full w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 z-50">
+                <Link href="/organization/national-executive" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> National Executive
+                </Link>
+                <Link href="/organization/uttar-pradesh" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Uttar Pradesh
+                </Link>
+                <Link href="/organization/haryana" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Haryana
+                </Link>
+                <Link href="/organization/rajasthan" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Rajasthan
+                </Link>
+                <Link href="/organization/kerala" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Kerala
+                </Link>
+                <Link href="/organization/bihar" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Bihar
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <span className="text-gray-300 font-light px-0.5">|</span>
+          <Link href="/upcoming-events" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Upcoming Events</Link>
+          <span className="text-gray-300 font-light px-0.5">|</span>
+          <Link href="/lokdal-live" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Lokdal Live</Link>
+          <span className="text-gray-300 font-light px-0.5">|</span>
+          <Link href="/elections" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Elections</Link>
+          <span className="text-gray-300 font-light px-0.5">|</span>
+          <Link href="/donate" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">दान करें</Link>
         </nav>
 
         {/* Right: language toggle + join + hamburger */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-shrink-0 items-center gap-3">
 
           {/* Language dropdown — desktop */}
           <div className="hidden lg:block relative">
@@ -245,6 +303,50 @@ export default function Header() {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> Press &amp; Media
             </Link>
+
+            {/* Organisation accordion */}
+            <div>
+              <button
+                onClick={() => setIsMobileOrgOpen((v) => !v)}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> Organisation
+                </span>
+                <ChevronDown size={14} className={`transition-transform ${isMobileOrgOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isMobileOrgOpen && (
+                <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-green-100 pl-4">
+                  <Link href="/organization/national-executive" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">National Executive</Link>
+                  <Link href="/organization/uttar-pradesh" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Uttar Pradesh</Link>
+                  <Link href="/organization/haryana" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Haryana</Link>
+                  <Link href="/organization/rajasthan" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Rajasthan</Link>
+                  <Link href="/organization/kerala" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Kerala</Link>
+                  <Link href="/organization/bihar" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Bihar</Link>
+                </div>
+              )}
+            </div>
+
+            {/* Press & Media accordion */}
+            <div>
+              <button
+                onClick={() => setIsMobilePressOpen((v) => !v)}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> Press &amp; Media
+                </span>
+                <ChevronDown size={14} className={`transition-transform ${isMobilePressOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isMobilePressOpen && (
+                <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-green-100 pl-4">
+                  <Link href="/press-media/news" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">News</Link>
+                  <Link href="/press-media/press-releases" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Press Releases</Link>
+                  <Link href="/press-media/photo-gallery" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Photo Gallery</Link>
+                  <Link href="/press-media/video-gallery" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Video Gallery</Link>
+                </div>
+              )}
+            </div>
 
             {/* Organisation accordion */}
             <div>
