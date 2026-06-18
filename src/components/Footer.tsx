@@ -7,34 +7,39 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const aboutLinks = [
-  "History of Lokdal",
-  "Chaudhary Charan Singh",
-  "Chaudhary Sunil Singh",
-  "Rajinder Singh",
-  "Ideaology of Lokdal",
-  "Lokdal Manifesto",
+  { label: "History of Lokdal", href: "/about/history" },
+  { label: "Chaudhary Charan Singh", href: "/about/chaudhary-charan-singh" },
+  { label: "Chaudhary Sunil Singh", href: "/about/chaudhary-sunil-singh" },
+  { label: "Rajinder Singh", href: "/about/rajinder-singh" },
+  { label: "Ideaology of Lokdal", href: "/about/ideology" },
+  { label: "Lokdal Manifesto", href: "/about/manifesto" },
 ];
 
 const orgLinks = [
-  "National Executive",
-  "Uttar Pradesh Executive",
-  "Haryana Executive",
-  "Rajasthan Executive",
-  "Kerala Executive",
-  "Andhra Pradesh Executive",
-  "Bihar Executive",
-  "Manipur Executive",
+  { label: "National Executive", href: "/organization/national-executive" },
+  { label: "Uttar Pradesh Executive", href: "/organization/uttar-pradesh" },
+  { label: "Haryana Executive", href: "/organization/haryana" },
+  { label: "Rajasthan Executive", href: "/organization/rajasthan" },
+  { label: "Kerala Executive", href: "/organization/kerala" },
+  { label: "Andhra Pradesh Executive", href: "/organization/andhra-pradesh" },
+  { label: "Bihar Executive", href: "/organization/bihar" },
+  { label: "Manipur Executive", href: "/organization/manipur" },
 ];
 
 const deptLinks = [
-  "Election Management",
-  "Election Commission",
-  "Legal Affairs",
-  "IT & Website Management",
-  "Foreign Affairs",
+  { label: "Election Management", href: "/departments/election-management" },
+  { label: "Election Commission", href: "/departments/election-commission" },
+  { label: "Legal Affairs", href: "/departments/legal-affairs" },
+  { label: "IT & Website Management", href: "/departments/it-website" },
+  { label: "Foreign Affairs", href: "/departments/foreign-affairs" },
 ];
 
-const otherLinks = ["Gallery", "Contact", "Donate", "Join Lokdal"];
+const otherLinks = [
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
+  { label: "Donate", href: "/donate" },
+  { label: "Join Lokdal", href: "/join" },
+];
 
 export default function Footer() {
   return (
@@ -75,10 +80,10 @@ export default function Footer() {
                 <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">About Lokdal</h4>
               </div>
               <ul className="space-y-2.5">
-                {aboutLinks.map((item) => (
-                  <li key={item} className="flex items-center gap-1.5">
+                {aboutLinks.map(({ label, href }) => (
+                  <li key={label} className="flex items-center gap-1.5">
                     <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
-                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                    <Link href={href} className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{label}</Link>
                   </li>
                 ))}
               </ul>
@@ -93,10 +98,10 @@ export default function Footer() {
                 <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">Organization</h4>
               </div>
               <ul className="space-y-2.5">
-                {orgLinks.map((item) => (
-                  <li key={item} className="flex items-center gap-1.5">
+                {orgLinks.map(({ label, href }) => (
+                  <li key={label} className="flex items-center gap-1.5">
                     <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
-                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                    <Link href={href} className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{label}</Link>
                   </li>
                 ))}
               </ul>
@@ -111,10 +116,10 @@ export default function Footer() {
                 <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">Departments</h4>
               </div>
               <ul className="space-y-2.5">
-                {deptLinks.map((item) => (
-                  <li key={item} className="flex items-center gap-1.5">
+                {deptLinks.map(({ label, href }) => (
+                  <li key={label} className="flex items-center gap-1.5">
                     <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
-                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                    <Link href={href} className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{label}</Link>
                   </li>
                 ))}
               </ul>
@@ -129,10 +134,10 @@ export default function Footer() {
                 <h4 className="text-xs font-black text-gray-800 uppercase tracking-wider">Other Links</h4>
               </div>
               <ul className="space-y-2.5">
-                {otherLinks.map((item) => (
-                  <li key={item} className="flex items-center gap-1.5">
+                {otherLinks.map(({ label, href }) => (
+                  <li key={label} className="flex items-center gap-1.5">
                     <ChevronRight size={12} className="text-[#0b4d21] flex-shrink-0" />
-                    <Link href="#" className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{item}</Link>
+                    <Link href={href} className="text-sm text-gray-600 hover:text-[#0b4d21] transition-colors">{label}</Link>
                   </li>
                 ))}
               </ul>
@@ -170,7 +175,7 @@ export default function Footer() {
 
           {/* Join Lokdal CTA */}
           <Link
-            href="#"
+            href="/join"
             className="flex items-center gap-4 border-2 border-[#0b4d21] rounded-lg px-5 py-3 hover:bg-green-50 transition-colors group flex-shrink-0"
           >
             <div className="w-8 h-8 rounded-full bg-[#0b4d21] flex items-center justify-center flex-shrink-0">

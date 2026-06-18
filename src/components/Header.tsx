@@ -10,15 +10,21 @@ import Image from "next/image";
 
 export default function Header() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isPressOpen, setIsPressOpen] = useState(false);
+  const [isOrgOpen, setIsOrgOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+  const [isMobilePressOpen, setIsMobilePressOpen] = useState(false);
+  const [isMobileOrgOpen, setIsMobileOrgOpen] = useState(false);
 
   const { language, setLanguage } = useLanguage();
 
   const closeMobile = () => {
     setIsMobileOpen(false);
     setIsMobileAboutOpen(false);
+    setIsMobilePressOpen(false);
+    setIsMobileOrgOpen(false);
   };
 
   return (
@@ -83,15 +89,71 @@ export default function Header() {
           </div>
 
           <span className="text-gray-300 font-light px-1">|</span>
+
+          {/* Press & Media Dropdown */}
+          <div className="relative" onMouseEnter={() => setIsPressOpen(true)} onMouseLeave={() => setIsPressOpen(false)}>
+            <button className="hover:text-[#0b4d21] transition-colors px-4 py-2 flex items-center gap-1.5">
+              Press &amp; Media
+              <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isPressOpen ? "rotate-180" : ""}`} />
+            </button>
+            {isPressOpen && (
+              <div className="absolute left-0 top-full w-52 bg-white border border-gray-100 rounded-xl shadow-lg py-2 z-50">
+                <Link href="/press-media/news" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> News
+                </Link>
+                <Link href="/press-media/press-releases" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Press Releases
+                </Link>
+                <Link href="/press-media/photo-gallery" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Photo Gallery
+                </Link>
+                <Link href="/press-media/video-gallery" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Video Gallery
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <span className="text-gray-300 font-light px-1">|</span>
+
+          {/* Organisation Dropdown */}
+          <div className="relative" onMouseEnter={() => setIsOrgOpen(true)} onMouseLeave={() => setIsOrgOpen(false)}>
+            <button className="hover:text-[#0b4d21] transition-colors px-4 py-2 flex items-center gap-1.5">
+              Organisation
+              <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isOrgOpen ? "rotate-180" : ""}`} />
+            </button>
+            {isOrgOpen && (
+              <div className="absolute left-0 top-full w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 z-50">
+                <Link href="/organization/national-executive" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> National Executive
+                </Link>
+                <Link href="/organization/uttar-pradesh" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Uttar Pradesh
+                </Link>
+                <Link href="/organization/haryana" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Haryana
+                </Link>
+                <Link href="/organization/rajasthan" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Rajasthan
+                </Link>
+                <Link href="/organization/kerala" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Kerala
+                </Link>
+                <Link href="/organization/bihar" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Bihar
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <span className="text-gray-300 font-light px-1">|</span>
           <Link href="/upcoming-events" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Upcoming Events</Link>
           <span className="text-gray-300 font-light px-1">|</span>
           <Link href="/lokdal-live" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Lokdal Live</Link>
           <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="#ideology" className="hover:text-[#0b4d21] transition-colors px-4 py-2">विचारधारा</Link>
+          <Link href="#elections" className="hover:text-[#0b4d21] transition-colors px-4 py-2">Elections</Link>
           <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="#issues" className="hover:text-[#0b4d21] transition-colors px-4 py-2">समाज के मुद्दे</Link>
-          <span className="text-gray-300 font-light px-1">|</span>
-          <Link href="#donate" className="hover:text-[#0b4d21] transition-colors px-4 py-2">दान करें</Link>
+          <Link href="/donate" className="hover:text-[#0b4d21] transition-colors px-4 py-2">दान करें</Link>
         </nav>
 
         {/* Right: language toggle + join + hamburger */}
@@ -126,7 +188,7 @@ export default function Header() {
           </div>
 
           {/* Join Lokdal */}
-          <Link href="#join" className="hidden sm:flex bg-[#0b4d21] hover:bg-[#073616] text-white px-4 py-2 rounded-md font-bold text-sm items-center gap-2 shadow-sm transition-all">
+          <Link href="/join" className="hidden sm:flex bg-[#0b4d21] hover:bg-[#073616] text-white px-4 py-2 rounded-md font-bold text-sm items-center gap-2 shadow-sm transition-all">
             <UserPlus size={15} strokeWidth={2.5} /> Join Lokdal
           </Link>
 
@@ -180,12 +242,55 @@ export default function Header() {
               )}
             </div>
 
+            {/* Press & Media accordion */}
+            <div>
+              <button
+                onClick={() => setIsMobilePressOpen((v) => !v)}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> Press &amp; Media
+                </span>
+                <ChevronDown size={14} className={`transition-transform ${isMobilePressOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isMobilePressOpen && (
+                <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-green-100 pl-4">
+                  <Link href="/press-media/news" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">News</Link>
+                  <Link href="/press-media/press-releases" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Press Releases</Link>
+                  <Link href="/press-media/photo-gallery" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Photo Gallery</Link>
+                  <Link href="/press-media/video-gallery" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Video Gallery</Link>
+                </div>
+              )}
+            </div>
+
+            {/* Organisation accordion */}
+            <div>
+              <button
+                onClick={() => setIsMobileOrgOpen((v) => !v)}
+                className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> Organisation
+                </span>
+                <ChevronDown size={14} className={`transition-transform ${isMobileOrgOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isMobileOrgOpen && (
+                <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-green-100 pl-4">
+                  <Link href="/organization/national-executive" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">National Executive</Link>
+                  <Link href="/organization/uttar-pradesh" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Uttar Pradesh</Link>
+                  <Link href="/organization/haryana" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Haryana</Link>
+                  <Link href="/organization/rajasthan" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Rajasthan</Link>
+                  <Link href="/organization/kerala" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Kerala</Link>
+                  <Link href="/organization/bihar" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Bihar</Link>
+                </div>
+              )}
+            </div>
+
             {[
               { href: "/upcoming-events", label: "Upcoming Events" },
               { href: "/lokdal-live", label: "Lokdal Live" },
-              { href: "#ideology", label: "विचारधारा" },
-              { href: "#issues", label: "समाज के मुद्दे" },
-              { href: "#donate", label: "दान करें" },
+              { href: "#elections", label: "Elections" },
+              { href: "/donate", label: "दान करें" },
             ].map(({ href, label }) => (
               <Link key={label} href={href} onClick={closeMobile}
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 hover:text-[#0b4d21] transition-colors">
@@ -195,7 +300,7 @@ export default function Header() {
 
             <div className="my-2 border-t border-gray-100" />
 
-            <Link href="#join" onClick={closeMobile}
+            <Link href="/join" onClick={closeMobile}
               className="flex items-center justify-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-4 py-3 rounded-lg hover:bg-[#073616] transition-colors">
               <UserPlus size={16} /> Join Lokdal
             </Link>
