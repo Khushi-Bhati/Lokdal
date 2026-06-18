@@ -2,8 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Bookmark, Calendar, ChevronRight, Search, PlayCircle } from "lucide-react";
+import { ArrowRight, Bookmark, Calendar, PlayCircle } from "lucide-react";
 import { FaFacebookF, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Header from "@/components/Header";
@@ -18,10 +17,28 @@ const pressReleases = [
   { date: "07-06-2026", title: "लोकदल की संगठनात्मक बैठक सफलतापूर्वक संपन्न" },
   { date: "06-06-2026", title: "दिल्ली अधिवेशन में Sunil Singh जी का प्रेरणादायक संबोधन" },
   { date: "05-06-2026", title: "बिहार दौरे पर Hon'ble Sunil Singh जी, कई जनसभाओं को किया संबोधित" },
-  { date: "04-06-2026", title: "कृषि, शिक्षा और रोजगार पर लोकदल का विजन डॉक्युमेंट जारी" },
-  { date: "03-06-2026", title: "लोकदल ने संसद में किसानों के मुद्दे को मजबूती से उठाया" },
+
   { date: "02-06-2026", title: "Hon'ble Sunil Singh जी का युवा सम्मेलन को संबोधन" },
-  { date: "01-06-2026", title: "लोकदल की नई सदस्यता अभियान की शुरुआत" },
+
+];
+
+const socialLinks = {
+  facebook: "https://www.facebook.com/Lokdalindia/",
+  twitter: "https://x.com/Lokdalindia",
+  youtube: "https://www.youtube.com/@Lokdalindia",
+};
+
+const pressCardImages = [
+  "/assets/gallery-5.jpg",
+  "/assets/7(1).jpg",
+  "/assets/hazare3.jpg",
+  "/assets/hazare2.jpg",
+  "/assets/gallery-5.jpg",
+  "/assets/7(1).jpg",
+  "/assets/dharna1.jpeg",
+  "/assets/dharna3.jpeg",
+  "/assets/gallery-9.jpg"
+
 ];
 
 // Convert dd-mm-yyyy to a Date object for comparison
@@ -99,7 +116,7 @@ export default function PressMediaPage() {
       </div>
 
       <div className="w-full px-4 sm:px-8 lg:px-16 py-8">
-        
+
         {/* HERO BANNER - FULL WIDTH */}
         <div className="relative w-full min-h-[450px] sm:min-h-[550px] lg:min-h-[600px] rounded-2xl overflow-hidden shadow-sm mb-8 flex items-center">
           <div className="absolute inset-0 z-0">
@@ -124,7 +141,7 @@ export default function PressMediaPage() {
                 <Calendar size={16} /> 13 जून 2026
               </p>
               <h2 className="text-xl sm:text-3xl font-black text-gray-900 mb-6 leading-snug">
-                Hon'ble Sunil Singh जी की प्रेस वार्ता के मुख्य बिंदु...
+                Hon&apos;ble Sunil Singh जी की प्रेस वार्ता के मुख्य बिंदु...
               </h2>
               <button className="bg-[#0b4d21] text-white px-6 py-2.5 rounded text-sm font-bold flex items-center gap-2 hover:bg-[#073616] transition-colors">
                 पूरा पढ़ें <ArrowRight size={16} />
@@ -134,7 +151,7 @@ export default function PressMediaPage() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          
+
           {/* ── LEFT COLUMN (Main Content) ── */}
           <div className="w-full lg:w-[70%] flex flex-col gap-8">
 
@@ -149,7 +166,15 @@ export default function PressMediaPage() {
 
               {filteredReleases.slice(0, 3).map((pr, i) => (
                 <div key={`top-${i}`} className="bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
-                  <div className="bg-[#0b4d21] p-5 h-32 flex items-center relative overflow-hidden">
+                  <div className=" p-5 h-40 flex items-center relative overflow-hidden">
+                    <Image
+                      src={pressCardImages[i % pressCardImages.length]}
+                      alt={pr.title}
+                      fill
+                      className="object-cover opacity-80"
+                      sizes="(min-width: 768px) 23vw, (min-width: 640px) 45vw, 100vw"
+                    />
+
                     <div className="text-white text-3xl font-black relative z-10 leading-tight">प्रेस<br />विज्ञप्ति</div>
                     <div className="absolute -right-4 -bottom-4 opacity-20">
                       <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M11 21.88a1 1 0 0 1-1.06-.11l-3.66-2.93H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v11.84a2 2 0 0 1-2 2h-2.28l-3.66 2.93A1 1 0 0 1 11 21.88z" /></svg>
@@ -197,7 +222,15 @@ export default function PressMediaPage() {
               {/* REMAINING CARDS */}
               {filteredReleases.slice(3).map((pr, i) => (
                 <div key={`rest-${i}`} className="bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
-                  <div className="bg-[#0b4d21] p-5 h-32 flex items-center relative overflow-hidden">
+                  <div className="bg-[#0b4d21] p-5 h-40 flex items-center relative overflow-hidden">
+                    <Image
+                      src={pressCardImages[(i + 3) % pressCardImages.length]}
+                      alt={pr.title}
+                      fill
+                      className="object-cover opacity-80"
+                      sizes="(min-width: 768px) 23vw, (min-width: 640px) 45vw, 100vw"
+                    />
+
                     <div className="text-white text-3xl font-black relative z-10 leading-tight">प्रेस<br />विज्ञप्ति</div>
                     <div className="absolute -right-4 -bottom-4 opacity-20">
                       <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M11 21.88a1 1 0 0 1-1.06-.11l-3.66-2.93H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v11.84a2 2 0 0 1-2 2h-2.28l-3.66 2.93A1 1 0 0 1 11 21.88z" /></svg>
@@ -228,7 +261,7 @@ export default function PressMediaPage() {
 
           {/* ── RIGHT COLUMN (Sidebar) ── */}
           <div className="w-full lg:w-[30%] flex flex-col gap-6">
-            
+
             {/* Subscribe Box */}
             <div className="bg-white border border-gray-200 rounded-xl p-6">
               <h3 className="font-black text-gray-900 mb-3 text-lg">प्रेस विज्ञप्ति सब्सक्राइब करें</h3>
@@ -241,62 +274,48 @@ export default function PressMediaPage() {
             {/* Press Conference Video */}
             <div className="bg-white border border-gray-200 rounded-xl p-6">
               <h3 className="font-black text-gray-900 mb-4 text-lg">लोकदल प्रेस कॉन्फ्रेंस</h3>
-              <div className="relative rounded-lg overflow-hidden group cursor-pointer aspect-video mb-3">
-                <Image src="/assets/sunil singh img.png" alt="Press Conference" fill className="object-cover bg-green-900" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                  <PlayCircle size={48} className="text-red-600 bg-white rounded-full p-1" />
-                </div>
-                <div className="absolute top-4 left-4 text-white font-black text-xl leading-tight drop-shadow-md">
-                  JOIN<br />PRESS MEET
-                </div>
+              <div className="relative rounded-lg overflow-hidden aspect-video mb-3 bg-black">
+                <video
+                  className="h-full w-full object-cover"
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src="/videos/15.mp4" type="video/mp4" />
+                </video>
               </div>
               <p className="text-sm font-bold text-gray-800 leading-snug">
                 LIVE: माननीय Sunil Singh जी की प्रेस वार्ता<br />किसान, युवा और देश के भविष्य पर चर्चा
               </p>
             </div>
-
-            {/* Download App Box */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6">
-              <h3 className="font-black text-gray-900 mb-2 text-lg">लोकदल ऐप डाउनलोड करें</h3>
-              <p className="text-sm text-gray-600 mb-4">लोकदल से जुड़ें, अपडेट पाएं, सदस्य बनें और योगदान करें।</p>
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col gap-2">
-                  <button className="bg-[#0b4d21] text-white px-4 py-2 rounded text-sm font-bold hover:bg-[#073616]">डाउनलोड करें</button>
-                  <div className="flex gap-2 mt-2">
-                    <div className="bg-black text-white px-2 py-1 rounded text-[10px] flex items-center gap-1 cursor-pointer"><span className="font-bold">Google Play</span></div>
-                    <div className="bg-black text-white px-2 py-1 rounded text-[10px] flex items-center gap-1 cursor-pointer"><span className="font-bold">App Store</span></div>
-                  </div>
-                </div>
-                <div className="w-16 h-32 border-4 border-gray-800 rounded-xl overflow-hidden relative bg-white flex flex-col items-center justify-center shadow-md">
-                  <Image src="/assets/logo.png" alt="App Logo" width={40} height={40} className="object-contain" />
-                </div>
-              </div>
-            </div>
+            {/* 
+           
 
             {/* Social Media Connect */}
             <div className="bg-white border border-gray-200 rounded-xl p-6">
               <h3 className="font-black text-gray-900 mb-4 text-lg">सोशल मीडिया से जुड़ें</h3>
               <div className="flex gap-4 border-b border-gray-100 mb-4">
-                <button className="flex items-center gap-1 text-blue-600 text-sm font-bold border-b-2 border-blue-600 pb-2"><FaFacebookF /> Facebook</button>
-                <button className="flex items-center gap-1 text-gray-500 text-sm font-bold pb-2 hover:text-sky-500"><FaXTwitter /> Twitter</button>
-                <button className="flex items-center gap-1 text-gray-500 text-sm font-bold pb-2 hover:text-red-500"><FaYoutube /> Youtube</button>
+                <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-600 text-sm font-bold border-b-2 border-blue-600 pb-2"><FaFacebookF /> Facebook</a>
+                <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-gray-500 text-sm font-bold pb-2 hover:text-sky-500"><FaXTwitter /> Twitter</a>
+                <a href={socialLinks.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-gray-500 text-sm font-bold pb-2 hover:text-red-500"><FaYoutube /> Youtube</a>
               </div>
-              {/* Facebook mockup */}
-              <div className="border border-gray-200 rounded-lg overflow-hidden">
-                <div className="p-3 flex items-center justify-between border-b border-gray-100 bg-white">
+              <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="relative block h-72 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
+                <Image src="/assets/image.png" alt="Lokdal Facebook page" fill className="object-cover" sizes="(min-width: 1024px) 30vw, 100vw" />
+                <div className="hidden">
                   <div className="flex items-center gap-2">
-                    <Image src="/assets/logo.png" alt="Lokdal Logo" width={32} height={32} className="border border-gray-100 rounded-sm" />
+                    <Image src="/assets/image.png" alt="Lokdal Logo" width={32} height={32} className="border border-gray-100 rounded-sm" />
                     <div>
                       <p className="text-sm font-bold text-gray-900 flex items-center gap-1">Lokdal Official <span className="w-3 h-3 bg-blue-500 text-white rounded-full text-[8px] flex items-center justify-center">✓</span></p>
                       <p className="text-[10px] text-gray-500">12,45,678 followers</p>
                     </div>
                   </div>
                 </div>
-                <div className="flex border-b border-gray-100">
-                  <button className="flex-1 py-2 text-xs font-bold text-gray-600 hover:bg-gray-50 flex justify-center items-center gap-1 border-r border-gray-100"><FaFacebookF /> Follow Page</button>
-                  <button className="flex-1 py-2 text-xs font-bold text-gray-600 hover:bg-gray-50 flex justify-center items-center gap-1"><ArrowRight size={12} /> Share</button>
+                <div className="hidden">
+                  <span className="flex-1 py-2 text-xs font-bold text-gray-600 hover:bg-gray-50 flex justify-center items-center gap-1 border-r border-gray-100"><FaFacebookF /> Follow Page</span>
+                  <span className="flex-1 py-2 text-xs font-bold text-gray-600 hover:bg-gray-50 flex justify-center items-center gap-1"><ArrowRight size={12} /> Share</span>
                 </div>
-                <div className="relative h-48 bg-green-900">
+                <div className="hidden">
                   <Image src="/assets/sunil singh img.png" alt="Sunil Singh" fill className="object-cover object-top" />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                     <PlayCircle size={48} className="text-white/80 cursor-pointer hover:text-white" />
@@ -311,7 +330,7 @@ export default function PressMediaPage() {
                     </ul>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
 
             {/* Banner AD */}

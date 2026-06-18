@@ -7,12 +7,12 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const aboutLinks = [
-  { label: "History of Lokdal", href: "/about/history" },
+  { label: "History of Lokdal", href: "about/history-of-lokdal" },
   { label: "Chaudhary Charan Singh", href: "/about/chaudhary-charan-singh" },
   { label: "Chaudhary Sunil Singh", href: "/about/chaudhary-sunil-singh" },
-  { label: "Rajinder Singh", href: "/about/rajinder-singh" },
-  { label: "Ideaology of Lokdal", href: "/about/ideology" },
-  { label: "Lokdal Manifesto", href: "/about/manifesto" },
+ 
+  { label: "Ideaology of Lokdal", href: "about/ideology-of-lokdal" },
+  { label: "Lokdal Manifesto", href: "about/lokdal-manifesto" },
 ];
 
 const orgLinks = [
@@ -35,8 +35,8 @@ const deptLinks = [
 ];
 
 const otherLinks = [
-  { label: "Gallery", href: "/gallery" },
-  { label: "Contact", href: "/contact" },
+  { label: "Gallery", href: "/press-media" },
+ 
   { label: "Donate", href: "/donate" },
   { label: "Join Lokdal", href: "/join" },
 ];

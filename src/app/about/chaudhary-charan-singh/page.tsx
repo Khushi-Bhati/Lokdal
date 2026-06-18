@@ -15,7 +15,7 @@ const ideology = [
 
 const leaders = [
   { name: "CHAUDHARY\nCHARAN SINGH", image: "/assets/charan profile.jpg" },
-  { name: "CHAUDHARY SUNIL\nSINGH", image: "/assets/sunil singh img.png" },
+  { name: "CHAUDHARY SUNIL\nSINGH", image: "/assets/sunil profile.jpg" },
   { name: "CHAUDHARY\nRAJENDRA SINGH", image: "/assets/Rajinder Singh.png" },
 ];
 
@@ -72,7 +72,7 @@ export default function ChaudharyCharanSinghPage() {
             {/* Mobile / tablet: simple 2-col grid */}
             <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:hidden">
               {["/assets/image_2_14.png", "/assets/image_5_17.png", "/assets/image_10_24.png", "/assets/image_11_26.png"].map((src, i) => (
-                <div key={i} className="relative h-36 sm:h-48 rounded-xl overflow-hidden">
+                <div key={i} className="relative h-39 sm:h-48 rounded-xl overflow-hidden">
                   <Image src={src} alt={`Photo ${i + 1}`} fill className="object-cover grayscale" />
                 </div>
               ))}
@@ -86,23 +86,23 @@ export default function ChaudharyCharanSinghPage() {
               {/* Left column – 3 images */}
               <div className="w-[53%] flex flex-col gap-3 z-10">
                 <div className="relative h-44 rounded-xl overflow-hidden">
-                  <Image src="/assets/gallery head.jpeg" alt="Photo 1" fill className="object-cover grayscale" />
+                  <Image src="/assets/12.jpeg" alt="Photo 1" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-32 rounded-xl overflow-hidden">
-                  <Image src="/assets/p2.jpg" alt="Photo 3" fill className="object-cover grayscale" />
+                  <Image src="/assets/23.jpeg" alt="Photo 3" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-40 rounded-xl overflow-hidden">
-                  <Image src="/assets/charan profile.jpg" alt="Photo 5" fill className="object-cover grayscale" />
+                  <Image src="/assets/12.jpeg" alt="Photo 5" fill className="object-cover grayscale" />
                 </div>
               </div>
 
               {/* Right column – 2 images offset down */}
               <div className="w-[47%] flex flex-col gap-3 pt-8 z-10">
                 <div className="relative h-44 rounded-xl overflow-hidden">
-                  <Image src="/assets/p2.jpg" alt="Photo 2" fill className="object-cover grayscale" />
+                  <Image src="/assets/8.jpeg" alt="Photo 2" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-40 rounded-xl overflow-hidden">
-                  <Image src="/assets/gallery head.jpeg" alt="Photo 4" fill className="object-cover grayscale" />
+                  <Image src="/assets/3.jpeg" alt="Photo 4" fill className="object-cover grayscale" />
                 </div>
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function ChaudharyCharanSinghPage() {
 
               {/* Large photo */}
               <div className="w-full sm:w-64 lg:w-72 h-44 sm:h-52 rounded-xl overflow-hidden relative flex-shrink-0">
-                <Image src="/assets/charan singh hero.png" alt="Chaudhary Charan Singh" fill className="object-cover grayscale" />
+                <Image src="/assets/8.jpeg" alt="Chaudhary Charan Singh" fill className="object-cover grayscale" />
               </div>
 
               {/* A Life of Service */}

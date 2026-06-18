@@ -54,7 +54,7 @@ export default function HistoryOfLokdalPage() {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-10">
           <div className="flex flex-col sm:flex-row gap-6 items-start">
             <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden relative flex-shrink-0 border-2 border-green-100">
-              <Image src="/assets/charan singh hero.png" alt="Chaudhary Charan Singh" fill className="object-cover object-top grayscale" />
+              <Image src="/assets/charan profile.jpg" alt="Chaudhary Charan Singh" fill className="object-cover object-top grayscale" />
             </div>
             <div>
               <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-1">Founded by</p>

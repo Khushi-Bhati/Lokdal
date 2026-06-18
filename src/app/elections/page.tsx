@@ -5,17 +5,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Users, 
-  MapPin, 
-  ChevronRight, 
-  ChevronLeft, 
-  FileText, 
-  UserPlus, 
-  Map, 
-  Flame, 
-  CheckCircle2, 
-  ChevronDown 
+import {
+  Users,
+  MapPin,
+  ChevronRight,
+  ChevronLeft,
+  FileText,
+  ChevronDown
 } from "lucide-react";
 
 // States data database
@@ -113,33 +109,10 @@ const statesDatabase: Record<string, StateCampaignData> = {
   },
 };
 
-// Map polygon points for schematic India map representation
-const mapPolygons = [
-  { id: "uttar-pradesh", name: "Uttar Pradesh", points: "140,110 160,115 175,130 190,135 185,150 170,165 155,160 140,150 135,135" },
-  { id: "bihar", name: "Bihar", points: "190,135 210,132 230,138 232,150 215,162 195,155 185,150" },
-  { id: "madhya-pradesh", name: "Madhya Pradesh", points: "115,160 140,150 155,160 170,165 185,185 160,210 130,205 110,195 105,180" },
-  { id: "rajasthan", name: "Rajasthan", points: "80,105 110,100 135,115 135,135 115,160 85,150 75,130" },
-  { id: "haryana", name: "Haryana", points: "105,85 125,82 135,92 135,115 110,110" },
-  { id: "punjab", name: "Punjab", points: "95,65 115,62 125,82 105,85" },
-  { id: "maharashtra", name: "Maharashtra", points: "85,190 110,195 130,205 160,210 155,255 100,245 80,225" },
-  { id: "karnataka", name: "Karnataka", points: "95,245 120,250 115,310 95,295 90,265" }
-];
-
-const baseRegions = [
-  { id: "jk", name: "Jammu & Kashmir", points: "100,20 120,15 130,30 125,50 110,65 95,65 90,45" },
-  { id: "gujarat", name: "Gujarat", points: "45,150 85,150 85,190 60,195 50,175" },
-  { id: "tamil-nadu", name: "Tamil Nadu", points: "115,310 135,310 130,360 110,355 105,330" },
-  { id: "kerala", name: "Kerala", points: "95,295 115,310 105,330 95,330" },
-  { id: "ap-telangana", name: "AP & Telangana", points: "130,205 165,225 155,255 135,310 120,250" },
-  { id: "odisha", name: "Odisha", points: "165,165 195,175 180,215 165,225" },
-  { id: "west-bengal", name: "West Bengal", points: "230,138 245,145 235,185 220,165 215,162" },
-  { id: "north-east", name: "North East States", points: "245,120 275,115 285,140 265,145 250,135" }
-];
-
 const IndiaSilhouette = () => (
-  <svg 
-    viewBox="0 0 64 64" 
-    fill="currentColor" 
+  <svg
+    viewBox="0 0 64 64"
+    fill="currentColor"
     className="w-12 h-12 text-white opacity-95"
   >
     <path d="M28,8 L30,4 L34,4 L38,8 L40,11 L43,11 L43,14 L41,16 L40,18 L39,21 L35,22 L33,26 L30,28 L28,33 L26,35 L26,38 L25,41 L23,43 L21,46 L20,49 L18,52 L16,55 L13,57 L11,57 L10,54 L11,51 L10,48 L8,47 L6,46 L5,44 L5,41 L7,40 L9,40 L10,38 L11,35 L12,33 L14,31 L14,29 L12,27 L11,25 L12,22 L11,19 L9,17 L7,16 L5,15 L4,13 L5,11 L7,10 L9,10 L10,8 L11,6 L12,4 L14,3 L16,3 Z" />
@@ -166,21 +139,21 @@ export default function ElectionsPage() {
     {
       title: "Jan Sampark Abhiyan",
       desc: "Connecting every village, every family",
-      image: "/assets/image_27_43.png",
+      image: "/assets/join.jpg",
       states: "15 States",
       volunteers: "12,500+",
     },
     {
       title: "Kisan Samvad Yatra",
       desc: "Farmers first, always first",
-      image: "/assets/image_27_46.png",
+      image: "/assets/kisan.jpg.",
       states: "12 States",
       volunteers: "9,800+",
     },
     {
       title: "Yuva Sankalp Rally",
       desc: "Empowering youth, building tomorrow",
-      image: "/assets/image_27_48.png",
+      image: "/assets/p2.jpg",
       states: "10 States",
       volunteers: "15,200+",
     },
@@ -226,15 +199,15 @@ export default function ElectionsPage() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link 
-                href="/join" 
+              <Link
+                href="/join"
                 className="bg-[#0b4d21] hover:bg-[#073616] text-white px-6 py-4 rounded-xl font-bold text-base flex items-center gap-2.5 shadow-md shadow-green-900/10 transition-all hover:-translate-y-0.5"
               >
                 <Users size={18} />
                 Join Campaign
               </Link>
-              <Link 
-                href="#tracker" 
+              <Link
+                href="#tracker"
                 className="border-2 border-[#0b4d21] text-[#0b4d21] bg-white hover:bg-green-50 px-6 py-4 rounded-xl font-bold text-base flex items-center gap-2.5 transition-all"
               >
                 <FileText size={18} className="text-[#0b4d21]" />
@@ -251,14 +224,14 @@ export default function ElectionsPage() {
       {/* ── SECTION 2: STATE ELECTION TRACKER ── */}
       <section className="relative py-20 px-4 sm:px-8 lg:px-16 bg-white w-full border-t border-gray-100" id="tracker">
         <div className="w-full">
-          
+
           {/* Overlapping Stats Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-20 -mt-32 mb-20">
             {stats.map((stat, i) => {
               const IconComponent = stat.icon;
               return (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className="bg-[#0b4d21] text-white rounded-2xl p-6 flex items-center gap-5 shadow-lg border border-[#093e1a] relative overflow-hidden group hover:-translate-y-1 transition-all animate-fade-in-up"
                 >
                   <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/5 rounded-full pointer-events-none group-hover:scale-110 transition-transform" />
@@ -293,8 +266,8 @@ export default function ElectionsPage() {
             <div className="mt-6 md:mt-0 relative w-full sm:w-64">
               <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Select State</label>
               <div className="relative">
-                <select 
-                  value={selectedState} 
+                <select
+                  value={selectedState}
                   onChange={(e) => setSelectedState(e.target.value)}
                   className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 text-sm font-bold text-gray-800 focus:outline-none focus:border-[#0b4d21] focus:ring-1 focus:ring-[#0b4d21] cursor-pointer"
                 >
@@ -310,55 +283,22 @@ export default function ElectionsPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            
+
             {/* Map Column */}
             <div className="lg:col-span-5 bg-gray-50 rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center border border-gray-100 min-h-[360px]">
               <div className="w-full flex items-center justify-between mb-4 border-b border-gray-200/60 pb-3">
                 <span className="text-xs font-black text-gray-400 uppercase tracking-wider">Interactive Map</span>
                 <span className="text-[11px] font-semibold text-gray-500 bg-white border border-gray-200 px-2 py-1 rounded-md">Click a state to track</span>
               </div>
-              
-              <div className="w-full max-w-[320px] aspect-square relative flex items-center justify-center">
-                <svg viewBox="0 0 320 380" className="w-full h-full max-h-[340px]">
-                  {/* Base non-campaign regions */}
-                  <g fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" strokeLinejoin="round" strokeLinecap="round">
-                    {baseRegions.map((region) => (
-                      <polygon 
-                        key={region.id} 
-                        points={region.points} 
-                        className="transition-colors hover:fill-slate-200"
-                      />
-                    ))}
-                  </g>
 
-                  {/* Active/Selectable States */}
-                  <g stroke="#ffffff" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round">
-                    {mapPolygons.map((polygon) => {
-                      const isSelected = selectedState === polygon.id;
-                      const stateInfo = statesDatabase[polygon.id];
-                      
-                      // Theme colors based on status and selection
-                      let fillCol = "#e2e8f0"; // fallback
-                      if (isSelected) {
-                        fillCol = "#0b4d21";
-                      } else if (stateInfo?.status === "Active Campaign") {
-                        fillCol = "#a7f3d0"; // light green
-                      } else {
-                        fillCol = "#e2e8f0"; // light gray
-                      }
-
-                      return (
-                        <polygon 
-                          key={polygon.id} 
-                          points={polygon.points} 
-                          fill={fillCol}
-                          onClick={() => setSelectedState(polygon.id)}
-                          className="cursor-pointer transition-all duration-300 hover:opacity-90 hover:stroke-green-600"
-                        />
-                      );
-                    })}
-                  </g>
-                </svg>
+              <div className="relative flex w-full max-w-[360px] items-center justify-center aspect-square">
+                <Image
+                  src="/assets/map elections.png"
+                  alt="Lokdal election campaign map"
+                  fill
+                  className="object-contain"
+                  sizes="(min-width: 1024px) 360px, 80vw"
+                />
               </div>
             </div>
 
@@ -369,13 +309,12 @@ export default function ElectionsPage() {
                   <h3 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
                     {activeStateData.name}
                   </h3>
-                  <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${
-                    activeStateData.status === "Active Campaign" 
-                      ? "bg-green-100 text-green-700" 
-                      : activeStateData.status === "Upcoming Campaign"
+                  <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${activeStateData.status === "Active Campaign"
+                    ? "bg-green-100 text-green-700"
+                    : activeStateData.status === "Upcoming Campaign"
                       ? "bg-amber-100 text-amber-700"
                       : "bg-gray-100 text-gray-600"
-                  }`}>
+                    }`}>
                     {activeStateData.status}
                   </span>
                 </div>
@@ -402,16 +341,16 @@ export default function ElectionsPage() {
                     <span className="font-black text-[#0b4d21]">{activeStateData.progress}%</span>
                   </div>
                   <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-                    <div 
-                      className="bg-gradient-to-r from-[#0b4d21] to-[#10b981] h-full rounded-full transition-all duration-500 ease-out" 
+                    <div
+                      className="bg-gradient-to-r from-[#0b4d21] to-[#10b981] h-full rounded-full transition-all duration-500 ease-out"
                       style={{ width: `${activeStateData.progress}%` }}
                     />
                   </div>
                 </div>
               </div>
 
-              <Link 
-                href="/join" 
+              <Link
+                href="/join"
                 className="w-full border-2 border-[#0b4d21] hover:bg-green-50 text-[#0b4d21] font-bold text-sm py-4 rounded-xl flex items-center justify-center gap-2 group transition-all"
               >
                 View State Campaign
@@ -430,11 +369,10 @@ export default function ElectionsPage() {
                       <button
                         key={state.id}
                         onClick={() => setSelectedState(state.id)}
-                        className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between border ${
-                          isSelected 
-                            ? "bg-green-50 text-[#0b4d21] border-[#0b4d21]/20 font-black shadow-sm" 
-                            : "bg-white text-gray-600 hover:bg-white border-transparent hover:border-gray-200"
-                        }`}
+                        className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between border ${isSelected
+                          ? "bg-green-50 text-[#0b4d21] border-[#0b4d21]/20 font-black shadow-sm"
+                          : "bg-white text-gray-600 hover:bg-white border-transparent hover:border-gray-200"
+                          }`}
                       >
                         {state.name}
                         {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" />}
@@ -443,8 +381,8 @@ export default function ElectionsPage() {
                   })}
                 </div>
               </div>
-              
-              <a 
+
+              <a
                 href="#tracker"
                 className="w-full border border-gray-200 bg-white text-gray-700 font-bold text-xs py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors mt-4"
               >
@@ -460,7 +398,7 @@ export default function ElectionsPage() {
       {/* ── SECTION 3: ONGOING CAMPAIGNS ── */}
       <section className="py-20 px-4 sm:px-8 lg:px-16 bg-[#f4faf6] w-full border-t border-gray-100">
         <div className="w-full">
-          
+
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
             <div>
               <span className="inline-block text-xs font-black uppercase tracking-widest text-[#0b4d21] bg-[#0b4d21]/10 px-4 py-1.5 rounded-full mb-3">
@@ -473,14 +411,14 @@ export default function ElectionsPage() {
 
             {/* Slider Control Buttons */}
             <div className="flex gap-3 mt-6 sm:mt-0">
-              <button 
+              <button
                 onClick={() => handleScroll("left")}
                 className="w-12 h-12 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all shadow-sm"
                 aria-label="Scroll left"
               >
                 <ChevronLeft size={20} />
               </button>
-              <button 
+              <button
                 onClick={() => handleScroll("right")}
                 className="w-12 h-12 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all shadow-sm"
                 aria-label="Scroll right"
@@ -491,22 +429,22 @@ export default function ElectionsPage() {
           </div>
 
           {/* Cards slider */}
-          <div 
+          <div
             ref={scrollContainerRef}
             className="flex gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory"
           >
             {campaigns.map((camp, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="w-full sm:w-[360px] flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-lg border border-gray-100 transition-all snap-start flex flex-col justify-between"
               >
                 <div>
                   <div className="relative h-56 w-full bg-slate-100">
-                    <Image 
-                      src={camp.image} 
-                      alt={camp.title} 
-                      fill 
-                      className="object-cover" 
+                    <Image
+                      src={camp.image}
+                      alt={camp.title}
+                      fill
+                      className="object-cover"
                     />
                   </div>
                   <div className="p-6 md:p-8">
@@ -535,8 +473,8 @@ export default function ElectionsPage() {
           </div>
 
           <div className="flex justify-center mt-12">
-            <Link 
-              href="/join" 
+            <Link
+              href="/join"
               className="bg-transparent hover:bg-[#0b4d21] border-2 border-[#0b4d21] text-[#0b4d21] hover:text-white font-bold text-sm px-6 py-3.5 rounded-xl flex items-center gap-2 transition-all group"
             >
               View All Campaigns

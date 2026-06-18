@@ -7,18 +7,18 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const leaders = [
-  { name: "CHAUDHARY\nCHARAN SINGH", image: "/assets/image_2_14.png" },
-  { name: "CHAUDHARY SUNIL\nSINGH", image: "/assets/sunil singh img.png" },
-  { name: "CHAUDHARY\nRAJENDRA SINGH", image: "/assets/image_5_17.png" },
+  { name: "CHAUDHARY\nCHARAN SINGH", image: "/assets/charan profile.jpg" },
+  { name: "CHAUDHARY SUNIL\nSINGH", image: "/assets/sunil profile.jpg" },
+  { name: "CHAUDHARY\nRAJENDRA SINGH", image: "/assets/Rajinder Singh.png" },
 ];
 
 const updates = [
-  { image: "/assets/image_27_43.png", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
-  { image: "/assets/image_27_45.png", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
-  { image: "/assets/image_27_46.png", text: "किसान आंदोलन", badge: "लोकदल अपडेट" },
-  { image: "/assets/image_27_48.png", text: "किसान दिवस", badge: "लोकदल अपडेट" },
-  { image: "/assets/image_13_30.png", text: "किसानों के हित में फैसले", badge: "लोकदल अपडेट" },
-  { image: "/assets/image_30_53.png", text: "लोकदल का महासम्मेलन", badge: "लोकदल अपडेट" },
+  { image: "/assets/dharna5.jpeg", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
+  { image: "/assets/7.jpg", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
+  { image: "/assets/dharna1.jpeg", text: "किसान आंदोलन", badge: "लोकदल अपडेट" },
+  { image: "/assets/gallery-9.jpg", text: "किसान दिवस", badge: "लोकदल अपडेट" },
+  { image: "/assets/kisan.jpg", text: "किसानों के हित में फैसले", badge: "लोकदल अपडेट" },
+  { image: "/assets/dharna5.jpeg", text: "लोकदल का महासम्मेलन", badge: "लोकदल अपडेट" },
 ];
 
 export default function ChaudharySunilSinghPage() {
@@ -75,21 +75,21 @@ export default function ChaudharySunilSinghPage() {
             <div className="relative w-full max-w-md h-80 sm:h-96">
               {/* Background image / offset image */}
               <div className="absolute top-0 right-0 w-[70%] h-[70%] rounded-2xl overflow-hidden shadow-lg z-0 grayscale">
-                <Image src="/assets/image_2_14.png" alt="Historical Photo" fill className="object-cover" />
+                <Image src="/assets/sunil profile.jpg" alt="Historical Photo" fill className="object-cover" />
               </div>
               {/* Foreground main image */}
               <div className="absolute bottom-0 left-0 w-[80%] h-[80%] rounded-2xl overflow-hidden shadow-xl border-4 border-white z-10 bg-white flex items-center justify-center">
-                 {/* Flag background effect with Sunil Singh portrait */}
-                 <div className="absolute inset-0 opacity-50">
-                   <div className="w-full h-1/3 bg-orange-200" />
-                   <div className="w-full h-1/3 bg-white flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full border-4 border-blue-800 flex items-center justify-center">
-                        <div className="w-12 h-12 rounded-full border border-blue-800"></div>
-                      </div>
-                   </div>
-                   <div className="w-full h-1/3 bg-green-200" />
-                 </div>
-                 <Image src="/assets/sunil singh img.png" alt="Chaudhary Sunil Singh" fill className="object-cover object-top z-20" />
+                {/* Flag background effect with Sunil Singh portrait */}
+                <div className="absolute inset-0 opacity-50">
+                  <div className="w-full h-1/3 bg-orange-200" />
+                  <div className="w-full h-1/3 bg-white flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full border-4 border-blue-800 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full border border-blue-800"></div>
+                    </div>
+                  </div>
+                  <div className="w-full h-1/3 bg-green-200" />
+                </div>
+                <Image src="/assets/sunil singh img.png" alt="Chaudhary Sunil Singh" fill className="object-cover object-top z-20" />
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function ChaudharySunilSinghPage() {
         <div className="w-full px-4 flex flex-col items-center">
           <p className="text-xs font-black text-[#0b4d21] tracking-widest uppercase mb-1">LOKDAL</p>
           <h2 className="text-2xl sm:text-3xl font-black text-blue-900 mb-12 uppercase">PARTY LEADERS</h2>
-          
+
           <div className="flex flex-wrap justify-center gap-8 sm:gap-16">
             {leaders.map((l) => (
               <div key={l.name} className="flex flex-col items-center gap-4">

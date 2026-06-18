@@ -11,7 +11,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const events = [
   {
-    image: "/assets/image_27_43.png",
+    image: "/assets/kisan.jpg",
     day: "25", month: "MAY", year: "2025",
     title: "Kisan Samman Rally",
     desc: "A massive gathering to honor farmers and discuss key issues related to their rights, welfare and prosperity.",
@@ -19,7 +19,7 @@ const events = [
     location: "Lucknow, Uttar Pradesh",
   },
   {
-    image: "/assets/image_27_45.png",
+    image: "/assets/delhichalo-16.jpg",
     day: "02", month: "JUN", year: "2025",
     title: "Youth Empowerment Summit",
     desc: "Inspiring the youth to become leaders of tomorrow and contribute to the nation's progress.",
@@ -27,7 +27,7 @@ const events = [
     location: "Kanpur, Uttar Pradesh",
   },
   {
-    image: "/assets/image_27_46.png",
+    image: "/assets/dharna5.jpeg",
     day: "10", month: "JUN", year: "2025",
     title: "Lokdal Workers' Convention",
     desc: "A conference of dedicated workers and leaders to strengthen our organization at the grassroots level.",
@@ -35,7 +35,7 @@ const events = [
     location: "Meerut, Uttar Pradesh",
   },
   {
-    image: "/assets/image_27_48.png",
+    image: "/assets/6.jpg",
     day: "18", month: "JUN", year: "2025",
     title: "Gram Vikas Abhiyan",
     desc: "A special initiative to visit villages, meet people and understand their challenges for a developed rural India.",
@@ -43,7 +43,7 @@ const events = [
     location: "Varanasi, Uttar Pradesh",
   },
   {
-    image: "/assets/image_30_53.png",
+    image: "/assets/4.jpg",
     day: "25", month: "MAY", year: "2025",
     title: "Kisan Samman Rally",
     desc: "A massive gathering to honor farmers and discuss key issues related to their rights, welfare and prosperity.",
@@ -51,7 +51,7 @@ const events = [
     location: "Lucknow, Uttar Pradesh",
   },
   {
-    image: "/assets/image_20_35.png",
+    image: "/assets/1.jpg",
     day: "02", month: "JUN", year: "2025",
     title: "Youth Empowerment Summit",
     desc: "Inspiring the youth to become leaders of tomorrow and contribute to the nation's progress.",
@@ -59,7 +59,7 @@ const events = [
     location: "Kanpur, Uttar Pradesh",
   },
   {
-    image: "/assets/image_2_3.png",
+    image: "/assets/7.jpg",
     day: "10", month: "JUN", year: "2025",
     title: "Lokdal Workers' Convention",
     desc: "A conference of dedicated workers and leaders to strengthen our organization at the grassroots level.",
@@ -67,7 +67,7 @@ const events = [
     location: "Meerut, Uttar Pradesh",
   },
   {
-    image: "/assets/image_49_3.png",
+    image: "/assets/hazare1.jpg",
     day: "18", month: "JUN", year: "2025",
     title: "Gram Vikas Abhiyan",
     desc: "A special initiative to visit villages, meet people and understand their challenges for a developed rural India.",
