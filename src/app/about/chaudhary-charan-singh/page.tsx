@@ -14,15 +14,15 @@ const ideology = [
 ];
 
 const leaders = [
-  { name: "CHAUDHARY\nCHARAN SINGH", image: "/assets/image_2_14.png" },
+  { name: "CHAUDHARY\nCHARAN SINGH", image: "/assets/charan profile.jpg" },
   { name: "CHAUDHARY SUNIL\nSINGH", image: "/assets/sunil singh img.png" },
-  { name: "CHAUDHARY\nRAJENDRA SINGH", image: "/assets/image_5_17.png" },
+  { name: "CHAUDHARY\nRAJENDRA SINGH", image: "/assets/Rajinder Singh.png" },
 ];
 
 const updates = [
-  { image: "/assets/image_27_43.png", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
-  { image: "/assets/image_27_45.png", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
-  { image: "/assets/image_27_46.png", text: "किसान आंदोलन", badge: "लोकदल अपडेट" },
+  { image: "/assets/p2.jpg", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
+  { image: "/assets/gallery head.jpg", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
+  { image: "/assets/dharna3.jpeg", text: "किसान आंदोलन", badge: "लोकदल अपडेट" },
 ];
 
 export default function ChaudharyCharanSinghPage() {
@@ -86,23 +86,23 @@ export default function ChaudharyCharanSinghPage() {
               {/* Left column – 3 images */}
               <div className="w-[53%] flex flex-col gap-3 z-10">
                 <div className="relative h-44 rounded-xl overflow-hidden">
-                  <Image src="/assets/image_2_14.png" alt="Photo 1" fill className="object-cover grayscale" />
+                  <Image src="/assets/gallery head.jpeg" alt="Photo 1" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-32 rounded-xl overflow-hidden">
-                  <Image src="/assets/image_10_24.png" alt="Photo 3" fill className="object-cover grayscale" />
+                  <Image src="/assets/p2.jpg" alt="Photo 3" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-40 rounded-xl overflow-hidden">
-                  <Image src="/assets/image_20_35.png" alt="Photo 5" fill className="object-cover grayscale" />
+                  <Image src="/assets/charan profile.jpg" alt="Photo 5" fill className="object-cover grayscale" />
                 </div>
               </div>
 
               {/* Right column – 2 images offset down */}
               <div className="w-[47%] flex flex-col gap-3 pt-8 z-10">
                 <div className="relative h-44 rounded-xl overflow-hidden">
-                  <Image src="/assets/image_5_17.png" alt="Photo 2" fill className="object-cover grayscale" />
+                  <Image src="/assets/p2.jpg" alt="Photo 2" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-40 rounded-xl overflow-hidden">
-                  <Image src="/assets/image_11_26.png" alt="Photo 4" fill className="object-cover grayscale" />
+                  <Image src="/assets/gallery head.jpeg" alt="Photo 4" fill className="object-cover grayscale" />
                 </div>
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function ChaudharyCharanSinghPage() {
 
               {/* Large photo */}
               <div className="w-full sm:w-64 lg:w-72 h-44 sm:h-52 rounded-xl overflow-hidden relative flex-shrink-0">
-                <Image src="/assets/image_2_14.png" alt="Chaudhary Charan Singh" fill className="object-cover grayscale" />
+                <Image src="/assets/charan singh hero.png" alt="Chaudhary Charan Singh" fill className="object-cover grayscale" />
               </div>
 
               {/* A Life of Service */}

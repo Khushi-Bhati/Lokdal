@@ -36,25 +36,25 @@ const timeline = [
 
 const categories = [
   {
-    image: "/assets/image_27_43.png",
+    image: "/assets/kisan.jpg",
     icon: Wheat,
     title: "Farmers Welfare",
     desc: "Supporting farmers through awareness campaigns and policy advocacy.",
   },
   {
-    image: "/assets/image_27_45.png",
+    image: "/assets/join.jpg",
     icon: GraduationCap,
     title: "Education Support",
     desc: "Scholarships, awareness programs, and youth development initiatives.",
   },
   {
-    image: "/assets/image_27_46.png",
+    image: "/assets/dharna1.jpeg",
     icon: Users,
     title: "Social Welfare",
     desc: "Community outreach and public welfare activities across regions.",
   },
   {
-    image: "/assets/image_27_48.png",
+    image: "/assets/samman-2.jpg",
     icon: Building2,
     title: "Grassroots Development",
     desc: "Strengthening local leadership and organizational networks.",

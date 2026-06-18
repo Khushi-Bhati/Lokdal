@@ -9,17 +9,17 @@ export default function Agenda() {
     {
       title: "धर्म प्रदर्शन एवं जनसभाग्रम",
       date: "12 मई 2024",
-      image: "/assets/image_27_43.png",
+      image: "/assets/dharna1.jpeg",
     },
     {
       title: "नकद पुरस्कार वितरण कार्यक्रम",
       date: "10 मई 2024",
-      image: "/assets/image_27_45.png",
+      image: "/assets/join.jpg",
     },
     {
       title: "क्रिकेट प्रतियोगिता (T-20)",
       date: "08 मई 2024",
-      image: "/assets/image_27_46.png",
+      image: "/assets/dharna3.jpeg",
     },
   ];
 
@@ -107,8 +107,8 @@ export default function Agenda() {
               </div>
               
               {/* Leader Photo */}
-              <div className="w-full md:w-[180px] flex flex-col items-center flex-shrink-0">
-                <div className="w-[160px] h-[200px] rounded-xl overflow-hidden border border-green-100 relative">
+              <div className="w-full md:w-[240px] flex flex-col items-center flex-shrink-0">
+                <div className="w-[210px] h-[260px] sm:w-[230px] sm:h-[285px] rounded-xl overflow-hidden border border-green-100 relative">
                   <Image
                     src="/assets/sunil singh img.png"
                     alt="श्री सुनील सिंह"

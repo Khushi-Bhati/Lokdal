@@ -8,7 +8,7 @@ import { Users, Leaf, Star, Megaphone } from "lucide-react";
 const events = [
   {
     day: "15", month: "JUN",
-    image: "/assets/image_27_43.png",
+    image: "/assets/dharna1.jpeg",
     icon: Users,
     title: "National Executive Meeting",
     place: "New Delhi", time: "11:00 AM",
@@ -16,7 +16,7 @@ const events = [
   },
   {
     day: "20", month: "JUN",
-    image: "/assets/image_27_45.png",
+    image: "/assets/dharna3.jpeg",
     icon: Leaf,
     title: "Farmers' Convention",
     place: "Lucknow, UP", time: "02:00 PM",
@@ -24,7 +24,7 @@ const events = [
   },
   {
     day: "28", month: "JUN",
-    image: "/assets/image_27_46.png",
+    image: "/assets/join.jpg",
     icon: Star,
     title: "Youth Leadership Summit",
     place: "Bhopal, MP", time: "10:30 AM",
@@ -32,7 +32,7 @@ const events = [
   },
   {
     day: "05", month: "JUL",
-    image: "/assets/image_27_48.png",
+    image: "/assets/samman-2.jpg",
     icon: Megaphone,
     title: "Public Outreach Program",
     place: "Patna, Bihar", time: "03:00 PM",
@@ -40,7 +40,7 @@ const events = [
   },
   {
     day: "12", month: "JUL",
-    image: "/assets/image_30_53.png",
+    image: "/assets/kisan.jpg",
     icon: Users,
     title: "National Council Meeting",
     place: "New Delhi", time: "11:00 AM",
