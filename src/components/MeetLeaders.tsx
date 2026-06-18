@@ -15,6 +15,14 @@ export default function MeetLeaders() {
     { name: "Chaudhary Balraj Singh", title: "National Secretary", image: "/assets/image_11_26.png" },
   ];
 
+  const leaderLinks = [
+    "/about/chaudhary-charan-singh",
+    "/about/chaudhary-sunil-singh",
+    "/about/chaudhary-charan-singh",
+    "/about/chaudhary-charan-singh",
+    "/about/chaudhary-charan-singh",
+  ];
+
   return (
     <section className="w-full bg-white py-10 sm:py-14 lg:py-16">
       <div className="w-full px-4 sm:px-8 lg:px-16">
@@ -28,7 +36,7 @@ export default function MeetLeaders() {
               we are building a stronger, self-reliant and progressive India
             </p>
           </div>
-          <Link href="#" className="bg-[#0b4d21] text-white font-bold text-xs sm:text-sm px-4 sm:px-6 py-2.5 rounded-lg flex items-center gap-2 hover:bg-[#073616] transition-colors flex-shrink-0 whitespace-nowrap">
+          <Link href="/about/chaudhary-charan-singh" className="bg-[#0b4d21] text-white font-bold text-xs sm:text-sm px-4 sm:px-6 py-2.5 rounded-lg flex items-center gap-2 hover:bg-[#073616] transition-colors flex-shrink-0 whitespace-nowrap">
             View All Leaders <ArrowRight size={14} />
           </Link>
         </div>
@@ -43,24 +51,24 @@ export default function MeetLeaders() {
           {/* Cards Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {leaders.map((leader, idx) => (
-              <div key={idx} className="bg-green-50/60 rounded-xl p-2.5 pb-3 flex flex-col items-center text-center group cursor-pointer hover:shadow-md transition-shadow border border-green-100/50">
+              <Link href={leaderLinks[idx]} key={idx} className="bg-green-50/60 rounded-xl p-2.5 pb-3 flex flex-col items-center text-center group cursor-pointer hover:shadow-md transition-shadow border border-green-100/50">
                 <div className="w-full h-28 sm:h-32 lg:h-40 bg-gradient-to-b from-green-100/80 to-green-50 rounded-lg mb-2 overflow-hidden relative">
                   <Image src={leader.image} alt={leader.name} fill className="object-cover object-top" />
                 </div>
                 <h3 className="font-bold text-[10px] sm:text-xs text-gray-900 group-hover:text-[#0b4d21] transition-colors mb-0.5 leading-tight">{leader.name}</h3>
                 <p className="text-[10px] sm:text-xs text-[#0b4d21] font-medium italic mb-2">{leader.title}</p>
                 <div className="flex gap-1.5">
-                  <Link href="#" className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+                  <span className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500">
                     <FaFacebookF size={9} />
-                  </Link>
-                  <Link href="#" className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+                  </span>
+                  <span className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500">
                     <FaXTwitter size={9} />
-                  </Link>
-                  <Link href="#" className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+                  </span>
+                  <span className="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-500">
                     <FaInstagram size={9} />
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

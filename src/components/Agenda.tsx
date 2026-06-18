@@ -44,7 +44,7 @@ export default function Agenda() {
             {/* Header Row */}
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold text-[#0b4d21]">मुख्य गतिविधियों</h3>
-              <Link href="#" className="text-[#0b4d21] font-bold text-sm flex items-center gap-1 hover:underline">
+              <Link href="/upcoming-events" className="text-[#0b4d21] font-bold text-sm flex items-center gap-1 hover:underline">
                 सभी देखें <ArrowRight size={16} />
               </Link>
             </div>
@@ -101,7 +101,7 @@ export default function Agenda() {
                   विश्वास हैं और बहु पार्टी से समाज सेवा एवं अपरिचित
                   के कामों में संलग्न हैं।
                 </p>
-                <Link href="#" className="inline-flex items-center gap-2 text-[#0b4d21] font-bold text-sm border-2 border-[#0b4d21] px-5 py-2 rounded-md hover:bg-[#0b4d21] hover:text-white transition-all">
+                <Link href="/about/chaudhary-sunil-singh" className="inline-flex items-center gap-2 text-[#0b4d21] font-bold text-sm border-2 border-[#0b4d21] px-5 py-2 rounded-md hover:bg-[#0b4d21] hover:text-white transition-all">
                   और जानें
                 </Link>
               </div>

@@ -24,8 +24,8 @@ export default function ContactUs() {
 
   const contactInfo = [
     { icon: MapPin, label: "Office Address", value: "8, Mall Avenue, Lucknow (U.P.) — 226001" },
-    { icon: Phone, label: "Helpline", value: "88 00 00 2024" },
-    { icon: Mail, label: "Email", value: "contact@lokdal.in" },
+    { icon: Phone, label: "Helpline", value: "98100 74878" },
+    { icon: Mail, label: "Email", value: "lokdalparty@gmail.com" },
     { icon: Clock, label: "Office Hours", value: "Mon – Sat: 10:00 AM – 6:00 PM" },
   ];
 

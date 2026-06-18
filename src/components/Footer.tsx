@@ -158,16 +158,16 @@ export default function Footer() {
               <p className="text-xs text-gray-500">Follow us on social media and stay updated<br className="hidden sm:block" /> with our latest initiatives and news.</p>
             </div>
             <div className="flex gap-3">
-              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+              <Link href="https://www.facebook.com/Lokdalindia/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
                 <FaFacebookF size={15} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+              <Link href="https://x.com/lokdalindia" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
                 <FaXTwitter size={15} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+              <Link href="mailto:lokdalparty@gmail.com" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
                 <Mail size={15} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
+              <Link href="tel:9810074878" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
                 <Phone size={15} />
               </Link>
             </div>

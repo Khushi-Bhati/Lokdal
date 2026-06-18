@@ -37,13 +37,13 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="#join"
+            href="/join"
             className="bg-[#0b4d21] hover:bg-[#073616] text-white px-8 py-3 rounded-full font-bold text-base flex items-center justify-center gap-2 transition-all shadow-md"
           >
             हमारे साथ जुड़ें <ArrowRight size={18} />
           </Link>
           <Link
-            href="#about"
+            href="/about/chaudhary-charan-singh"
             className="border-2 border-[#0b4d21] text-[#0b4d21] bg-white/70 hover:bg-white px-8 py-3 rounded-full font-bold text-base flex items-center justify-center gap-2 transition-all"
           >
             लोकदल के बारे में <ArrowRight size={18} />

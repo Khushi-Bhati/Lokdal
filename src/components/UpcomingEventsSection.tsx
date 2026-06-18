@@ -145,7 +145,7 @@ export default function UpcomingEventsSection() {
                     <span className="flex items-center gap-1"><Clock size={11} className="text-[#0b4d21]" />{time}</span>
                   </div>
                   <p className="text-xs text-gray-500 leading-relaxed mb-4 min-h-[48px]">{detail}</p>
-                  <Link href="#" className="inline-flex items-center gap-2 text-xs font-black text-[#0b4d21]">
+                  <Link href="/upcoming-events" className="inline-flex items-center gap-2 text-xs font-black text-[#0b4d21]">
                     View Details <ArrowRight size={14} />
                   </Link>
                 </div>
@@ -175,7 +175,7 @@ export default function UpcomingEventsSection() {
             </div>
             <div className="relative hidden sm:block h-12 w-px bg-white/30" />
             <Link
-              href="#"
+              href="/upcoming-events"
               className="relative flex-shrink-0 inline-flex items-center gap-3 bg-white text-[#0b4d21] font-black text-sm px-8 py-3 rounded-lg hover:bg-green-50 transition-colors"
             >
               View All Events <ArrowRight size={16} />
@@ -207,7 +207,7 @@ export default function UpcomingEventsSection() {
               </p>
             </div>
           </div>
-          <Link href="#" className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-7 py-3 rounded-lg hover:bg-[#073616] transition-colors whitespace-nowrap">
+          <Link href="/join" className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-7 py-3 rounded-lg hover:bg-[#073616] transition-colors whitespace-nowrap">
             Join Lokdal <ArrowRight size={16} />
           </Link>
         </div>
