@@ -172,7 +172,7 @@ export default function Agenda() {
               <div className="w-full md:w-[240px] flex flex-col items-center flex-shrink-0">
                 <div className="w-[210px] h-[260px] sm:w-[230px] sm:h-[285px] rounded-xl overflow-hidden border border-green-100 relative">
                   <Image
-                    src="/assets/sunil singh img.png"
+                    src="/assets/chairman.png"
                     alt="श्री सुनील सिंह"
                     fill
                     className="object-cover object-top"

@@ -111,7 +111,7 @@ export default function ChaudharySunilSinghPage() {
                   </div>
                   <div className="w-full h-1/3 bg-green-200" />
                 </div>
-                <Image src="/assets/sunil singh img.png" alt="Chaudhary Sunil Singh" fill className="object-cover object-top z-20" />
+                <Image src="/assets/chairman.png" alt="Chaudhary Sunil Singh" fill className="object-cover object-top z-20" />
               </div>
             </div>
           </div>
