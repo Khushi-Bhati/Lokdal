@@ -86,13 +86,13 @@ export default function ChaudharyCharanSinghPage() {
               {/* Left column – 3 images */}
               <div className="w-[53%] flex flex-col gap-3 z-10">
                 <div className="relative h-44 rounded-xl overflow-hidden">
-                  <Image src="/assets/12.jpeg" alt="Photo 1" fill className="object-cover grayscale" />
+                  <Image src="/assets/3.jpeg" alt="Photo 1" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-32 rounded-xl overflow-hidden">
-                  <Image src="/assets/23.jpeg" alt="Photo 3" fill className="object-cover grayscale" />
+                  <Image src="/assets/2.png" alt="Photo 3" fill className="object-cover grayscale" />
                 </div>
                 <div className="relative h-40 rounded-xl overflow-hidden">
-                  <Image src="/assets/12.jpeg" alt="Photo 5" fill className="object-cover grayscale" />
+                  <Image src="/assets/1.jpeg" alt="Photo 5" fill className="object-cover grayscale" />
                 </div>
               </div>
 
