@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
@@ -36,17 +37,12 @@ export default function MeetLeaders() {
               we are building a stronger, self-reliant and progressive India
             </p>
           </div>
-          <Link href="/about/chaudhary-charan-singh" className="bg-[#0b4d21] text-white font-bold text-xs sm:text-sm px-4 sm:px-6 py-2.5 rounded-lg flex items-center gap-2 hover:bg-[#073616] transition-colors flex-shrink-0 whitespace-nowrap">
-            View All Leaders <ArrowRight size={14} />
-          </Link>
+          
         </div>
 
         {/* Leaders Carousel */}
         <div className="relative sm:px-6">
-          {/* Left Arrow */}
-          <button className="hidden sm:flex absolute -left-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-gray-300 bg-white items-center justify-center hover:bg-gray-50 transition-colors shadow-sm">
-            <ArrowLeft size={16} className="text-gray-600" />
-          </button>
+
 
           {/* Cards Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
@@ -72,10 +68,7 @@ export default function MeetLeaders() {
             ))}
           </div>
 
-          {/* Right Arrow */}
-          <button className="hidden sm:flex absolute -right-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full border border-gray-300 bg-white items-center justify-center hover:bg-gray-50 transition-colors shadow-sm">
-            <ArrowRight size={16} className="text-gray-600" />
-          </button>
+
         </div>
 
       </div>

@@ -20,8 +20,8 @@ const leaders = [
 ];
 
 const updates = [
-  { image: "/assets/p2.jpg", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
-  { image: "/assets/gallery head.jpg", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
+  { image: "/assets/2.png", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
+  { image: "/assets/1.jpeg", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
   { image: "/assets/dharna3.jpeg", text: "किसान आंदोलन", badge: "लोकदल अपडेट" },
 ];
 
@@ -60,7 +60,7 @@ export default function ChaudharyCharanSinghPage() {
               millions even today.
             </p>
             <Link
-              href="#"
+              href="/about/history-of-lokdal"
               className="inline-flex items-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-5 py-2.5 rounded-md hover:bg-[#073616] transition-colors"
             >
               Know More About His Life <ArrowRight size={15} />
@@ -147,7 +147,7 @@ export default function ChaudharyCharanSinghPage() {
               </div>
             </div>
             <Link
-              href="#"
+              href="/join"
               className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-6 py-2.5 rounded-lg hover:bg-[#073616] transition-colors whitespace-nowrap"
             >
               Join Lokdal <ArrowRight size={15} />
@@ -218,7 +218,7 @@ export default function ChaudharyCharanSinghPage() {
                         <p className="text-[10px] text-gray-500">राष्ट्रीय अध्यक्ष, लोकदल</p>
                       </div>
                     </div>
-                    <Link href="#" className="w-8 h-8 rounded-full border-2 border-[#0b4d21] flex items-center justify-center text-[#0b4d21] hover:bg-[#0b4d21] hover:text-white transition-all flex-shrink-0">
+                    <Link href="/press-media" className="w-8 h-8 rounded-full border-2 border-[#0b4d21] flex items-center justify-center text-[#0b4d21] hover:bg-[#0b4d21] hover:text-white transition-all flex-shrink-0">
                       <ArrowRight size={14} />
                     </Link>
                   </div>

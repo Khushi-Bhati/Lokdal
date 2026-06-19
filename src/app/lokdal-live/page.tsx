@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
+
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,6 +9,29 @@ import { Search, Calendar, MapPin, Play, ArrowRight, Video } from "lucide-react"
 
 const states = ["Uttar Pradesh", "Haryana", "Rajasthan", "Bihar", "Madhya Pradesh"];
 const categories = ["Speech", "Press Conference", "Public Meeting", "Rally", "Convention"];
+
+type GalleryTab = "photos" | "videos" | "speeches";
+
+const galleryItems = {
+  photos: [
+    "/assets/dharna1.jpeg",
+    "/assets/dharna3.jpeg",
+    "/assets/kisan.jpg",
+    "/assets/join.jpg",
+    "/assets/gallery-5.jpg",
+  ],
+  videos: [
+    "/videos/6.mp4",
+    "/videos/8.mp4",
+    "/videos/10.mp4",
+    "/videos/14.mp4",
+    "/videos/15.mp4",
+  ],
+  speeches: [
+    "/videos/10.mp4",
+    "/videos/15.mp4",
+  ],
+};
 
 const recentBroadcasts = [
   {
@@ -50,34 +74,17 @@ const recentBroadcasts = [
     state: "Madhya Pradesh",
     category: "Convention",
   },
+ 
 ];
 
 export default function LokdalLivePage() {
-  const [search, setSearch] = useState("");
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+
+  const [galleryTab, setGalleryTab] = useState<GalleryTab>("videos");
   const featuredVideoRef = useRef<HTMLVideoElement>(null);
   const recentSectionRef = useRef<HTMLDivElement>(null);
 
-  const filteredBroadcasts = useMemo(() => {
-    const normalizedSearch = search.trim().toLowerCase();
+  const filteredBroadcasts = recentBroadcasts;
 
-    return recentBroadcasts.filter((broadcast) => {
-      const matchesSearch =
-        !normalizedSearch ||
-        broadcast.title.toLowerCase().includes(normalizedSearch) ||
-        broadcast.location.toLowerCase().includes(normalizedSearch) ||
-        broadcast.category.toLowerCase().includes(normalizedSearch);
-      const matchesState = !selectedState || broadcast.state === selectedState;
-      const matchesCategory = !selectedCategory || broadcast.category === selectedCategory;
-      const matchesFromDate = !fromDate || broadcast.dateValue >= fromDate;
-      const matchesToDate = !toDate || broadcast.dateValue <= toDate;
-
-      return matchesSearch && matchesState && matchesCategory && matchesFromDate && matchesToDate;
-    });
-  }, [fromDate, search, selectedCategory, selectedState, toDate]);
 
   const handleSearchSubmit = () => {
     recentSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -161,55 +168,7 @@ export default function LokdalLivePage() {
       </section>
 
       {/* ── SEARCH BAR ── */}
-      <div className="w-full px-4 sm:px-8 lg:px-16 py-5 border-b border-gray-100">
-        <div className="flex flex-col sm:flex-row gap-2 w-full">
-          <div className="relative flex-1">
-            <input
-              type="text"
-              placeholder="Search videos..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[#0b4d21]"
-            />
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-          </div>
-          <select
-            value={selectedState}
-            onChange={(e) => setSelectedState(e.target.value)}
-            className="flex-1 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:border-[#0b4d21]"
-          >
-            <option value="">Select State</option>
-            {states.map((s) => <option key={s}>{s}</option>)}
-          </select>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="flex-1 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:border-[#0b4d21]"
-          >
-            <option value="">Select Category</option>
-            {categories.map((c) => <option key={c}>{c}</option>)}
-          </select>
-          <input
-            type="date"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-            className="flex-1 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:border-[#0b4d21]"
-          />
-          <input
-            type="date"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-            className="flex-1 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:border-[#0b4d21]"
-          />
-          <button
-            type="button"
-            onClick={handleSearchSubmit}
-            className="bg-[#0b4d21] text-white font-bold text-sm px-8 py-2.5 rounded-lg hover:bg-[#073616] transition-colors flex-shrink-0"
-          >
-            Search
-          </button>
-        </div>
-      </div>
+      
 
       <div className="w-full px-4 sm:px-8 lg:px-16 py-8 sm:py-10">
 
@@ -262,7 +221,8 @@ export default function LokdalLivePage() {
 
           </div>
 
-          {filteredBroadcasts.length > 0 ? (
+          {recentBroadcasts.length > 0 ? (
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {filteredBroadcasts.map((video, idx) => (
                 <div key={idx} className="group rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
@@ -344,17 +304,20 @@ export default function LokdalLivePage() {
 
           {/* Tabs */}
           <div className="flex gap-2 mb-5">
-            {[
-              { label: "Photos", icon: "🖼️", active: true },
-              { label: "Videos", icon: "📹", active: false },
-              { label: "Speeches", icon: "🎙️", active: false },
-            ].map((tab) => (
+            {([
+              { id: "photos" as GalleryTab, label: "Photos", icon: "🖼️" },
+              { id: "videos" as GalleryTab, label: "Videos", icon: "📹" },
+              { id: "speeches" as GalleryTab, label: "Speeches", icon: "🎙️" },
+            ]).map((tab) => (
               <button
-                key={tab.label}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${tab.active
-                  ? "bg-[#0b4d21] text-white"
-                  : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
-                  }`}
+                key={tab.id}
+                type="button"
+                onClick={() => setGalleryTab(tab.id)}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${
+                  galleryTab === tab.id
+                    ? "bg-[#0b4d21] text-white"
+                    : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
+                }`}
               >
                 <span className="text-xs">{tab.icon}</span> {tab.label}
               </button>
@@ -362,27 +325,25 @@ export default function LokdalLivePage() {
           </div>
 
           {/* Gallery grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {[
-              "/videos/6.mp4",
-              "/videos/8.mp4",
-              "/videos/10.mp4",
-              "/videos/14.mp4",
-              "/videos/15.mp4",
-            ].map((src, idx) => (
-              <div key={idx} className="relative h-40 sm:h-48 lg:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
-                <video
-                  className="h-full w-full object-cover"
-                  controls
-                  muted
-                  playsInline
-                  preload="metadata"
-                >
-                  <source src={src} type="video/mp4" />
-                </video>
-              </div>
-            ))}
-          </div>
+          {galleryTab === "photos" ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {galleryItems.photos.map((src, idx) => (
+                <div key={idx} className="relative h-40 sm:h-48 lg:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
+                  <Image src={src} alt={`Gallery photo ${idx + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {galleryItems[galleryTab].map((src, idx) => (
+                <div key={idx} className="relative h-40 sm:h-48 lg:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
+                  <video className="h-full w-full object-cover" controls muted playsInline preload="metadata">
+                    <source src={src} type="video/mp4" />
+                  </video>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
       </div>

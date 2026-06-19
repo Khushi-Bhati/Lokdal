@@ -22,7 +22,7 @@ const orgData: Record<string, OrganizationData> = {
   "uttar-pradesh": {
     title: "UP Executives",
     slogan: "Strong Leadership. Stronger Uttar Pradesh.",
-    regions: ["Sambhal", "Bro Code"],
+    regions: ["Sambhal", "Aligarh"],
   },
   "haryana": {
     title: "Haryana Executives",

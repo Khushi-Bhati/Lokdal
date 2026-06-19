@@ -3,8 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+type UpdateCategory = "all" | "kisan" | "events" | "samman";
+
+const UPDATE_TABS: { id: UpdateCategory; label: string }[] = [
+  { id: "all", label: "All Updates" },
+  { id: "kisan", label: "Kisan" },
+  { id: "events", label: "Events" },
+  { id: "samman", label: "Samman" },
+];
 
 const leaders = [
   { name: "CHAUDHARY\nCHARAN SINGH", image: "/assets/charan profile.jpg" },
@@ -22,6 +32,18 @@ const updates = [
 ];
 
 export default function ChaudharySunilSinghPage() {
+  const [activeCategory, setActiveCategory] = useState<UpdateCategory>("all");
+
+  const filteredUpdates = useMemo(() => {
+    if (activeCategory === "all") return updates;
+    return updates.filter((u) => {
+      if (activeCategory === "kisan") return u.text.includes("किसान");
+      if (activeCategory === "events") return u.text.includes("लड़ाई") || u.text.includes("हिन्दुस्तान");
+      if (activeCategory === "samman") return u.text.includes("महासम्म");
+      return true;
+    });
+  }, [activeCategory]);
+
   return (
     <main className="flex min-h-screen flex-col bg-white">
       <Header />
@@ -104,16 +126,22 @@ export default function ChaudharySunilSinghPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-blue-900 mb-12 uppercase">PARTY LEADERS</h2>
 
           <div className="flex flex-wrap justify-center gap-8 sm:gap-16">
-            {leaders.map((l) => (
-              <div key={l.name} className="flex flex-col items-center gap-4">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-gray-100 relative shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            {leaders.map((l) => {
+              const href = l.name.includes("CHARAN") && !l.name.includes("SUNIL")
+                ? "/about/chaudhary-charan-singh"
+                : l.name.includes("SUNIL")
+                  ? "/about/chaudhary-sunil-singh"
+                  : "/about/chaudhary-charan-singh";
+              return (
+              <Link key={l.name} href={href} className="flex flex-col items-center gap-4 group">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-gray-100 relative shadow-sm hover:shadow-md hover:border-[#0b4d21] transition-all cursor-pointer">
                   <Image src={l.image} alt={l.name} fill className="object-cover object-top" />
                 </div>
-                <p className="text-xs sm:text-sm font-black text-blue-900 text-center leading-tight whitespace-pre-line">
+                <p className="text-xs sm:text-sm font-black text-blue-900 text-center leading-tight whitespace-pre-line group-hover:text-[#0b4d21] transition-colors">
                   {l.name}
                 </p>
-              </div>
-            ))}
+              </Link>
+            );})}
           </div>
         </div>
       </section>
@@ -137,10 +165,30 @@ export default function ChaudharySunilSinghPage() {
       <section className="w-full bg-white py-16 sm:py-20">
         <div className="w-full px-4 sm:px-8 lg:px-16 flex flex-col items-center">
           <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-1">DAILY</p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-blue-900 mb-12 uppercase">UPDATES</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-blue-900 mb-6 uppercase">UPDATES</h2>
 
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {UPDATE_TABS.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveCategory(tab.id)}
+                className={`px-4 py-2 rounded-full text-xs font-black transition-colors ${
+                  activeCategory === tab.id
+                    ? "bg-[#0b4d21] text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {filteredUpdates.length === 0 ? (
+            <p className="text-gray-400 text-sm py-8">No updates in this category.</p>
+          ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8 w-full">
-            {updates.map((u, i) => (
+            {filteredUpdates.map((u, i) => (
               <div key={i} className="rounded-xl overflow-hidden shadow-md group cursor-pointer border border-gray-100 flex flex-col">
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-gray-100">
                   <Image src={u.image} alt={u.text} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -148,6 +196,7 @@ export default function ChaudharySunilSinghPage() {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

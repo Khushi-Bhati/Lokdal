@@ -21,7 +21,7 @@ export default function About() {
             <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
             
             <div className="relative z-10 w-full lg:pr-10">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-2">Join Lokdal</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-7">Join Lokdal</h2>
               <p className="text-white/90 mb-8 text-sm font-medium">Be a part of the movement for positive change.</p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">

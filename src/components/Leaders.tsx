@@ -12,12 +12,12 @@ export default function Leaders() {
 
   const inspirationImages = {
     charan: [
-      { src: "/assets/charan profile.jpg", alt: "Choudhary Charan Singh" },
-      { src: "/assets/charan singh hero.png", alt: "Choudhary Charan Singh" },
+      { src: "/assets/1.jpeg", alt: "Choudhary Charan Singh" },
+      { src: "/assets/2.png", alt: "Choudhary Charan Singh" },
     ],
     sunil: [
-      { src: "/assets/sunil profile.jpg", alt: "Choudhary Sunil Singh" },
-      { src: "/assets/sunil singh img.png", alt: "Choudhary Sunil Singh" },
+      { src: "/assets/6 (1).jpg", alt: "Choudhary Sunil Singh" },
+      { src: "/assets/2.jpg", alt: "Choudhary Sunil Singh" },
     ],
   };
 
@@ -213,9 +213,9 @@ export default function Leaders() {
                 <Link href="https://x.com/lokdalindia" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <FaXTwitter size={16} />
                 </Link>
-                <Link href="https://www.youtube.com/@lokdalindia" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
+                {/* <Link href="https://www.youtube.com/@lokdalindia" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <FaYoutube size={16} />
-                </Link>
+                </Link> */}
                 <Link href="https://www.instagram.com/lokdalindia" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0b4d21] hover:text-white text-gray-600 transition-all">
                   <FaInstagram size={16} />
                 </Link>
@@ -235,7 +235,7 @@ export default function Leaders() {
               </h3>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-gray-200 rounded-xl flex-shrink-0 overflow-hidden relative">
-                  <Image src="/assets/image_13_30.png" alt="Today's Pick" fill className="object-cover" />
+                  <Image src="/assets/logo.png" alt="Today's Pick" fill className="object-cover" />
                 </div>
                 <p className="text-sm text-gray-700 font-medium leading-snug">&ldquo;किसान और मजदूर का राज,&rdquo;</p>
               </div>

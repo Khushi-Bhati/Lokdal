@@ -19,13 +19,34 @@ export default function DonatePage() {
   const [customAmount, setCustomAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("upi");
   const [upiId, setUpiId] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardExpiry, setCardExpiry] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
+  const [selectedBank, setSelectedBank] = useState("");
+  const [donationError, setDonationError] = useState("");
   const [donated, setDonated] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const finalAmount = customAmount ? Number(customAmount) : selectedAmount;
 
   const handleDonate = () => {
-    if (!finalAmount || finalAmount < 1) return;
+    setDonationError("");
+    if (!finalAmount || finalAmount < 1) {
+      setDonationError("Please select or enter a valid donation amount.");
+      return;
+    }
+    if (paymentMethod === "upi" && !upiId.trim()) {
+      setDonationError("Please enter your UPI ID.");
+      return;
+    }
+    if (paymentMethod === "card" && (!cardNumber.trim() || !cardExpiry.trim() || !cardCvv.trim())) {
+      setDonationError("Please fill in all card details.");
+      return;
+    }
+    if (paymentMethod === "netbanking" && !selectedBank) {
+      setDonationError("Please select your bank.");
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -179,6 +200,8 @@ export default function DonatePage() {
                     <div className="mb-3 space-y-2">
                       <input
                         type="text"
+                        value={cardNumber}
+                        onChange={(e) => setCardNumber(e.target.value)}
                         placeholder="Card Number"
                         maxLength={19}
                         className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-800 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0b4d21]/30 focus:border-[#0b4d21] transition-all"
@@ -186,12 +209,16 @@ export default function DonatePage() {
                       <div className="flex gap-2">
                         <input
                           type="text"
+                          value={cardExpiry}
+                          onChange={(e) => setCardExpiry(e.target.value)}
                           placeholder="MM / YY"
                           maxLength={7}
                           className="flex-1 border border-gray-200 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-800 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0b4d21]/30 focus:border-[#0b4d21] transition-all"
                         />
                         <input
                           type="text"
+                          value={cardCvv}
+                          onChange={(e) => setCardCvv(e.target.value)}
                           placeholder="CVV"
                           maxLength={4}
                           className="w-20 border border-gray-200 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-800 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0b4d21]/30 focus:border-[#0b4d21] transition-all"
@@ -202,19 +229,26 @@ export default function DonatePage() {
 
                   {paymentMethod === "netbanking" && (
                     <div className="mb-3">
-                      <select className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0b4d21]/30 focus:border-[#0b4d21] transition-all bg-white">
+                      <select
+                        value={selectedBank}
+                        onChange={(e) => setSelectedBank(e.target.value)}
+                        className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0b4d21]/30 focus:border-[#0b4d21] transition-all bg-white"
+                      >
                         <option value="">Select your bank</option>
-                        <option>State Bank of India</option>
-                        <option>HDFC Bank</option>
-                        <option>ICICI Bank</option>
-                        <option>Axis Bank</option>
-                        <option>Punjab National Bank</option>
-                        <option>Bank of Baroda</option>
+                        <option value="sbi">State Bank of India</option>
+                        <option value="hdfc">HDFC Bank</option>
+                        <option value="icici">ICICI Bank</option>
+                        <option value="axis">Axis Bank</option>
+                        <option value="pnb">Punjab National Bank</option>
+                        <option value="bob">Bank of Baroda</option>
                       </select>
                     </div>
                   )}
 
                   {/* Donate Button */}
+                  {donationError && (
+                    <p className="text-xs font-bold text-red-500 text-center mb-2">{donationError}</p>
+                  )}
                   <button
                     type="button"
                     onClick={handleDonate}

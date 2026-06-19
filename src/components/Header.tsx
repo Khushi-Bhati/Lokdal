@@ -49,7 +49,7 @@ export default function Header() {
       </div>
 
       {/* Main Nav */}
-      <div className="w-full px-4 sm:px-8 lg:px-16 py-3 flex items-center gap-4">
+    <div className="w-full px-4 sm:px-8 lg:px-16 py-3 flex items-center justify-between gap-4">
 
         {/* Logo */}
         <Link href="/" className="flex flex-shrink-0 items-center gap-3 sm:gap-4">
@@ -141,13 +141,14 @@ export default function Header() {
           <span className="text-gray-300 font-light px-0.5">|</span>
           <Link href="/lokdal-live" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Lokdal Live</Link>
           <span className="text-gray-300 font-light px-0.5">|</span>
-          <Link href="/elections" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Elections</Link>
+          <Link href="/gallery" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Gallery</Link>
           <span className="text-gray-300 font-light px-0.5">|</span>
           <Link href="/donate" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">दान करें</Link>
         </nav>
 
         {/* Right: language toggle + join + hamburger */}
-        <div className="flex flex-shrink-0 items-center gap-3">
+        <div className="flex flex-shrink-0 items-center gap-3 justify-end">
+
 
           {/* Language dropdown — desktop */}
           <div className="hidden lg:block relative">
@@ -276,7 +277,7 @@ export default function Header() {
             {[
               { href: "/upcoming-events", label: "Upcoming Events" },
               { href: "/lokdal-live", label: "Lokdal Live" },
-              { href: "/elections", label: "Elections" },
+              { href: "/gallery", label: "Gallery" },
               { href: "/donate", label: "दान करें" },
             ].map(({ href, label }) => (
               <Link key={label} href={href} onClick={closeMobile}

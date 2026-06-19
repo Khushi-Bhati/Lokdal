@@ -35,7 +35,7 @@ const deptLinks = [
 ];
 
 const otherLinks = [
-  { label: "Gallery", href: "/press-media" },
+  { label: "Gallery", href: "/gallery" },
  
   { label: "Donate", href: "/donate" },
   { label: "Join Lokdal", href: "/join" },

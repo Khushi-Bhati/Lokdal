@@ -3,25 +3,64 @@
 import { ArrowRight, ArrowLeft, CalendarDays, MapPin, Star, Handshake, Users } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useMemo, useRef, useState } from "react";
+
+type ActivityCategory = "latest" | "rally" | "ceremony";
+
+const CATEGORY_TABS: { id: ActivityCategory; label: string }[] = [
+  { id: "latest", label: "ताजा" },
+  { id: "rally", label: "जनसभा/सम्मेलन कार्यक्रम" },
+  { id: "ceremony", label: "समारोह/पुरस्कार वितरण" },
+];
 
 export default function Agenda() {
+  const [activeCategory, setActiveCategory] = useState<ActivityCategory>("latest");
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const activities = [
     {
       title: "धर्म प्रदर्शन एवं जनसभाग्रम",
       date: "12 मई 2024",
       image: "/assets/dharna1.jpeg",
+      category: "latest" as ActivityCategory,
     },
     {
       title: "नकद पुरस्कार वितरण कार्यक्रम",
       date: "10 मई 2024",
       image: "/assets/join.jpg",
+      category: "ceremony" as ActivityCategory,
     },
     {
       title: "क्रिकेट प्रतियोगिता (T-20)",
       date: "08 मई 2024",
       image: "/assets/dharna3.jpeg",
+      category: "ceremony" as ActivityCategory,
+    },
+    {
+      title: "किसान महापंचायत",
+      date: "05 मई 2024",
+      image: "/assets/kisan.jpg",
+      category: "rally" as ActivityCategory,
+    },
+    {
+      title: "युवा संकल्प सम्मेलन",
+      date: "03 मई 2024",
+      image: "/assets/dharna5.jpeg",
+      category: "rally" as ActivityCategory,
     },
   ];
+
+  const filteredActivities = useMemo(() => {
+    if (activeCategory === "latest") return activities;
+    return activities.filter((a) => a.category === activeCategory);
+  }, [activeCategory]);
+
+  const scrollActivities = (direction: "left" | "right") => {
+    scrollRef.current?.scrollBy({
+      left: direction === "left" ? -220 : 220,
+      behavior: "smooth",
+    });
+  };
 
   const stats = [
     { icon: <Handshake size={28} className="text-white" />, value: "10L+", label: "समर्थक" },
@@ -51,15 +90,29 @@ export default function Agenda() {
 
             {/* Green Tabs */}
             <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-              <span className="bg-[#0b4d21] text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">ताजा</span>
-              <span className="bg-gray-100 text-gray-600 text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">जनसभा/सम्मेलन कार्यक्रम</span>
-              <span className="bg-gray-100 text-gray-600 text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">समारोह/पुरस्कार वितरण</span>
+              {CATEGORY_TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveCategory(tab.id)}
+                  className={`text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap transition-colors ${
+                    activeCategory === tab.id
+                      ? "bg-[#0b4d21] text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
 
             {/* Activity Cards Slider */}
             <div className="relative">
-              <div className="flex gap-4 overflow-hidden">
-                {activities.map((activity, idx) => (
+              {filteredActivities.length === 0 ? (
+                <p className="text-sm text-gray-400 py-8 text-center">इस श्रेणी में कोई गतिविधि नहीं मिली।</p>
+              ) : (
+              <div ref={scrollRef} className="flex gap-4 overflow-x-auto scrollbar-none pb-1">
+                {filteredActivities.map((activity, idx) => (
                   <div key={idx} className="min-w-[200px] flex-1 group cursor-pointer">
                     {/* Image */}
                     <div className="w-full h-40 bg-gray-200 rounded-xl mb-3 overflow-hidden relative">
@@ -73,13 +126,22 @@ export default function Agenda() {
                   </div>
                 ))}
               </div>
+              )}
               
               {/* Navigation Arrows */}
               <div className="flex gap-3 mt-5">
-                <button className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollActivities("left")}
+                  className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                >
                   <ArrowLeft size={16} className="text-gray-600" />
                 </button>
-                <button className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollActivities("right")}
+                  className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                >
                   <ArrowRight size={16} className="text-gray-600" />
                 </button>
               </div>

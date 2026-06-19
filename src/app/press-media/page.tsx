@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useMemo } from "react";
 import Image from "next/image";
 import { ArrowRight, Bookmark, Calendar, PlayCircle } from "lucide-react";
 import { FaFacebookF, FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -9,111 +6,76 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const pressReleases = [
-  { date: "13-06-2026", title: "Hon'ble Sunil Singh जी की प्रेस वार्ता के मुख्य बिंदु" },
-  { date: "11-06-2026", title: "किसान, युवा और ग्रामीण विकास पर लोकदल की प्राथमिकताएं" },
-  { date: "10-06-2026", title: "Hon'ble Sunil Singh जी ने केंद्र सरकार की नीतियों पर उठाए प्रश्न" },
-  { date: "09-06-2026", title: "NDA बैठक में लोकदल की अहम प्रस्तावनाएं" },
-  { date: "08-06-2026", title: "मीडिया के सवालों के जवाब में लोकदल का आधिकारिक बयान" },
-  { date: "07-06-2026", title: "लोकदल की संगठनात्मक बैठक सफलतापूर्वक संपन्न" },
-  { date: "06-06-2026", title: "दिल्ली अधिवेशन में Sunil Singh जी का प्रेरणादायक संबोधन" },
-  { date: "05-06-2026", title: "बिहार दौरे पर Hon'ble Sunil Singh जी, कई जनसभाओं को किया संबोधित" },
+  { date: "13-06-2026", title: "Hon'ble Sunil Singh जी की प्रेस वार्ता के मुख्य बिंदु", category: "press" },
+  { date: "11-06-2026", title: "किसान, युवा और ग्रामीण विकास पर लोकदल की प्राथमिकताएं", category: "policy" },
+  { date: "10-06-2026", title: "Hon'ble Sunil Singh जी ने केंद्र सरकार की नीतियों पर उठाए प्रश्न", category: "press" },
+  { date: "09-06-2026", title: "NDA बैठक में लोकदल की अहम प्रस्तावनाएं", category: "policy" },
+  { date: "08-06-2026", title: "मीडिया के सवालों के जवाब में लोकदल का आधिकारिक बयान", category: "press" },
+  { date: "07-06-2026", title: "लोकदल की संगठनात्मक बैठक सफलतापूर्वक संपन्न", category: "organization" },
+  { date: "06-06-2026", title: "दिल्ली अधिवेशन में Sunil Singh जी का प्रेरणादायक संबोधन", category: "speech" },
+  { date: "05-06-2026", title: "बिहार दौरे पर Hon'ble Sunil Singh जी, कई जनसभाओं को किया संबोधित", category: "speech" },
 
-  { date: "02-06-2026", title: "Hon'ble Sunil Singh जी का युवा सम्मेलन को संबोधन" },
-
+  { date: "02-06-2026", title: "Hon'ble Sunil Singh जी का युवा सम्मेलन को संबोधन", category: "speech" },
 ];
 
 const socialLinks = {
   facebook: "https://www.facebook.com/Lokdalindia/",
-  twitter: "https://x.com/Lokdalindia",
+  twitter: "https://x.com/lokdalindia",
+  whatsapp: "https://wa.me/919810074878",
   youtube: "https://www.youtube.com/@Lokdalindia",
 };
 
+function PressCardSocialLinks() {
+  return (
+    <div className="flex gap-2">
+      <a
+        href={socialLinks.facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Lokdal on Facebook"
+        className="bg-blue-600 text-white p-1.5 rounded-full hover:opacity-80 transition-opacity"
+      >
+        <FaFacebookF size={12} />
+      </a>
+      <a
+        href={socialLinks.twitter}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Lokdal on X"
+        className="bg-sky-500 text-white p-1.5 rounded-full hover:opacity-80 transition-opacity"
+      >
+        <FaXTwitter size={12} />
+      </a>
+      <a
+        href={socialLinks.whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Lokdal on WhatsApp"
+        className="bg-green-500 text-white p-1.5 rounded-full hover:opacity-80 transition-opacity"
+      >
+        <FaWhatsapp size={12} />
+      </a>
+    </div>
+  );
+}
+
 const pressCardImages = [
   "/assets/gallery-5.jpg",
-  "/assets/7(1).jpg",
+
   "/assets/hazare3.jpg",
   "/assets/hazare2.jpg",
   "/assets/gallery-5.jpg",
-  "/assets/7(1).jpg",
+  
   "/assets/dharna1.jpeg",
   "/assets/dharna3.jpeg",
   "/assets/gallery-9.jpg"
 
 ];
 
-// Convert dd-mm-yyyy to a Date object for comparison
-function parseDate(dateStr: string): Date {
-  const [dd, mm, yyyy] = dateStr.split("-");
-  return new Date(`${yyyy}-${mm}-${dd}`);
-}
-
 export default function PressMediaPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
-  const [appliedSearch, setAppliedSearch] = useState("");
-  const [appliedFrom, setAppliedFrom] = useState("");
-  const [appliedTo, setAppliedTo] = useState("");
-
-  const filteredReleases = useMemo(() => {
-    return pressReleases.filter((pr) => {
-      // Title filter
-      if (appliedSearch && !pr.title.toLowerCase().includes(appliedSearch.toLowerCase())) {
-        return false;
-      }
-      // Date range filter
-      if (appliedFrom || appliedTo) {
-        const prDate = parseDate(pr.date);
-        if (appliedFrom) {
-          const from = new Date(appliedFrom);
-          if (prDate < from) return false;
-        }
-        if (appliedTo) {
-          const to = new Date(appliedTo);
-          if (prDate > to) return false;
-        }
-      }
-      return true;
-    });
-  }, [appliedSearch, appliedFrom, appliedTo]);
-
-  const handleSearch = () => {
-    setAppliedSearch(searchQuery);
-    setAppliedFrom(fromDate);
-    setAppliedTo(toDate);
-  };
-
-  const handleReset = () => {
-    setSearchQuery("");
-    setFromDate("");
-    setToDate("");
-    setAppliedSearch("");
-    setAppliedFrom("");
-    setAppliedTo("");
-  };
   return (
     <main className="flex min-h-screen flex-col bg-gray-50">
       <Header />
-
-      {/* ── SEARCH BAR & FILTERS ── */}
-      <div className="w-full bg-white border-b border-gray-100 py-4 px-4 sm:px-8 lg:px-16 flex flex-col md:flex-row justify-end items-center gap-4">
-        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-          <input type="text" placeholder="Search By Title" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSearch()} className="border border-gray-200 rounded-md px-4 py-2 text-sm w-full sm:w-64 outline-none focus:border-[#0b4d21]" />
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className="border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-500 w-full outline-none focus:border-[#0b4d21]" />
-            <span className="text-gray-400">-</span>
-            <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className="border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-500 w-full outline-none focus:border-[#0b4d21]" />
-          </div>
-          <button onClick={handleSearch} className="bg-[#0b4d21] text-white px-6 py-2 rounded-md text-sm font-bold hover:bg-[#073616] w-full sm:w-auto">
-            Search
-          </button>
-          {(appliedSearch || appliedFrom || appliedTo) && (
-            <button onClick={handleReset} className="border border-gray-300 text-gray-600 px-4 py-2 rounded-md text-sm font-bold hover:bg-gray-100 w-full sm:w-auto">
-              Reset
-            </button>
-          )}
-        </div>
-      </div>
 
       <div className="w-full px-4 sm:px-8 lg:px-16 py-8">
 
@@ -143,9 +105,7 @@ export default function PressMediaPage() {
               <h2 className="text-xl sm:text-3xl font-black text-gray-900 mb-6 leading-snug">
                 Hon&apos;ble Sunil Singh जी की प्रेस वार्ता के मुख्य बिंदु...
               </h2>
-              <button className="bg-[#0b4d21] text-white px-6 py-2.5 rounded text-sm font-bold flex items-center gap-2 hover:bg-[#073616] transition-colors">
-                पूरा पढ़ें <ArrowRight size={16} />
-              </button>
+             
             </div>
           </div>
         </div>
@@ -157,14 +117,7 @@ export default function PressMediaPage() {
 
             {/* GRID OF CARDS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-              {filteredReleases.length === 0 && (
-                <div className="col-span-1 sm:col-span-2 md:col-span-3 py-16 text-center">
-                  <p className="text-gray-500 text-lg font-bold">कोई प्रेस विज्ञप्ति नहीं मिली</p>
-                  <p className="text-gray-400 text-sm mt-2">कृपया अपने खोज फ़िल्टर बदलें</p>
-                </div>
-              )}
-
-              {filteredReleases.slice(0, 3).map((pr, i) => (
+              {pressReleases.slice(0, 3).map((pr, i) => (
                 <div key={`top-${i}`} className="bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
                   <div className=" p-5 h-40 flex items-center relative overflow-hidden">
                     <Image
@@ -183,26 +136,19 @@ export default function PressMediaPage() {
                   <div className="p-4 flex flex-col flex-grow">
                     <div className="flex justify-between items-center text-gray-500 text-xs mb-3">
                       <span>{pr.date}</span>
-                      <Bookmark size={14} className="cursor-pointer hover:text-[#0b4d21]" />
+                     
                     </div>
                     <h3 className="font-bold text-gray-900 text-[15px] mb-5 leading-snug flex-grow">{pr.title}</h3>
                     <div className="flex justify-between items-center mt-auto">
-                      <div className="flex gap-2">
-                        <div className="bg-blue-600 text-white p-1.5 rounded-full cursor-pointer hover:opacity-80"><FaFacebookF size={12} /></div>
-                        <div className="bg-sky-500 text-white p-1.5 rounded-full cursor-pointer hover:opacity-80"><FaXTwitter size={12} /></div>
-                        <div className="bg-green-500 text-white p-1.5 rounded-full cursor-pointer hover:opacity-80"><FaWhatsapp size={12} /></div>
-                      </div>
-                      <button className="text-[#0b4d21] text-xs font-bold flex items-center gap-1 hover:underline">
-                        पूरा पढ़ें <ArrowRight size={12} />
-                      </button>
+                      <PressCardSocialLinks />
+                     
                     </div>
                   </div>
                 </div>
               ))}
 
               {/* WIDE BANNER MIDDLE - only show when there are results */}
-              {filteredReleases.length > 0 && (
-                <div className="col-span-1 sm:col-span-2 md:col-span-3 bg-gradient-to-r from-green-50 to-green-100 rounded-xl overflow-hidden border border-green-200 flex flex-col sm:flex-row items-center p-6 gap-6 relative">
+              <div className="col-span-1 sm:col-span-2 md:col-span-3 bg-gradient-to-r from-green-50 to-green-100 rounded-xl overflow-hidden border border-green-200 flex flex-col sm:flex-row items-center p-6 gap-6 relative">
                   <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md flex-shrink-0 relative z-10">
                     <Image src="/assets/sunil singh img.png" alt="Sunil Singh" fill className="object-cover object-top" />
                   </div>
@@ -210,17 +156,14 @@ export default function PressMediaPage() {
                     <h3 className="text-2xl font-black text-[#0b4d21]">लोकदल संकल्प यात्रा</h3>
                     <p className="text-gray-700 font-bold">गांव-गांव, हर दिल तक</p>
                   </div>
-                  <button className="bg-white text-[#0b4d21] border border-[#0b4d21] px-6 py-2 rounded text-sm font-bold flex items-center gap-2 hover:bg-green-50 transition-colors relative z-10 whitespace-nowrap">
-                    अधिक जानें <ArrowRight size={16} />
-                  </button>
+                  
                   <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-30 mix-blend-multiply hidden md:block">
-                    <Image src="/assets/hero image.png" alt="Crowd" fill className="object-cover" />
+                    
                   </div>
                 </div>
-              )}
 
               {/* REMAINING CARDS */}
-              {filteredReleases.slice(3).map((pr, i) => (
+              {pressReleases.slice(3).map((pr, i) => (
                 <div key={`rest-${i}`} className="bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
                   <div className="bg-[#0b4d21] p-5 h-40 flex items-center relative overflow-hidden">
                     <Image
@@ -239,18 +182,12 @@ export default function PressMediaPage() {
                   <div className="p-4 flex flex-col flex-grow">
                     <div className="flex justify-between items-center text-gray-500 text-xs mb-3">
                       <span>{pr.date}</span>
-                      <Bookmark size={14} className="cursor-pointer hover:text-[#0b4d21]" />
+                    
                     </div>
                     <h3 className="font-bold text-gray-900 text-[15px] mb-5 leading-snug flex-grow">{pr.title}</h3>
                     <div className="flex justify-between items-center mt-auto">
-                      <div className="flex gap-2">
-                        <div className="bg-blue-600 text-white p-1.5 rounded-full cursor-pointer hover:opacity-80"><FaFacebookF size={12} /></div>
-                        <div className="bg-sky-500 text-white p-1.5 rounded-full cursor-pointer hover:opacity-80"><FaXTwitter size={12} /></div>
-                        <div className="bg-green-500 text-white p-1.5 rounded-full cursor-pointer hover:opacity-80"><FaWhatsapp size={12} /></div>
-                      </div>
-                      <button className="text-[#0b4d21] text-xs font-bold flex items-center gap-1 hover:underline">
-                        पूरा पढ़ें <ArrowRight size={12} />
-                      </button>
+                      <PressCardSocialLinks />
+                    
                     </div>
                   </div>
                 </div>
