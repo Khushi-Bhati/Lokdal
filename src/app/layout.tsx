@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Rashtriya Lok Dal (RLD) | Official Website",
-  description: "Official website of Rashtriya Lok Dal (RLD), a political party dedicated to nurturing farmers, empowering youth, and building a self-reliant and progressive India.",
-  keywords: "Rashtriya Lok Dal, RLD, Farmers of India, Chaudhary Charan Singh, Jayant Chaudhary, Political Party India, Uttar Pradesh, Rural Development, Agriculture Reform",
+  title: "Lok Dal  | Official Website",
+  description: "Official website of Lok Dal, a political party dedicated to nurturing farmers, empowering youth, and building a self-reliant and progressive India.",
+  keywords: "Lok Dal, Farmers of India, Chaudhary Charan Singh, Jayant Chaudhary, Political Party India, Uttar Pradesh, Rural Development, Agriculture Reform",
 };
 
 export default function RootLayout({
