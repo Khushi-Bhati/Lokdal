@@ -27,11 +27,10 @@ const orgLinks = [
 ];
 
 const deptLinks = [
-  { label: "Election Management", href: "/departments/election-management" },
-  { label: "Election Commission", href: "/departments/election-commission" },
-  { label: "Legal Affairs", href: "/departments/legal-affairs" },
-  { label: "IT & Website Management", href: "/departments/it-website" },
-  { label: "Foreign Affairs", href: "/departments/foreign-affairs" },
+  { label: "Upcoming Events", href: "/upcoming-events" },
+  { label: "Press & Media", href: "/press-media" },
+  { label: "Lokdal-Live", href: "/lokdal-live" },
+  
 ];
 
 const otherLinks = [
