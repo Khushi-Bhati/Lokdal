@@ -3,8 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ArrowRight, Clock, MapPin, Users } from "lucide-react";
 import Link from "next/link";
-import dbConnect from "@/lib/mongodb";
-import Event from "@/lib/models/Event";
+
 
 interface SiteEvent {
   _id: string;
@@ -34,22 +33,119 @@ function fallbackEventImage(index: number) {
   return fallbackEventImages[index % fallbackEventImages.length];
 }
 
-async function getEvents(): Promise<SiteEvent[]> {
-  try {
-    await dbConnect();
-    const events = await Event.find({}).sort({ createdAt: -1 }).lean();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return events.map((e: any) => ({ ...e, _id: e._id.toString() }));
-  } catch (err) {
-    console.error("Failed to fetch events:", err);
-    return [];
-  }
-}
+const staticEvents: SiteEvent[] = [
+  {
+    _id: "1",
+    day: "15",
+    month: "JUN",
+    year: "2025",
+    title: "National Executive Meeting",
+    place: "New Delhi",
+    time: "11:00 AM",
+    detail:
+      "Strategic discussion on strengthening organization and future roadmap.",
+    level: "national",
+    image: "/assets/kisan.jpg",
+  },
+  {
+    _id: "2",
+    day: "20",
+    month: "JUN",
+    year: "2025",
+    title: "Farmers' Convention",
+    place: "Lucknow, UP",
+    time: "02:00 PM",
+    detail:
+      "Empowering farmers, discussing issues and sustainable solutions.",
+    level: "state",
+    image: "/assets/samman-2.jpg",
+  },
+  {
+    _id: "3",
+    day: "28",
+    month: "JUN",
+    year: "2025",
+    title: "Youth Leadership Summit",
+    place: "Bhopal, MP",
+    time: "10:30 AM",
+    detail:
+      "Inspiring young minds, building leadership for tomorrow.",
+    level: "state",
+    image: "/assets/p2.jpg",
+  },
+  {
+    _id: "4",
+    day: "05",
+    month: "JUL",
+    year: "2025",
+    title: "Public Outreach Program",
+    place: "Patna, Bihar",
+    time: "03:00 PM",
+    detail:
+      "Connecting with communities, listening to people, working for change.",
+    level: "state",
+    image: "/assets/charan head.jpeg",
+  },
+  {
+    _id: "5",
+    day: "12",
+    month: "JUL",
+    year: "2025",
+    title: "National Council Meeting",
+    place: "New Delhi",
+    time: "11:00 AM",
+    detail:
+      "Reviewing progress and planning next steps for nation-building.",
+    level: "national",
+    image: "/assets/gallery head.jpeg",
+  },
+  {
+    _id: "6",
+    day: "18",
+    month: "JUL",
+    year: "2025",
+    title: "Kisan Samman Rally",
+    place: "New Delhi",
+    time: "10:00 AM",
+    detail:
+      "Honouring farmers and discussing national agricultural policy reforms.",
+    level: "national",
+    image: "/assets/24.jpeg",
+  },
+  {
+    _id: "7",
+    day: "25",
+    month: "JUL",
+    year: "2025",
+    title: "Lokdal Annual Convention",
+    place: "New Delhi",
+    time: "09:30 AM",
+    detail:
+      "Annual gathering of leaders to chart Lokdal's vision for a stronger India.",
+    level: "national",
+    image: "/assets/12 (1).jpeg",
+  },
+  {
+    _id: "8",
+    day: "08",
+    month: "JUL",
+    year: "2025",
+    title: "Gram Vikas Abhiyan",
+    place: "Varanasi, UP",
+    time: "09:00 AM",
+    detail:
+      "Village outreach to understand rural challenges and drive development.",
+    level: "state",
+    image: "/assets/3.jpg",
+  },
+];
+
 
 export const dynamic = "force-dynamic";
 
 export default async function UpcomingEventsPage() {
-  const events = await getEvents();
+  const events = staticEvents;
+
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
