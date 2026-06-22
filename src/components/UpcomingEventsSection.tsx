@@ -77,7 +77,7 @@ function UpcomingEventsCarousel({
               key={title}
               className="group min-w-[280px] sm:min-w-[300px] lg:min-w-[280px] rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white"
             >
-              <div className="relative h-36 overflow-visible">
+              <div className="relative h-44 overflow-visible">
                 <Image
                   src={image}
                   alt={title}

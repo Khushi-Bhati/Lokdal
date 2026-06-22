@@ -1,17 +1,10 @@
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Clock, MapPin } from "lucide-react";
-import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { ArrowRight, Clock, MapPin, Users } from "lucide-react";
+import Link from "next/link";
 import dbConnect from "@/lib/mongodb";
 import Event from "@/lib/models/Event";
-
-const socialLinks = {
-  facebook: "https://www.facebook.com/Lokdalindia/",
-  twitter: "https://x.com/lokdalindia",
-  whatsapp: "https://wa.me/919810074878",
-};
 
 interface SiteEvent {
   _id: string;
@@ -24,6 +17,21 @@ interface SiteEvent {
   detail: string;
   level: "national" | "state";
   image?: string;
+}
+
+const fallbackEventImages = [
+  "/assets/kisan.jpg",
+  "/assets/samman-2.jpg",
+  "/assets/p2.jpg",
+  "/assets/charan head.jpeg",
+  "/assets/gallery head.jpeg",
+  "/assets/24.jpeg",
+  "/assets/12 (1).jpeg",
+  "/assets/3.jpg",
+];
+
+function fallbackEventImage(index: number) {
+  return fallbackEventImages[index % fallbackEventImages.length];
 }
 
 async function getEvents(): Promise<SiteEvent[]> {
@@ -56,73 +64,47 @@ export default async function UpcomingEventsPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {events.map((event) => (
-              <div
+            {events.map((event, index) => (
+
+              <article
                 key={event._id}
-                className="rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white group"
+                className="group min-w-0 rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white"
               >
-                <div className="relative h-44 sm:h-48 overflow-hidden">
+                <div className="relative h-44 overflow-visible">
                   <Image
-                    src={event.image || "/assets/kisan.jpg"}
+                    src={event.image ?? fallbackEventImage(index)}
                     alt={event.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  <div className="absolute top-2 left-2 bg-white/90 text-[#0b4d21] text-[9px] font-black px-2 py-0.5 rounded flex items-center gap-1">
-                    <Image src="/assets/logo.png" alt="logo" width={12} height={12} className="object-contain" />
-                    लोकदल द्वारा आयोजित
-                  </div>
-                  <div className="absolute bottom-3 left-3 bg-[#0b4d21] text-white rounded-lg px-2.5 py-1.5 text-center shadow-md">
-                    <div className="text-base font-black leading-none">{event.day}</div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  <div className="absolute top-0 left-3 bg-[#0b4d21] text-white text-center px-2.5 py-1.5 rounded-b-md shadow-md">
+                    <div className="text-lg font-black leading-none">{event.day}</div>
                     <div className="text-[10px] font-bold leading-tight">{event.month}</div>
-                    <div className="text-[9px] leading-tight opacity-80">{event.year}</div>
+                  </div>
+                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-green-50 border-2 border-white flex items-center justify-center shadow-md">
+                    <Users size={16} className="text-[#0b4d21]" strokeWidth={2.4} />
                   </div>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-black text-sm text-gray-900 group-hover:text-[#0b4d21] transition-colors mb-2 leading-tight">
+
+                <div className="pt-6 px-4 pb-4 border-b-[3px] border-[#0b4d21]">
+                  <h3 className="font-black text-sm text-gray-900 group-hover:text-[#0b4d21] transition-colors mb-3 leading-tight min-h-[36px]">
                     {event.title}
                   </h3>
-                  <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-3">{event.detail}</p>
-                  <div className="flex flex-col gap-1 mb-4">
-                    <span className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <Clock size={12} className="text-[#0b4d21] flex-shrink-0" /> {event.time}
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-gray-600 mb-3">
+                    <span className="flex items-center gap-1">
+                      <MapPin size={11} className="text-[#0b4d21]" fill="#0b4d21" />
+                      {event.place}
                     </span>
-                    <span className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <MapPin size={12} className="text-[#0b4d21] flex-shrink-0" fill="#0b4d21" /> {event.place}
+                    <span className="flex items-center gap-1">
+                      <Clock size={11} className="text-[#0b4d21]" />
+                      {event.time}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
-                    <a
-                      href={socialLinks.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Lokdal on Facebook"
-                      className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all"
-                    >
-                      <FaFacebookF size={11} />
-                    </a>
-                    <a
-                      href={socialLinks.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Lokdal on X"
-                      className="w-7 h-7 rounded-full bg-sky-50 flex items-center justify-center text-sky-500 hover:bg-sky-500 hover:text-white transition-all"
-                    >
-                      <FaXTwitter size={11} />
-                    </a>
-                    <a
-                      href={socialLinks.whatsapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Lokdal on WhatsApp"
-                      className="w-7 h-7 rounded-full bg-green-50 flex items-center justify-center text-green-600 hover:bg-green-600 hover:text-white transition-all"
-                    >
-                      <FaWhatsapp size={11} />
-                    </a>
-                  </div>
+                  <p className="text-xs text-gray-500 leading-relaxed mb-4 min-h-[48px]">{event.detail}</p>
+                
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         )}
@@ -132,3 +114,4 @@ export default async function UpcomingEventsPage() {
     </main>
   );
 }
+
