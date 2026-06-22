@@ -8,6 +8,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useTranslation } from "@/components/LanguageProvider";
 
 type IdeologyTag = "all" | "farmers" | "justice" | "democracy" | "education" | "unity";
 
@@ -67,6 +68,7 @@ const ideologies = [
 
 export default function IdeologyOfLokdalPage() {
   const [activeTag, setActiveTag] = useState<IdeologyTag>("all");
+  const { t } = useTranslation();
 
   const filteredIdeologies = useMemo(() => {
     if (activeTag === "all") return ideologies;
@@ -78,22 +80,24 @@ export default function IdeologyOfLokdalPage() {
       <Header />
 
       {/* Hero */}
-      <div className="relative w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] flex items-center justify-center overflow-hidden">
+      <div className="relative w-full min-h-[60vw] sm:min-h-0 flex items-center justify-center overflow-hidden">
         <Image
           src="/assets/organisation hero.png"
           alt="Ideology of Lokdal"
-          fill
-          className="object-cover object-center"
+          width={1920}
+          height={1080}
+          className="w-full h-auto"
           priority
         />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16 flex flex-col items-center text-center">
-          <p className="text-green-300 text-xs font-black tracking-[0.2em] uppercase mb-3">Our Beliefs</p>
-          <h1 className="text-4xl sm:text-6xl font-black text-white mb-4 drop-shadow-md">
-            Ideology of Lokdal
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+        <div className="absolute inset-0 z-10 w-full px-6 sm:px-8 lg:px-16 flex flex-col items-center justify-center text-center">
+          <p className="text-green-400 text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase mb-2 sm:mb-3">Our Beliefs</p>
+          <h1 className="text-2xl sm:text-6xl font-black text-white leading-tight drop-shadow-lg mb-2 sm:mb-4">
+            {t("About Lokdal")}
           </h1>
-          <p className="text-lg sm:text-xl font-bold text-white max-w-2xl drop-shadow-md">
-            Rooted in Truth. Committed to Justice. Built for Every Indian.
+          <div className="w-10 sm:w-16 h-0.5 bg-green-400 mb-2 sm:mb-4" />
+          <p className="text-xs sm:text-xl font-semibold text-white/90 max-w-2xl drop-shadow-md">
+            {t("A strong presence across India, working for people, for progress and for a better tomorrow.")}
           </p>
         </div>
       </div>
@@ -117,7 +121,7 @@ export default function IdeologyOfLokdalPage() {
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
-                  {tab.label}
+                  {t(tab.label)}
                 </button>
               ))}
             </div>
@@ -144,15 +148,15 @@ export default function IdeologyOfLokdalPage() {
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="font-black text-gray-800 text-base group-hover:text-[#0b4d21] transition-colors leading-tight mb-1">{item.title}</h3>
-                      <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                      <h3 className="font-black text-gray-800 text-base group-hover:text-[#0b4d21] transition-colors leading-tight mb-1">{t(item.title)}</h3>
+                      <p className="text-sm text-gray-500 leading-relaxed">{t(item.desc)}</p>
                     </div>
                   </div>
                   <ul className="space-y-1.5 border-t border-gray-50 pt-4">
                     {item.points.map((pt) => (
                       <li key={pt} className="flex items-center gap-2 text-xs text-gray-600 font-medium">
                         <ChevronRight size={14} className="text-[#0b4d21] flex-shrink-0" />
-                        {pt}
+                        {t(pt)}
                       </li>
                     ))}
                   </ul>
@@ -185,7 +189,7 @@ export default function IdeologyOfLokdalPage() {
               About Lokdal
             </h3>
             <p className="text-gray-600 text-sm font-medium leading-relaxed">
-              Presently senior social activist and politician Mr. Sunil Singh Ji is its national president. Lok Dal was founded by former Prime Minister Chaudhary Charan Singh, who is considered a messiah by farmers and marginalised communities across India.
+              {t("Presently senior social activist and politician Mr. Sunil Singh Ji is its national president, who is born in a patriotic elite family in Aligarh district of Uttar Pradesh. Mr. Sunil Singh has graduated in Engineering and Masters in Management. Mr. Sunil Singh has also been a member of Uttar Pradesh Legislative Council.")}
             </p>
           </div>
 
@@ -208,7 +212,7 @@ export default function IdeologyOfLokdalPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-gray-800 leading-tight group-hover:text-[#0b4d21] transition-colors">{p.name}</h4>
-                    <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wide mt-0.5">{p.role}</p>
+                    <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wide mt-0.5">{t(p.role)}</p>
                   </div>
                 </Link>
               ))}
@@ -220,7 +224,7 @@ export default function IdeologyOfLokdalPage() {
               <span className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-[#0b4d21]">
                 <Share2 size={16} />
               </span>
-              Stay Connected
+              {t("Stay connected")}
             </h3>
             <div className="flex flex-wrap gap-2">
               <Link href="https://www.facebook.com/Lokdalindia/" target="_blank" className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
@@ -246,7 +250,7 @@ export default function IdeologyOfLokdalPage() {
               <span className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-[#0b4d21]">
                 <Bookmark size={16} />
               </span>
-              <h3 className="text-lg font-black text-gray-800">Today&apos;s Pick</h3>
+              <h3 className="text-lg font-black text-gray-800">{t("Today's Pick")}</h3>
             </div>
             <div className="w-full bg-green-50 rounded-xl p-6 flex flex-col items-center justify-center border border-green-100/50">
               <Image src="/assets/logo.png" alt="Lokdal Logo" width={80} height={80} className="object-contain mb-2" />

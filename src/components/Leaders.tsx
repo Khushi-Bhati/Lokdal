@@ -187,14 +187,12 @@ export default function Leaders() {
                     </div>
                     <span className="text-sm font-semibold text-gray-800 group-hover:text-[#0b4d21] transition-colors">{p.name}</span>
                   </div>
-                  <ArrowRight size={16} className="text-gray-400 group-hover:text-[#0b4d21] transition-colors" />
+           
                 </Link>
               ))}
 
               <div className="text-right mt-3">
-                <Link href="/about/chaudhary-charan-singh" className="text-[#0b4d21] font-bold text-sm inline-flex items-center gap-1 hover:underline">
-                  सभी प्रोफाइल देखें <ArrowRight size={14} />
-                </Link>
+                
               </div>
             </div>
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronRight, MapPin, Phone, Mail } from "lucide-react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useTranslation } from "./LanguageProvider";
 
 const aboutLinks = [
   { label: "History of Lokdal", href: "about/history-of-lokdal" },
@@ -41,6 +42,7 @@ const otherLinks = [
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="bg-white border-t border-gray-100">
       {/* Main Footer */}
@@ -153,8 +155,8 @@ export default function Footer() {
           {/* Stay Connected */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <div>
-              <p className="text-xs font-black text-gray-800 uppercase tracking-wider mb-1">Stay Connected With Us</p>
-              <p className="text-xs text-gray-500">Follow us on social media and stay updated<br className="hidden sm:block" /> with our latest initiatives and news.</p>
+              <p className="text-xs font-black text-gray-800 uppercase tracking-wider mb-1">{t("Stay connected")}</p>
+              <p className="text-xs text-gray-500">{t("Stay updated with our latest campaigns and events across the state.")}</p>
             </div>
             <div className="flex gap-3">
               <Link href="https://www.facebook.com/Lokdalindia/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#0b4d21] hover:text-white hover:border-[#0b4d21] transition-all">
@@ -181,8 +183,8 @@ export default function Footer() {
               <span className="text-white text-sm">🚩</span>
             </div>
             <div>
-              <p className="text-sm font-black text-gray-900">Join Lokdal</p>
-              <p className="text-xs text-gray-500">Be a part of the change</p>
+              <p className="text-sm font-black text-gray-900">{t("Join Lokdal")}</p>
+              <p className="text-xs text-gray-500">{t("Be a part of the movement for positive change.")}</p>
             </div>
             <ChevronRight size={18} className="text-[#0b4d21] group-hover:translate-x-1 transition-transform" />
           </Link>

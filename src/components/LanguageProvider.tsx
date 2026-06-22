@@ -205,35 +205,10 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 function translateText(text: string, language: LanguageCode) {
   const trimmed = text.trim();
-
-  if (!trimmed) {
-    return text;
-  }
-
+  if (!trimmed) return text;
   const entry = translationLookup.get(trimmed);
-
-  if (!entry) {
-    return text;
-  }
-
+  if (!entry) return text;
   return text.replace(trimmed, entry[language]);
-}
-
-function translateDocument(language: LanguageCode) {
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  const textNodes: Text[] = [];
-
-  while (walker.nextNode()) {
-    textNodes.push(walker.currentNode as Text);
-  }
-
-  textNodes.forEach((node) => {
-    const translated = translateText(node.nodeValue ?? "", language);
-
-    if (node.nodeValue !== translated) {
-      node.nodeValue = translated;
-    }
-  });
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
@@ -241,7 +216,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem(STORAGE_KEY);
-    
     if (savedLanguage === "en" || savedLanguage === "hi") {
       queueMicrotask(() => setLanguageState(savedLanguage));
     }
@@ -250,19 +224,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = language;
     window.localStorage.setItem(STORAGE_KEY, language);
-    translateDocument(language);
-
-    const observer = new MutationObserver(() => {
-      translateDocument(language);
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-    });
-
-    return () => observer.disconnect();
   }, [language]);
 
   const setLanguage = useCallback((nextLanguage: LanguageCode) => {
@@ -283,10 +244,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
-
-  if (!context) {
-    throw new Error("useLanguage must be used inside LanguageProvider");
-  }
-
+  if (!context) throw new Error("useLanguage must be used inside LanguageProvider");
   return context;
+}
+
+export function useTranslation() {
+  const { language } = useLanguage();
+  const t = useCallback((text: string) => translateText(text, language), [language]);
+  return { t, language };
 }

@@ -104,8 +104,7 @@ export default function LokdalLivePage() {
         <div className="flex flex-col lg:flex-row min-h-[300px] sm:min-h-[420px]">
 
           {/* Left: green text panel - 35% */}
-          <div className="relative w-full lg:w-[35%] px-8 sm:px-12 lg:px-16 py-10 sm:py-14 flex flex-col justify-center overflow-hidden">
-            {/* Green left bg image */}
+          <div className="relative w-full lg:w-[35%] px-5 sm:px-10 lg:px-16 py-8 sm:py-14 flex flex-col justify-center overflow-hidden">
             <Image
               src="/assets/green left.png"
               alt=""
@@ -113,35 +112,35 @@ export default function LokdalLivePage() {
               className="object-cover object-left"
             />
             <div className="absolute inset-0 bg-white/75" />
-            <div className="relative z-10 max-w-sm">
-              <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0b4d21] px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-white shadow-sm">
+            <div className="relative z-10">
+              <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#0b4d21] px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-white shadow-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
                 Live Broadcast
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-black text-[#0b4d21] leading-none mb-4">
+              <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-black text-[#0b4d21] leading-none mb-3">
                 LOKDAL LIVE
               </h1>
-              <h2 className="text-lg sm:text-xl font-black text-gray-950 leading-snug mb-4">
+              <h2 className="text-sm sm:text-xl font-black text-gray-950 leading-snug mb-3">
                 Speeches, press conferences and public meetings from Lokdal leaders.
               </h2>
-              <div className="w-12 h-1 bg-[#0b4d21] mb-5 rounded-full" />
-              <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed">
+              <div className="w-10 h-1 bg-[#0b4d21] mb-4 rounded-full" />
+              <p className="text-xs sm:text-[15px] text-gray-700 leading-relaxed">
                 Watch live addresses, press conferences and public meetings from Lokdal leaders across the country.
               </p>
             </div>
 
             {/* Bottom event info */}
-            <div className="relative z-10 mt-8 max-w-sm border-l-4 border-[#0b4d21] bg-white/85 px-4 py-3 shadow-sm">
-              <p className="text-gray-950 font-black text-sm sm:text-base mb-2">LIVE: Kisan Sammelan in Lucknow</p>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-600 text-xs font-bold">
-                <span className="flex items-center gap-1.5"><Calendar size={13} className="text-[#0b4d21]" /> 25 May 2025</span>
-                <span className="flex items-center gap-1.5"><MapPin size={13} className="text-[#0b4d21]" /> Lucknow, Uttar Pradesh</span>
+            <div className="relative z-10 mt-6 border-l-4 border-[#0b4d21] bg-white/85 px-3 py-3 shadow-sm">
+              <p className="text-gray-950 font-black text-xs sm:text-base mb-1.5">LIVE: Kisan Sammelan in Lucknow</p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-gray-600 text-xs font-bold">
+                <span className="flex items-center gap-1.5"><Calendar size={12} className="text-[#0b4d21]" /> 25 May 2025</span>
+                <span className="flex items-center gap-1.5"><MapPin size={12} className="text-[#0b4d21]" /> Lucknow, UP</span>
               </div>
             </div>
           </div>
 
           {/* Right: video - 65% */}
-          <div className="relative w-full lg:w-[65%] h-56 sm:h-80 lg:h-auto min-h-[260px]">
+          <div className="relative w-full lg:w-[65%] h-52 sm:h-80 lg:h-auto min-h-[220px]">
             <video
               className="absolute inset-0 h-full w-full object-cover object-top"
               controls
@@ -267,11 +266,10 @@ export default function LokdalLivePage() {
             <h2 className="text-base sm:text-lg font-black text-gray-900 flex items-center gap-2">
               <Calendar size={18} className="text-[#0b4d21]" /> Upcoming Live Schedule
             </h2>
-
           </div>
 
-          <div className="border border-gray-100 rounded-xl overflow-hidden shadow-sm">
-            {/* Table header */}
+          {/* Desktop table */}
+          <div className="hidden sm:block border border-gray-100 rounded-xl overflow-hidden shadow-sm">
             <div className="grid grid-cols-4 bg-gray-50 border-b border-gray-100 px-4 py-3">
               <span className="text-xs font-black text-gray-500 uppercase tracking-wider">Date</span>
               <span className="text-xs font-black text-gray-500 uppercase tracking-wider">Event</span>
@@ -294,6 +292,27 @@ export default function LokdalLivePage() {
               </div>
             ))}
           </div>
+
+          {/* Mobile cards */}
+          <div className="flex flex-col gap-3 sm:hidden">
+            {[
+              { date: "25 May 2025", event: "Kisan Sammelan", location: "Lucknow, Uttar Pradesh" },
+              { date: "28 May 2025", event: "Press Conference", location: "New Delhi" },
+              { date: "30 May 2025", event: "Yuva Charchaa", location: "Kanpur, Uttar Pradesh" },
+              { date: "02 June 2025", event: "Lokdal Vichar Manch", location: "Patna, Bihar" },
+            ].map((row, idx) => (
+              <div key={idx} className="border border-gray-100 rounded-xl px-4 py-3.5 shadow-sm bg-white">
+                <p className="text-sm font-black text-gray-900 mb-1.5">{row.event}</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500">
+                  <span className="flex items-center gap-1"><Calendar size={11} className="text-[#0b4d21]" /> {row.date}</span>
+                  <span className="flex items-center gap-1"><MapPin size={11} className="text-[#0b4d21]" /> {row.location}</span>
+                </div>
+                <span className="mt-2 inline-flex items-center gap-1.5 text-xs text-[#0b4d21] font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Upcoming
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ── LOKDAL MEDIA GALLERY ── */}
@@ -303,7 +322,7 @@ export default function LokdalLivePage() {
           </h2>
 
           {/* Tabs */}
-          <div className="flex gap-2 mb-5">
+          <div className="flex flex-wrap gap-2 mb-5">
             {([
               { id: "photos" as GalleryTab, label: "Photos", icon: "🖼️" },
               { id: "videos" as GalleryTab, label: "Videos", icon: "📹" },
@@ -313,7 +332,7 @@ export default function LokdalLivePage() {
                 key={tab.id}
                 type="button"
                 onClick={() => setGalleryTab(tab.id)}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-colors ${
+                className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-colors ${
                   galleryTab === tab.id
                     ? "bg-[#0b4d21] text-white"
                     : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
@@ -326,17 +345,17 @@ export default function LokdalLivePage() {
 
           {/* Gallery grid */}
           {galleryTab === "photos" ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {galleryItems.photos.map((src, idx) => (
-                <div key={idx} className="relative h-40 sm:h-48 lg:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
+                <div key={idx} className="relative h-48 sm:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
                   <Image src={src} alt={`Gallery photo ${idx + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {galleryItems[galleryTab].map((src, idx) => (
-                <div key={idx} className="relative h-40 sm:h-48 lg:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
+                <div key={idx} className="relative h-48 sm:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
                   <video className="h-full w-full object-cover" controls muted playsInline preload="metadata">
                     <source src={src} type="video/mp4" />
                   </video>

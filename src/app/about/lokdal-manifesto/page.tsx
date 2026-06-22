@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useTranslation } from "@/components/LanguageProvider";
 
 const pillars = [
   {
@@ -47,13 +48,14 @@ const pillars = [
 ];
 
 export default function LokdalManifestoPage() {
+  const { t } = useTranslation();
   return (
     <main className="flex min-h-screen flex-col bg-gray-50">
       <Header />
 
       {/* Title Bar */}
       <div className="w-full bg-[#0b4d21] py-10 px-4 sm:px-8 lg:px-16 text-center">
-        <p className="text-green-300 text-xs font-black tracking-[0.2em] uppercase mb-2">Our Vision</p>
+        <p className="text-green-300 text-xs font-black tracking-[0.2em] uppercase mb-2">{t("Our Achievement")}</p>
         <h1 className="text-3xl sm:text-4xl font-black text-white">Lokdal Manifesto</h1>
         <p className="text-green-200 text-sm mt-2 font-medium">लोकदल का घोषणापत्र</p>
       </div>
@@ -69,10 +71,18 @@ export default function LokdalManifestoPage() {
             the workers, the youth and the marginalised communities who have long been ignored by mainstream
             politics. We believe in a society built on truth, equality and shared prosperity.
           </p>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <p className="text-sm text-gray-600 leading-relaxed mb-5">
             Inspired by the ideals of Chaudhary Charan Singh, our manifesto commits to putting the last person
             first — because a nation's greatness is measured by how well it treats its most vulnerable citizens.
           </p>
+          <a
+            href="/assets/Lokdal Manifesto.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#0b4d21] text-white font-bold text-sm px-5 py-2.5 rounded-md hover:bg-[#073616] transition-colors"
+          >
+            {t("Read More")}
+          </a>
         </div>
       </section>
 
@@ -90,8 +100,8 @@ export default function LokdalManifestoPage() {
               <div className="w-14 h-14 rounded-full bg-green-50 border border-green-100 flex items-center justify-center text-2xl mb-3">
                 {item.icon}
               </div>
-              <h3 className="text-xs font-black text-[#0b4d21] tracking-wide mb-2 leading-tight">{item.title}</h3>
-              <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+              <h3 className="text-xs font-black text-[#0b4d21] tracking-wide mb-2 leading-tight">{t(item.title)}</h3>
+              <p className="text-xs text-gray-500 leading-relaxed">{t(item.desc)}</p>
             </div>
           ))}
         </div>

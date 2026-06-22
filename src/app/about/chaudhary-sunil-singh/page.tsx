@@ -49,24 +49,27 @@ export default function ChaudharySunilSinghPage() {
       <Header />
 
       {/* ── HERO ── */}
-      <section className="relative w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-[60vw] sm:min-h-0 flex items-center justify-center overflow-hidden">
         <Image
           src="/assets/hero image.png"
           alt="Chaudhary Sunil Singh"
-          fill
-          className="object-cover object-top"
+          width={1920}
+          height={1080}
+          className="w-full h-auto"
           priority
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 text-center flex flex-col items-center">
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-3 drop-shadow-md">
-            CHAUDHARY SUNIL SINGH
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6">
+          <p className="text-[10px] sm:text-xs font-black text-green-400 tracking-[0.3em] uppercase mb-2 sm:mb-3">लोकदल</p>
+          <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black text-white leading-tight drop-shadow-lg mb-2 sm:mb-3">
+            CHAUDHARY<br className="sm:hidden" /> SUNIL SINGH
           </h1>
-          <p className="text-sm sm:text-lg font-bold text-white tracking-widest uppercase mb-8 drop-shadow-md">
+          <div className="w-10 sm:w-16 h-0.5 bg-green-400 mb-2 sm:mb-3" />
+          <p className="text-xs sm:text-base font-semibold text-white/90 tracking-widest uppercase drop-shadow-md mb-6 sm:mb-8">
             President of Lokdal
           </p>
           <div className="animate-bounce">
-            <ChevronDown size={32} className="text-white" strokeWidth={3} />
+            <ChevronDown size={28} className="text-white/80" strokeWidth={2.5} />
           </div>
         </div>
       </section>

@@ -2,86 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MapPin, Clock, CalendarDays, Globe2 } from "lucide-react";
+import { ArrowRight, MapPin, Clock, CalendarDays, Globe2, LucideIcon } from "lucide-react";
 import { Users, Leaf, Star, Megaphone } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
+import { useData } from "@/lib/dataStore";
+import { useTranslation } from "./LanguageProvider";
 
 type EventLevel = "national" | "state";
-
-const events = [
-  {
-    day: "15", month: "JUN",
-    image: "/assets/dharna1.jpeg",
-    icon: Users,
-    title: "National Executive Meeting",
-    place: "New Delhi", time: "11:00 AM",
-    detail: "Strategic discussion on strengthening organization and future roadmap.",
-    level: "national" as EventLevel,
-  },
-  {
-    day: "20", month: "JUN",
-    image: "/assets/dharna3.jpeg",
-    icon: Leaf,
-    title: "Farmers' Convention",
-    place: "Lucknow, UP", time: "02:00 PM",
-    detail: "Empowering farmers, discussing issues and sustainable solutions.",
-    level: "state" as EventLevel,
-  },
-  {
-    day: "28", month: "JUN",
-    image: "/assets/join.jpg",
-    icon: Star,
-    title: "Youth Leadership Summit",
-    place: "Bhopal, MP", time: "10:30 AM",
-    detail: "Inspiring young minds, building leadership for tomorrow.",
-    level: "state" as EventLevel,
-  },
-  {
-    day: "05", month: "JUL",
-    image: "/assets/samman-2.jpg",
-    icon: Megaphone,
-    title: "Public Outreach Program",
-    place: "Patna, Bihar", time: "03:00 PM",
-    detail: "Connecting with communities, listening to people, working for change.",
-    level: "state" as EventLevel,
-  },
-  {
-    day: "12", month: "JUL",
-    image: "/assets/kisan.jpg",
-    icon: Users,
-    title: "National Council Meeting",
-    place: "New Delhi", time: "11:00 AM",
-    detail: "Reviewing progress and planning next steps for nation-building.",
-    level: "national" as EventLevel,
-  },
-  {
-    day: "18", month: "JUL",
-    image: "/assets/dharna5.jpeg",
-    icon: Megaphone,
-    title: "Kisan Samman Rally",
-    place: "New Delhi", time: "10:00 AM",
-    detail: "Honouring farmers and discussing national agricultural policy reforms.",
-    level: "national" as EventLevel,
-  },
-  {
-    day: "25", month: "JUL",
-    image: "/assets/samman-2.jpg",
-    icon: Star,
-    title: "Lokdal Annual Convention",
-    place: "New Delhi", time: "09:30 AM",
-    detail: "Annual gathering of leaders to chart Lokdal's vision for a stronger India.",
-    level: "national" as EventLevel,
-  },
-  {
-    day: "08", month: "JUL",
-    image: "/assets/6.jpg",
-    icon: Leaf,
-    title: "Gram Vikas Abhiyan",
-    place: "Varanasi, UP", time: "09:00 AM",
-    detail: "Village outreach to understand rural challenges and drive development.",
-    level: "state" as EventLevel,
-  },
-];
 
 const ideology = [
   { icon: "🤚", title: "NO CORRUPTION", desc: "He stood for a society built on truth, transparency and zero tolerance towards corruption." },
@@ -200,11 +127,16 @@ function UpcomingEventsCarousel({
 }
 
 export default function UpcomingEventsSection() {
+  const { events } = useData();
+  const { t } = useTranslation();
   const [activeLevel, setActiveLevel] = useState<EventLevel>("national");
 
   const filteredEvents = useMemo(
-    () => events.filter((e) => e.level === activeLevel).slice(0, 4),
-    [activeLevel]
+    () => events
+      .filter((e) => e.level === activeLevel)
+      .slice(0, 4)
+      .map((e) => ({ ...e, icon: Users, image: e.image ?? "" })),
+    [activeLevel, events]
   );
 
   return (
@@ -219,10 +151,9 @@ export default function UpcomingEventsSection() {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-10">
           {/* Left: title + subtitle */}
           <div>
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3">Upcoming Events</h2>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3">{t("Upcoming Events")}</h2>
             <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
-              Join us in our journey towards a stronger,<br />
-              self-reliant and progressive India.
+              {t("Join us in our journey towards a stronger, self-reliant and progressive India.")}
             </p>
           </div>
 
@@ -239,7 +170,7 @@ export default function UpcomingEventsSection() {
                     : "border border-gray-200 text-gray-700 hover:bg-gray-50"
                 }`}
               >
-                <Globe2 size={16} /> National Level
+                <Globe2 size={16} /> {t("National Level")}
               </button>
               <button
                 type="button"
@@ -250,7 +181,7 @@ export default function UpcomingEventsSection() {
                     : "border border-gray-200 text-gray-700 hover:bg-gray-50"
                 }`}
               >
-                <MapPin size={16} /> In States
+                <MapPin size={16} /> {t("In States")}
               </button>
             </div>
             {/* Stay Updated card */}
@@ -259,8 +190,8 @@ export default function UpcomingEventsSection() {
                 <CalendarDays size={22} className="text-white" />
               </div>
               <div>
-                <p className="text-sm font-black text-gray-900">Stay Updated</p>
-                <p className="text-xs text-gray-500 leading-relaxed">Don&apos;t miss important events.<br />Be a part of the movement.</p>
+                <p className="text-sm font-black text-gray-900">{t("Stay Updated")}</p>
+                <p className="text-xs text-gray-500 leading-relaxed">{t("Don't miss important events. Be a part of the movement.")}</p>
               </div>
             </div>
           </div>
@@ -279,14 +210,14 @@ export default function UpcomingEventsSection() {
         <div className="mt-12 rounded-xl bg-[#0b4d21] overflow-hidden">
           <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6 px-6 sm:px-10 py-7">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_50%,rgba(255,255,255,0.12),transparent_30%)]" />
-            <div className="relative flex items-center gap-5">
+            <div className="relative flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5">
               <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                 <CalendarDays size={28} className="text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-black text-white mb-1">Be a Part of Change</h3>
+                <h3 className="text-lg font-black text-white mb-1">{t("Be a Part of Change")}</h3>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Your participation can build a stronger and better India for generations to come.
+                  {t("Your participation can build a stronger and better India for generations to come.")}
                 </p>
               </div>
             </div>
@@ -295,7 +226,7 @@ export default function UpcomingEventsSection() {
               href="/upcoming-events"
               className="relative flex-shrink-0 inline-flex items-center gap-3 bg-white text-[#0b4d21] font-black text-sm px-8 py-3 rounded-lg hover:bg-green-50 transition-colors"
             >
-              View All Events <ArrowRight size={16} />
+              {t("View All Events")} <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -310,7 +241,7 @@ export default function UpcomingEventsSection() {
 
         {/* BE PART OF THE CHANGE */}
         <div className="bg-green-50 border border-green-100 rounded-2xl px-6 sm:px-10 py-7 flex flex-col sm:flex-row items-center gap-6 justify-between">
-          <div className="flex items-center gap-5">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5">
             <div className="w-16 h-16 rounded-full bg-white border border-green-200 flex items-center justify-center flex-shrink-0 text-2xl shadow-sm">
               👥
             </div>

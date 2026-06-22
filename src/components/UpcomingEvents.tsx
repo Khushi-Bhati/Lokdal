@@ -221,7 +221,7 @@ export default function UpcomingEvents() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(255,255,255,0.18),transparent_22%),linear-gradient(135deg,rgba(255,255,255,0.12),transparent_42%)]" />
             <div className="absolute bottom-0 right-0 hidden h-20 w-1/2 bg-[linear-gradient(to_top,rgba(0,0,0,0.16),transparent)] md:block" />
 
-            <div className="relative flex items-center gap-5">
+            <div className="relative flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4 md:gap-5">
               <div className="grid h-16 w-16 flex-shrink-0 place-items-center rounded-full bg-white text-[#0b4d21]">
                 <CalendarDays size={34} />
               </div>

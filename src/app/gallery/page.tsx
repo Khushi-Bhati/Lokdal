@@ -5,6 +5,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ChevronDown, X, Play, Images } from "lucide-react";
+import { useData } from "@/lib/dataStore";
 
 type GalleryCategory =
   | "all"
@@ -22,14 +23,23 @@ type GalleryCategory =
 
 
 
+// Use the GalleryItem type from the shared datastore to avoid type mismatches
+// (e.g. category being a `GalleryCategory` enum vs a plain `string`).
+// Keep the page-local GalleryItem type consistent with the page's GalleryCategory.
+// (The datastore's GalleryItem defines `category` as `string`, which breaks TS assignability.)
+
 type GalleryItem = {
   id: string;
   src: string;
   type: "image" | "video";
-  category: GalleryCategory;
+  // datastore uses `string`; page UI expects `GalleryCategory`.
+  // Keep it as `string` here so `setLightboxItem(item)` accepts items from `useData()`.
+  category: string;
   title: string;
   year: number;
 };
+
+
 
 const CATEGORIES: { id: GalleryCategory; label: string }[] = [
   { id: "all", label: "All" },
@@ -44,47 +54,8 @@ const CATEGORIES: { id: GalleryCategory; label: string }[] = [
 ];
 
 
-const galleryItems: GalleryItem[] = [
-  { id: "1", src: "/assets/dharna1.jpeg", type: "image", category: "Dharna Pradershan", title: "Dharna Pradarshan", year: 2024 },
-  { id: "2", src: "/assets/dharna3.jpeg", type: "image", category: "Dharna Pradershan", title: "Dharna Pradarshan", year: 2024 },
-  { id: "3", src: "/assets/dharna5.jpeg", type: "image", category: "Karkarta Sambhelan", title: "Karkarta Sambhelan", year: 2024 },
-  { id: "4", src: "/assets/kisan.jpg", type: "image", category: "Posters", title: "Posters", year: 2024 },
-  { id: "5", src: "/assets/join.jpg", type: "image", category: "Lokdal Jansabha", title: "Lokdal Jansabha", year: 2024 },
-  { id: "6", src: "/assets/gallery-5.jpg", type: "image", category: "Lokdal Jansabha", title: "Lokdal Jansabha", year: 2023 },
-  { id: "7", src: "/assets/gallery-9.jpg", type: "image", category: "T-20 Championship", title: "T-20 Championship", year: 2023 },
-  { id: "8", src: "/assets/gallery head.jpeg", type: "image", category: "Lokdal Haryana President with Anna Hazare", title: "Lokdal Haryana President with Anna Hazare", year: 2023 },
-  { id: "9", src: "/assets/hazare1.jpg", type: "image", category: "Lokdal Haryana President with Anna Hazare", title: "Lokdal Haryana President with Anna Hazare", year: 2023 },
-  { id: "10", src: "/assets/hazare2.jpg", type: "image", category: "Lokdal Haryana President with Anna Hazare", title: "Lokdal Haryana President with Anna Hazare", year: 2022 },
-  { id: "11", src: "/assets/hazare3.jpg", type: "image", category: "Lokdal Haryana President with Anna Hazare", title: "Lokdal Haryana President with Anna Hazare", year: 2022 },
-  { id: "12", src: "/assets/delhichalo-16.jpg", type: "image", category: "Delhi Chalo", title: "Delhi Chalo", year: 2022 },
-  { id: "13", src: "/assets/samman-2.jpg", type: "image", category: "Posters", title: "Posters", year: 2024 },
-  { id: "14", src: "/assets/6.jpg", type: "image", category: "Karkarta Sambhelan", title: "Karkarta Sambhelan", year: 2023 },
-  { id: "15", src: "/assets/4.jpg", type: "image", category: "Lokdal Jansabha", title: "Lokdal Jansabha", year: 2022 },
-  { id: "16", src: "/assets/3.jpg", type: "image", category: "T-20 Championship", title: "T-20 Championship", year: 2022 },
-  { id: "17", src: "/assets/2.jpg", type: "image", category: "Posters", title: "Posters", year: 2022 },
-    { id: "18", src: "/assets/delhichalo-9.jpg", type: "image", category: "Delhi Chalo", title: "Posters", year: 2022 },
-      { id: "19", src: "/assets/delhichalo-12.jpg", type: "image", category: "Delhi Chalo", title: "Posters", year: 2022 },
-       { id: "20", src: "/assets/dharna6.jpg", type: "image", category: "Dharna Pradershan", title: "Posters", year: 2022 },
-       { id: "21", src: "/assets/6 (2).jpg", type: "image", category: "Dharna Pradershan", title: "Posters", year: 2022 },
-        { id: "22", src: "/assets/4 (1).jpg", type: "image", category: "Dharna Pradershan", title: "Posters", year: 2022 },
-                { id: "23", src: "/assets/2 (1).jpg", type: "image", category: "Dharna Pradershan", title: "Posters", year: 2022 },
-                 { id: "24", src: "/assets/hazare4.jpg", type: "image", category: "Dharna Pradershan", title: "Posters", year: 2022 },
-                   { id: "25", src: "/assets/delhichalo-10.jpg", type: "image", category: "Delhi Chalo", title: "Posters", year: 2022 },
-                    { id: "26", src: "/assets/delhichalo-6.jpg", type: "image", category: "Delhi Chalo", title: "Posters", year: 2022 },
-                         { id: "27", src: "/assets/delhichalo-3.jpg", type: "image", category: "Delhi Chalo", title: "Posters", year: 2022 },
-                         { id: "28", src: "/assets/delhichalo-15.jpg", type: "image", category: "Delhi Chalo", title: "Posters", year: 2022 },
-                           { id: "28", src: "/assets/hazare2 (1).jpg", type: "image", category: "Lokdal Haryana President with Anna Hazare", title: "Posters", year: 2022 },
-                  
-                  
-  { id: "v1", src: "/videos/6.mp4", type: "video", category: "Videos", title: "Yuva Hunkar Rally", year: 2024 },
-  { id: "v2", src: "/videos/8.mp4", type: "video", category: "Videos", title: "Press Conference Patna", year: 2024 },
-  { id: "v3", src: "/videos/10.mp4", type: "video", category: "Videos", title: "National Executive Address", year: 2023 },
-  { id: "v4", src: "/videos/14.mp4", type: "video", category: "Videos", title: "Organization Meeting", year: 2023 },
-  { id: "v5", src: "/videos/15.mp4", type: "video", category: "Videos", title: "Kisan Mahapanchayat", year: 2024 },
-];
-
-
 export default function GalleryPage() {
+  const { gallery: galleryItems } = useData();
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>("all");
 
   // Ensure filter works even if sidebar categories don't include every possible GalleryItem.category

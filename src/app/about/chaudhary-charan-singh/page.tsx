@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useTranslation } from "@/components/LanguageProvider";
 
 const ideology = [
   { icon: "🤚", title: "NO CORRUPTION", desc: "He stood for a society built on truth, transparency and zero tolerance towards corruption." },
@@ -20,12 +21,13 @@ const leaders = [
 ];
 
 const updates = [
-  { image: "/assets/2.png", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
-  { image: "/assets/1.jpeg", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
-  { image: "/assets/dharna3.jpeg", text: "किसान आंदोलन", badge: "लोकदल अपडेट" },
+  { image: "/assets/4.jpg", text: "हम इस लड़ाई का हिस्सा बनते चले हैं", badge: "लोकदल अपडेट" },
+  { image: "/assets/7.jpg", text: "बनाए लोगों में चिलन नहीं वे हिन्दुस्तान हमारा है", badge: "लोकदल अपडेट" },
+  { image: "/assets/5.jpg", text: "किसान आंदोलन", badge: "लोकदल अपडेट" },
 ];
 
 export default function ChaudharyCharanSinghPage() {
+  const { t } = useTranslation();
   return (
     <main className="flex min-h-screen flex-col bg-white">
       <Header />
@@ -48,7 +50,7 @@ export default function ChaudharyCharanSinghPage() {
 
           {/* Left: text */}
           <div className="w-full lg:w-[38%]">
-            <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-2">About</p>
+            <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-2">{t("About Lokdal")}</p>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 leading-tight mb-4">
               Chaudhary<br />Charan Singh
             </h2>
@@ -69,40 +71,31 @@ export default function ChaudharyCharanSinghPage() {
 
           {/* Right: photo collage */}
           <div className="w-full lg:w-[62%]">
-            {/* Mobile / tablet: simple 2-col grid */}
-            <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:hidden">
-              {["/assets/image_2_14.png", "/assets/image_5_17.png", "/assets/image_10_24.png", "/assets/image_11_26.png"].map((src, i) => (
-                <div key={i} className="relative h-39 sm:h-48 rounded-xl overflow-hidden">
-                  <Image src={src} alt={`Photo ${i + 1}`} fill className="object-cover grayscale" />
-                </div>
-              ))}
-            </div>
-
-            {/* Desktop: asymmetric collage matching Figma */}
-            <div className="hidden lg:flex gap-3 relative">
+            {/* All screens: asymmetric collage */}
+            <div className="flex gap-2 sm:gap-3 relative">
               {/* Green bg card behind right column */}
-              <div className="absolute right-0 top-6 w-[47%] h-[calc(100%-24px)] bg-green-50 rounded-2xl" />
+              <div className="absolute right-0 top-4 sm:top-6 w-[47%] h-[calc(100%-16px)] sm:h-[calc(100%-24px)] bg-green-50 rounded-2xl" />
 
               {/* Left column – 3 images */}
-              <div className="w-[53%] flex flex-col gap-3 z-10">
-                <div className="relative h-44 rounded-xl overflow-hidden">
+              <div className="w-[53%] flex flex-col gap-2 sm:gap-3 z-10">
+                <div className="relative h-28 sm:h-36 lg:h-44 rounded-xl overflow-hidden">
                   <Image src="/assets/3.jpeg" alt="Photo 1" fill className="object-cover grayscale" />
                 </div>
-                <div className="relative h-32 rounded-xl overflow-hidden">
+                <div className="relative h-20 sm:h-28 lg:h-32 rounded-xl overflow-hidden">
                   <Image src="/assets/2.png" alt="Photo 3" fill className="object-cover grayscale" />
                 </div>
-                <div className="relative h-40 rounded-xl overflow-hidden">
+                <div className="relative h-24 sm:h-32 lg:h-40 rounded-xl overflow-hidden">
                   <Image src="/assets/1.jpeg" alt="Photo 5" fill className="object-cover grayscale" />
                 </div>
               </div>
 
               {/* Right column – 2 images offset down */}
-              <div className="w-[47%] flex flex-col gap-3 pt-8 z-10">
-                <div className="relative h-44 rounded-xl overflow-hidden">
+              <div className="w-[47%] flex flex-col gap-2 sm:gap-3 pt-5 sm:pt-8 z-10">
+                <div className="relative h-28 sm:h-36 lg:h-44 rounded-xl overflow-hidden">
                   <Image src="/assets/8.jpeg" alt="Photo 2" fill className="object-cover grayscale" />
                 </div>
-                <div className="relative h-40 rounded-xl overflow-hidden">
-                  <Image src="/assets/3.jpeg" alt="Photo 4" fill className="object-cover grayscale" />
+                <div className="relative h-40 sm:h-52 lg:h-62 rounded-xl overflow-hidden">
+                  <Image src="/assets/12 (1).jpeg" alt="Photo 4" fill className="object-cover grayscale" />
                 </div>
               </div>
             </div>
@@ -117,7 +110,7 @@ export default function ChaudharyCharanSinghPage() {
 
           {/* HIS IDEOLOGY */}
           <div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-6">His Ideology</h2>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-6">{t("About Lokdal")}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {ideology.map((item) => (
                 <div key={item.title} className="border border-gray-200 rounded-xl p-5 flex flex-col items-center text-center hover:shadow-md transition-shadow">
@@ -132,8 +125,8 @@ export default function ChaudharyCharanSinghPage() {
           </div>
 
           {/* BE PART OF THE CHANGE */}
-          <div className="bg-green-50 border border-green-100 rounded-2xl px-5 sm:px-8 lg:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 justify-between">
-            <div className="flex items-start sm:items-center gap-4">
+          <div className="bg-green-50 border border-green-100 rounded-2xl px-5 sm:px-8 lg:px-10 py-6 flex flex-col sm:flex-row items-center gap-5 justify-between">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5">
               <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border border-green-200 flex items-center justify-center flex-shrink-0 text-xl sm:text-2xl shadow-sm">
                 👥
               </div>
@@ -156,11 +149,12 @@ export default function ChaudharyCharanSinghPage() {
 
           {/* PARTY LEADERS */}
           <div>
-            <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-1">Party</p>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-2">Leaders</h2>
+            <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-1">{t("About Lokdal")}</p>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-2">{t("Meet Our Leaders")}</h2>
             <div className="w-10 h-1 bg-[#0b4d21] mb-6" />
 
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+
               {/* Leader circles – scrollable on mobile */}
               <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-2 lg:pb-0 lg:flex-wrap lg:overflow-visible">
                 {leaders.map((l) => (
@@ -194,13 +188,13 @@ export default function ChaudharyCharanSinghPage() {
 
           {/* DAILY UPDATES */}
           <div>
-            <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-1">Daily</p>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-6">Updates</h2>
+            <p className="text-xs font-black text-[#0b4d21] tracking-[0.2em] uppercase mb-1">{t("Daily")}</p>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-6">{t("Upcoming Events")}</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
               {updates.map((u) => (
                 <div key={u.text} className="rounded-xl overflow-hidden border border-gray-100 shadow-sm group cursor-pointer">
-                  <div className="relative h-40 sm:h-44 overflow-hidden">
+                  <div className="relative h-56 sm:h-64 overflow-hidden">
                     <Image src={u.image} alt={u.text} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     <span className="absolute top-3 right-3 bg-white/90 text-[#0b4d21] text-[10px] font-black px-2 py-0.5 rounded">
@@ -211,11 +205,11 @@ export default function ChaudharyCharanSinghPage() {
                   <div className="bg-white px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <div className="w-8 h-8 rounded-full overflow-hidden relative flex-shrink-0">
-                        <Image src="/assets/sunil singh img.png" alt="सुनील सिंह" fill className="object-cover" />
+                        <Image src="/assets/sunil profile.jpg " alt="सुनील सिंह" fill className="object-cover" />
                       </div>
                       <div>
-                        <p className="text-xs font-black text-gray-900">सुनील सिंह</p>
-                        <p className="text-[10px] text-gray-500">राष्ट्रीय अध्यक्ष, लोकदल</p>
+                        <p className="text-xs font-black text-gray-900"></p>
+                        <p className="text-[10px] text-gray-500">Sunil Singh</p>
                       </div>
                     </div>
                     <Link href="/press-media" className="w-8 h-8 rounded-full border-2 border-[#0b4d21] flex items-center justify-center text-[#0b4d21] hover:bg-[#0b4d21] hover:text-white transition-all flex-shrink-0">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { DataProvider } from "@/lib/dataStore";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import Preloader from "@/components/Preloader";
 import "./globals.css";
@@ -28,7 +29,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans bg-[#fbfdfb] text-zinc-900">
         <Preloader />
-        <LanguageProvider>{children}</LanguageProvider>
+        <DataProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </DataProvider>
       </body>
     </html>
   );

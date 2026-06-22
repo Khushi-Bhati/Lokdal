@@ -32,18 +32,17 @@ export default function Header() {
 
       {/* Top Bar */}
       <div className="w-full relative h-10 flex items-center">
-        <div className="absolute left-0 top-0 bottom-0 w-[250px] sm:w-[350px] lg:w-[450px]">
+        <div className="absolute left-0 top-0 bottom-0 w-[180px] sm:w-[350px] lg:w-[450px]">
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
             <path d="M0,0 L100,0 C98,50 85,100 80,100 L0,100 Z" fill="#0b4d21" />
           </svg>
         </div>
-        <div className="w-full px-4 sm:px-8 lg:px-16 flex justify-between items-center text-sm relative z-10">
-          <div className="flex items-center gap-5 pl-8 md:pl-20 text-white">
-            <Link href="https://www.facebook.com/Lokdalindia/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><FaFacebookF size={14} /></Link>
-            <Link href="https://x.com/lokdalindia" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><FaXTwitter size={14} /></Link>
-            <Link href="mailto:lokdalparty@gmail.com" className="hover:opacity-80 transition-opacity"><Mail size={14} /></Link>
-            <Link href="tel:9810074878" className="hover:opacity-80 transition-opacity"><Phone size={14} /></Link>
-
+        <div className="w-full px-3 sm:px-8 lg:px-16 flex justify-between items-center text-sm relative z-10">
+          <div className="flex items-center gap-3 sm:gap-5 pl-4 sm:pl-20 text-white">
+            <Link href="https://www.facebook.com/Lokdalindia/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><FaFacebookF size={13} /></Link>
+            <Link href="https://x.com/lokdalindia" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity"><FaXTwitter size={13} /></Link>
+            <Link href="mailto:lokdalparty@gmail.com" className="hover:opacity-80 transition-opacity"><Mail size={13} /></Link>
+            <Link href="tel:9810074878" className="hover:opacity-80 transition-opacity"><Phone size={13} /></Link>
           </div>
         </div>
       </div>
@@ -52,11 +51,11 @@ export default function Header() {
     <div className="w-full px-4 sm:px-8 lg:px-16 py-3 flex items-center justify-between gap-4">
 
         {/* Logo */}
-        <Link href="/" className="flex flex-shrink-0 items-center gap-3 sm:gap-4">
-          <Image src="/assets/logo.png" alt="Lokdal Logo" width={96} height={64} className="h-12 sm:h-16 w-auto object-contain" priority />
+        <Link href="/" className="flex flex-shrink-0 items-center gap-2 sm:gap-4">
+          <Image src="/assets/logo.png" alt="Lokdal Logo" width={96} height={64} className="h-9 sm:h-16 w-auto object-contain" priority />
           <div className="flex flex-col justify-center">
-            <span className="text-2xl sm:text-[32px] font-black text-[#0b4d21] tracking-tight leading-none mb-0.5">लोकदल</span>
-            <span className="text-[11px] sm:text-[12px] font-bold text-gray-600 tracking-wide">पारिवर्तन है, विकल्प है</span>
+            <span className="text-xl sm:text-[32px] font-black text-[#0b4d21] tracking-tight leading-none mb-0.5">लोकदल</span>
+            <span className="text-[10px] sm:text-[12px] font-bold text-gray-600 tracking-wide">पारिवर्तन है, विकल्प है</span>
           </div>
         </Link>
 
