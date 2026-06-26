@@ -7,6 +7,7 @@ import {
   Users,
   Image as ImageIcon,
   CalendarDays,
+  Play,
   Newspaper,
   LogOut,
   Menu,
@@ -17,16 +18,22 @@ import {
   Bell
 } from "lucide-react";
 
+
   
-import OverviewPanel from "./Panels/OverviewPanel";
+import OverviewPanel from "./Panels/OverviewPanel"; 
 import SupportersPanel from "./Panels/SupportersPanel";
 import GalleryPanel from "./Panels/GalleryPanel";
 import EventsPanel from "./Panels/EventsPanel";
-import NewsPanel from "./Panels/NewsPanel";
+
 import PressPanel from "./Panels/PressPanel";
 import DonationsPanel from "./Panels/DonationsPanel";
 import ManageAdminPanel from "./Panels/ManageAdminPanel";
 import OrganisationPanel from "./Panels/OrganisationPanel";
+import LokdalLivePanel from "./Panels/LokdalLivePanel";
+import AdminChaudharyCharanSinghPanel from "./Panels/AdminChaudharyCharanSinghPanel";
+import AdminChaudharySunilSinghPanel from "./Panels/AdminChaudharySunilSinghPanel";
+
+
 
 
 interface AdminDashboardProps {
@@ -40,33 +47,54 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const menuItems = [
     { id: "overview",     label: "Dashboard",       icon: LayoutDashboard },
     { id: "events",       label: "Upcoming Events",  icon: CalendarDays },
-    { id: "news",         label: "News & Updates",   icon: Newspaper },
+
     { id: "press",        label: "Press Releases",   icon: MessageSquare },
     { id: "gallery",      label: "Gallery",          icon: ImageIcon },
+    { id: "lokdal-live",  label: "Lokdal Live",     icon: Play },
     { id: "supporters",   label: "Supporters",       icon: Users },
     { id: "donations",    label: "Donations",        icon: IndianRupee },
     { id: "manage-admin", label: "Manage Admin",     icon: Settings },
     { id: "organisation", label: "Organisation",     icon: Users },
+
+    { id: "charan-singh", label: "Chaudhary Charan Singh", icon: Users },
+    { id: "sunil-singh",  label: "Chaudhary Sunil Singh",  icon: Users },
   ];
+
+
 
 
   const renderActivePanel = () => {
     switch (activeTab) {
-      case "overview":    return <OverviewPanel />;
-      case "events":      return <EventsPanel />;
-      case "news":        return <NewsPanel />;
-      case "press":       return <PressPanel />;
-      case "gallery":     return <GalleryPanel />;
-      case "supporters":  return <SupportersPanel />;
-      case "donations":      return <DonationsPanel />;
-      case "manage-admin":   return <ManageAdminPanel />;
-      case "organisation":   return <OrganisationPanel />;
+      case "overview":
+        return <OverviewPanel />;
+      case "events":
+        return <EventsPanel />;
+      case "press":
+        return <PressPanel />;
+      case "gallery":
+        return <GalleryPanel />;
+      case "lokdal-live":
+        return <LokdalLivePanel />;
+
+      case "supporters":
+        return <SupportersPanel />;
+      case "donations":
+        return <DonationsPanel />;
+      case "manage-admin":
+        return <ManageAdminPanel />;
+      case "organisation":
+        return <OrganisationPanel />;
+
+      case "charan-singh":
+        return <AdminChaudharyCharanSinghPanel />;
+      case "sunil-singh":
+        return <AdminChaudharySunilSinghPanel />;
       default:
         // Placeholder for unimplemented tabs
         return <OverviewPanel />;
-
     }
   };
+
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);

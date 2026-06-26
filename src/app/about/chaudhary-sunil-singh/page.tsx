@@ -51,7 +51,7 @@ export default function ChaudharySunilSinghPage() {
       {/* ── HERO ── */}
       <section className="relative w-full min-h-[60vw] sm:min-h-0 flex items-center justify-center overflow-hidden">
         <Image
-          src="/assets/hero image.png"
+          src="/assets/sunil.png"
           alt="Chaudhary Sunil Singh"
           width={1920}
           height={1080}
@@ -114,7 +114,7 @@ export default function ChaudharySunilSinghPage() {
                   </div>
                   <div className="w-full h-1/3 bg-green-200" />
                 </div>
-                <Image src="/assets/chairman.png" alt="Chaudhary Sunil Singh" fill className="object-cover object-top z-20" />
+                <Image src="/assets/sunil image.png" alt="Chaudhary Sunil Singh" fill className="object-cover object-top z-20" />
               </div>
             </div>
           </div>
@@ -136,15 +136,16 @@ export default function ChaudharySunilSinghPage() {
                   ? "/about/chaudhary-sunil-singh"
                   : "/about/chaudhary-charan-singh";
               return (
-              <Link key={l.name} href={href} className="flex flex-col items-center gap-4 group">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-gray-100 relative shadow-sm hover:shadow-md hover:border-[#0b4d21] transition-all cursor-pointer">
-                  <Image src={l.image} alt={l.name} fill className="object-cover object-top" />
-                </div>
-                <p className="text-xs sm:text-sm font-black text-blue-900 text-center leading-tight whitespace-pre-line group-hover:text-[#0b4d21] transition-colors">
-                  {l.name}
-                </p>
-              </Link>
-            );})}
+                <Link key={l.name} href={href} className="flex flex-col items-center gap-4 group">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-gray-100 relative shadow-sm hover:shadow-md hover:border-[#0b4d21] transition-all cursor-pointer">
+                    <Image src={l.image} alt={l.name} fill className="object-cover object-top" />
+                  </div>
+                  <p className="text-xs sm:text-sm font-black text-blue-900 text-center leading-tight whitespace-pre-line group-hover:text-[#0b4d21] transition-colors">
+                    {l.name}
+                  </p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -176,11 +177,10 @@ export default function ChaudharySunilSinghPage() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveCategory(tab.id)}
-                className={`px-4 py-2 rounded-full text-xs font-black transition-colors ${
-                  activeCategory === tab.id
-                    ? "bg-[#0b4d21] text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                className={`px-4 py-2 rounded-full text-xs font-black transition-colors ${activeCategory === tab.id
+                  ? "bg-[#0b4d21] text-white"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
               >
                 {tab.label}
               </button>
@@ -190,15 +190,15 @@ export default function ChaudharySunilSinghPage() {
           {filteredUpdates.length === 0 ? (
             <p className="text-gray-400 text-sm py-8">No updates in this category.</p>
           ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8 w-full">
-            {filteredUpdates.map((u, i) => (
-              <div key={i} className="rounded-xl overflow-hidden shadow-md group cursor-pointer border border-gray-100 flex flex-col">
-                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-gray-100">
-                  <Image src={u.image} alt={u.text} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8 w-full">
+              {filteredUpdates.map((u, i) => (
+                <div key={i} className="rounded-xl overflow-hidden shadow-md group cursor-pointer border border-gray-100 flex flex-col">
+                  <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-gray-100">
+                    <Image src={u.image} alt={u.text} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
           )}
         </div>
       </section>

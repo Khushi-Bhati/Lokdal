@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
 
 import Image from "next/image";
 import Header from "@/components/Header";
@@ -20,62 +21,20 @@ const galleryItems = {
     "/assets/join.jpg",
     "/assets/gallery-5.jpg",
   ],
-  videos: [
-    "/videos/6.mp4",
-    "/videos/8.mp4",
-    "/videos/10.mp4",
-    "/videos/14.mp4",
-    "/videos/15.mp4",
-  ],
-  speeches: [
-    "/videos/10.mp4",
-    "/videos/15.mp4",
-  ],
+  // videos + speeches are DB driven
+  videos: [] as string[],
+  speeches: [] as string[],
 };
 
-const recentBroadcasts = [
-  {
-    image: "",
-    video: "/videos/6.mp4",
-    title: "LIVE: Yuva Hunkar Rally in Kanpur",
-    date: "22 May 2025",
-    dateValue: "2025-05-22",
-    location: "Kanpur, Uttar Pradesh",
-    state: "Uttar Pradesh",
-    category: "Rally",
-  },
-  {
-    image: "",
-    video: "/videos/8.mp4",
-    title: "LIVE: Press Conference in Patna",
-    date: "21 May 2025",
-    dateValue: "2025-05-21",
-    location: "Patna, Bihar",
-    state: "Bihar",
-    category: "Press Conference",
-  },
-  {
-    image: "",
-    video: "/videos/15.mp4",
-    title: "LIVE: Kisan Mahapanchayat in Meerut",
-    date: "20 May 2025",
-    dateValue: "2025-05-20",
-    location: "Meerut, Uttar Pradesh",
-    state: "Uttar Pradesh",
-    category: "Public Meeting",
-  },
-  {
-    image: "",
-    video: "/videos/14.mp4",
-    title: "LIVE: Organization Meeting in Bhopal",
-    date: "19 May 2025",
-    dateValue: "2025-05-19",
-    location: "Bhopal, Madhya Pradesh",
-    state: "Madhya Pradesh",
-    category: "Convention",
-  },
- 
-];
+type VideoItem = {
+  _id: string;
+  src: string;
+  type: "image" | "video";
+  category: string;
+  title: string;
+  year: number;
+};
+
 
 export default function LokdalLivePage() {
 
@@ -83,7 +42,47 @@ export default function LokdalLivePage() {
   const featuredVideoRef = useRef<HTMLVideoElement>(null);
   const recentSectionRef = useRef<HTMLDivElement>(null);
 
-  const filteredBroadcasts = recentBroadcasts;
+  const [liveVideos, setLiveVideos] = useState<VideoItem[]>([]);
+  const [loadingLive, setLoadingLive] = useState(true);
+
+  useEffect(() => {
+    const fetchLive = async () => {
+      try {
+        setLoadingLive(true);
+        const res = await fetch("/api/gallery");
+        const json = await res.json();
+        if (json?.success && Array.isArray(json.data)) {
+          const vids = (json.data as VideoItem[]).filter((v) => v.type === "video");
+          setLiveVideos(vids);
+        } else {
+          setLiveVideos([]);
+        }
+      } catch {
+        setLiveVideos([]);
+      } finally {
+        setLoadingLive(false);
+      }
+    };
+    void fetchLive();
+  }, []);
+
+  const featuredVideo = useMemo(() => {
+    return liveVideos[0]?.src || "/videos/15.mp4";
+  }, [liveVideos]);
+
+const filteredBroadcasts = liveVideos.map((v) => ({
+    image: "",
+    video: v.src,
+    title: v.title,
+    date: `${v.year}`,
+    dateValue: `${v.year}`,
+    location: "",
+    state: "",
+    category: v.category,
+  }));
+
+  const recentBroadcasts = filteredBroadcasts;
+
 
 
   const handleSearchSubmit = () => {
@@ -149,7 +148,7 @@ export default function LokdalLivePage() {
               preload="metadata"
               poster=""
             >
-              <source src="/videos/15.mp4" type="video/mp4" />
+              <source src={featuredVideo} type="video/mp4" />
             </video>
 
 
@@ -183,7 +182,7 @@ export default function LokdalLivePage() {
               preload="metadata"
               poster=""
             >
-              <source src="/videos/10.mp4" type="video/mp4" />
+              <source src={featuredVideo} type="video/mp4" />
             </video>
             <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-red-600 text-white text-xs font-black px-2.5 py-1 rounded">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> LIVE
@@ -354,10 +353,10 @@ export default function LokdalLivePage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {galleryItems[galleryTab].map((src, idx) => (
-                <div key={idx} className="relative h-48 sm:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
+              {(loadingLive ? liveVideos : liveVideos).map((v, idx) => (
+                <div key={v._id || idx} className="relative h-48 sm:h-44 xl:h-52 rounded-xl overflow-hidden group cursor-pointer">
                   <video className="h-full w-full object-cover" controls muted playsInline preload="metadata">
-                    <source src={src} type="video/mp4" />
+                    <source src={v.src} type="video/mp4" />
                   </video>
                 </div>
               ))}

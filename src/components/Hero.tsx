@@ -8,9 +8,9 @@ import { useTranslation } from "./LanguageProvider";
 export default function Hero() {
   const { t } = useTranslation();
   return (
-    <section className="relative w-full h-[480px] sm:h-[540px] flex items-center bg-[#084920] overflow-hidden">
+    <section className="relative w-full h-[500px] sm:h-[540px] flex items-center bg-[#084920] overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Image src="/assets/hero image.png" alt="Hero background" fill className="object-cover object-center" priority />
+        <Image src="/assets/singh.png" alt="Hero background" fill className="object-cover object-center" priority />
       </div>
       <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16 flex flex-col items-center text-center">
         <h1 className="text-3xl sm:text-6xl md:text-7xl font-black text-[#0b4d21] leading-tight mb-3 sm:mb-4 drop-shadow-sm">

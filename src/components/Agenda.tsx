@@ -74,11 +74,11 @@ export default function Agenda() {
 
   return (
     <section className="w-full bg-white">
-      
+
       {/* Top Content: Activities + About */}
       <div className="w-full px-4 sm:px-8 lg:px-16 py-8 sm:py-12">
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 w-full">
-          
+
           {/* Left Column: मुख्य गतिविधियों */}
           <div className="w-full lg:w-[55%] border border-gray-200 rounded-2xl p-4 sm:p-6 lg:p-8">
             <div className="flex justify-between items-center mb-4 sm:mb-6">
@@ -90,9 +90,8 @@ export default function Agenda() {
             <div className="flex gap-2 mb-4 sm:mb-6 overflow-x-auto pb-2 scrollbar-none">
               {CATEGORY_TABS.map((tab) => (
                 <button key={tab.id} type="button" onClick={() => setActiveCategory(tab.id)}
-                  className={`text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1.5 rounded-full whitespace-nowrap transition-colors ${
-                    activeCategory === tab.id ? "bg-[#0b4d21] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}>
+                  className={`text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1.5 rounded-full whitespace-nowrap transition-colors ${activeCategory === tab.id ? "bg-[#0b4d21] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    }`}>
                   {t(tab.label)}
                 </button>
               ))}
@@ -143,7 +142,7 @@ export default function Agenda() {
               </div>
               <div className="w-[120px] sm:w-[180px] md:w-[210px] flex flex-col items-center flex-shrink-0">
                 <div className="w-[110px] h-[140px] sm:w-[170px] sm:h-[210px] md:w-[200px] md:h-[250px] rounded-xl overflow-hidden border border-green-100 relative">
-                  <Image src="/assets/chairman.png" alt="श्री सुनील सिंह" fill className="object-cover object-top" />
+                  <Image src="/assets/sunil image.png" alt="श्री सुनील सिंह" fill className="object-cover object-top" />
                 </div>
                 <h4 className="font-bold text-[#0b4d21] text-xs sm:text-sm mt-2 text-center">{t("श्री सुनील सिंह")}</h4>
                 <p className="text-[10px] sm:text-xs text-gray-500 text-center">{t("राष्ट्रीय अध्यक्ष, लोकदल")}</p>

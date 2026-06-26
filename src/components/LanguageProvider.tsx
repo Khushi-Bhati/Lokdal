@@ -203,13 +203,27 @@ Object.entries(translations).forEach(([source, entry]) => {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function translateText(text: string, language: LanguageCode) {
-  const trimmed = text.trim();
-  if (!trimmed) return text;
-  const entry = translationLookup.get(trimmed);
-  if (!entry) return text;
-  return text.replace(trimmed, entry[language]);
+function normalizeForLookup(input: string) {
+  // Normalize whitespace so "text" matches keys even if formatting differs.
+  return input.replace(/\s+/g, " ").trim();
 }
+
+function translateText(text: string, language: LanguageCode) {
+  const original = text;
+  const trimmed = normalizeForLookup(text);
+  if (!trimmed) return original;
+
+  const entry = translationLookup.get(trimmed);
+  if (!entry) return original;
+
+  // Preserve the original string if translation is identical; otherwise swap the normalized match.
+  return original.replace(new RegExp(escapeRegExp(trimmed), "g"), entry[language]);
+}
+
+function escapeRegExp(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<LanguageCode>("en");

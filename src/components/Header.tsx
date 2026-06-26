@@ -5,7 +5,8 @@ import { ChevronDown, UserPlus, Menu, X, Mail, Phone } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { useState } from "react";
-import { useLanguage } from "./LanguageProvider";
+import { useLanguage, useTranslation } from "./LanguageProvider";
+
 import Image from "next/image";
 
 export default function Header() {
@@ -19,6 +20,8 @@ export default function Header() {
   const [isMobileOrgOpen, setIsMobileOrgOpen] = useState(false);
 
   const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation();
+
 
   const closeMobile = () => {
     setIsMobileOpen(false);
@@ -55,23 +58,26 @@ export default function Header() {
           <Image src="/assets/logo.png" alt="Lokdal Logo" width={96} height={64} className="h-9 sm:h-16 w-auto object-contain" priority />
           <div className="flex flex-col justify-center">
             <span className="text-xl sm:text-[32px] font-black text-[#0b4d21] tracking-tight leading-none mb-0.5">लोकदल</span>
-            <span className="text-[10px] sm:text-[12px] font-bold text-gray-600 tracking-wide">पारिवर्तन है, विकल्प है</span>
+            <span className="text-[10px] sm:text-[12px] font-bold text-gray-600 tracking-wide">{t("परिवर्तन है, विकल्प है")}</span>
           </div>
+
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden xl:flex flex-1 items-center justify-center gap-1 text-[14px] font-bold text-gray-600">
           <Link href="/" className="text-[#0b4d21] px-2.5 py-2 relative whitespace-nowrap">
-            होम
+            {t("होम")}
             <span className="absolute bottom-1 left-2.5 right-2.5 h-0.5 bg-[#0b4d21]" />
           </Link>
+
           <span className="text-gray-300 font-light px-0.5">|</span>
 
           <div className="relative" onMouseEnter={() => setIsAboutOpen(true)} onMouseLeave={() => setIsAboutOpen(false)}>
-            <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
-              लोकदल के बारे में
+              <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
+              {t("लोकदल के बारे में")}
               <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isAboutOpen ? "rotate-180" : ""}`} />
             </button>
+
             {isAboutOpen && (
               <div className="absolute left-0 top-full w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 z-50">
                 <Link href="/about/chaudhary-charan-singh" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
@@ -98,8 +104,9 @@ export default function Header() {
 
           {/* Press & Media Link */}
           <Link href="/press-media" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">
-            Press &amp; Media
+            {t("Press Releases")}
           </Link>
+
 
 
 
@@ -107,42 +114,50 @@ export default function Header() {
 
           {/* Organisation Dropdown */}
           <div className="relative" onMouseEnter={() => setIsOrgOpen(true)} onMouseLeave={() => setIsOrgOpen(false)}>
-            <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
-              Organisation
+              <button className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 flex items-center gap-1.5 whitespace-nowrap">
+              {t("Organisation")}
               <ChevronDown size={14} strokeWidth={3} className={`mt-0.5 transition-transform ${isOrgOpen ? "rotate-180" : ""}`} />
             </button>
+
             {isOrgOpen && (
               <div className="absolute left-0 top-full w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 z-50">
                 <Link href="/organization/national-executive" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> National Executive
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> {t("National Executive")}
                 </Link>
                 <Link href="/organization/uttar-pradesh" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Uttar Pradesh
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> {t("Uttar Pradesh")}
                 </Link>
                 <Link href="/organization/haryana" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Haryana
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> {t("Haryana")}
                 </Link>
                 <Link href="/organization/rajasthan" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Rajasthan
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> {t("Rajasthan")}
                 </Link>
                 <Link href="/organization/kerala" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Kerala
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> {t("Kerala")}
                 </Link>
                 <Link href="/organization/bihar" className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-[#0b4d21] transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> Bihar
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> {t("Bihar")}
                 </Link>
               </div>
             )}
           </div>
 
           <span className="text-gray-300 font-light px-0.5">|</span>
-          <Link href="/upcoming-events" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Upcoming Events</Link>
+          <Link href="/upcoming-events" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">{t("Upcoming Events")}</Link>
+
           <span className="text-gray-300 font-light px-0.5">|</span>
-          <Link href="/lokdal-live" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Lokdal Live</Link>
+            <Link href="/lokdal-live" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">{t("Lokdal Live")}</Link>
+
           <span className="text-gray-300 font-light px-0.5">|</span>
-          <Link href="/gallery" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">Gallery</Link>
+          <Link href="/gallery" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">{t("Media Gallery")}</Link>
+
+
+
           <span className="text-gray-300 font-light px-0.5">|</span>
-          <Link href="/donate" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">दान करें</Link>
+          <Link href="/donate" className="hover:text-[#0b4d21] transition-colors px-2.5 py-2 whitespace-nowrap">{t("दान करें")}</Link>
+
+
         </nav>
 
         {/* Right: language toggle + join + hamburger */}
@@ -200,7 +215,8 @@ export default function Header() {
 
             <Link href="/" onClick={closeMobile}
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-[#0b4d21] font-black text-sm bg-green-50">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> होम
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0b4d21]" /> {t("होम")}
+
             </Link>
 
             {/* About accordion */}
@@ -210,7 +226,8 @@ export default function Header() {
                 className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors"
               >
                 <span className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> लोकदल के बारे में
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> {t("लोकदल के बारे में")}
+
                 </span>
                 <ChevronDown size={14} className={`transition-transform ${isMobileAboutOpen ? "rotate-180" : ""}`} />
               </button>
@@ -245,7 +262,8 @@ export default function Header() {
             <Link href="/press-media" onClick={closeMobile}
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 hover:text-[#0b4d21] transition-colors"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> Press &amp; Media
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> {t("Press Releases")}
+
             </Link>
 
 
@@ -257,18 +275,19 @@ export default function Header() {
                 className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors"
               >
                 <span className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> Organisation
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> {t("Organisation")}
+
                 </span>
                 <ChevronDown size={14} className={`transition-transform ${isMobileOrgOpen ? "rotate-180" : ""}`} />
               </button>
               {isMobileOrgOpen && (
                 <div className="ml-6 mt-1 flex flex-col gap-1 border-l-2 border-green-100 pl-4">
-                  <Link href="/organization/national-executive" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">National Executive</Link>
-                  <Link href="/organization/uttar-pradesh" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Uttar Pradesh</Link>
-                  <Link href="/organization/haryana" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Haryana</Link>
-                  <Link href="/organization/rajasthan" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Rajasthan</Link>
-                  <Link href="/organization/kerala" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Kerala</Link>
-                  <Link href="/organization/bihar" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">Bihar</Link>
+                  <Link href="/organization/national-executive" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">{t("National Executive")}</Link>
+                  <Link href="/organization/uttar-pradesh" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">{t("Uttar Pradesh")}</Link>
+                  <Link href="/organization/haryana" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">{t("Haryana")}</Link>
+                  <Link href="/organization/rajasthan" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">{t("Rajasthan")}</Link>
+                  <Link href="/organization/kerala" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">{t("Kerala")}</Link>
+                  <Link href="/organization/bihar" onClick={closeMobile} className="px-3 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-green-50 hover:text-[#0b4d21] transition-colors font-medium">{t("Bihar")}</Link>
                 </div>
               )}
             </div>
@@ -276,14 +295,15 @@ export default function Header() {
             {[
               { href: "/upcoming-events", label: "Upcoming Events" },
               { href: "/lokdal-live", label: "Lokdal Live" },
-              { href: "/gallery", label: "Gallery" },
+              { href: "/gallery", label: "Media Gallery" },
               { href: "/donate", label: "दान करें" },
             ].map(({ href, label }) => (
               <Link key={label} href={href} onClick={closeMobile}
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 font-bold text-sm hover:bg-gray-50 hover:text-[#0b4d21] transition-colors">
-                <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> {label}
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-400" /> {t(label)}
               </Link>
             ))}
+
 
             <div className="my-2 border-t border-gray-100" />
 
